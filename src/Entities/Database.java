@@ -1,4 +1,4 @@
-package main.Entities;
+package Entities;
 
 import java.util.HashMap;
 
@@ -7,6 +7,8 @@ public class Database {
     public static HashMap<String, House> houses;
 
     static {
+        users = new HashMap<>();
+        houses = new HashMap<>();
         users.put("bHomayoun", new IndividualUser("بهنام همایون", "09121102030", new Float(0), "bHomayoun", "key123"));
     }
 

@@ -1,4 +1,4 @@
-package main.Entities;
+package Entities;
 
 abstract public class User {
     protected String name;

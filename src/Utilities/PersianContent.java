@@ -1,4 +1,4 @@
-package main.Utilities;
+package Utilities;
 
 import java.util.HashMap;
 
@@ -6,6 +6,8 @@ public class PersianContent {
     public static HashMap<String, String> phrases;
 
     static {
+        phrases = new HashMap<>();
+
         // search form Persian content
         phrases.put("minArea", "حداقل متراژ");
         phrases.put("propertyType", "نوع ملک");
