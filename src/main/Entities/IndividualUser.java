@@ -1,4 +1,4 @@
-package Entities;
+package main.Entities;
 
 
 public class IndividualUser extends User {
