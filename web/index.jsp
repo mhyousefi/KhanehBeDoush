@@ -7,9 +7,9 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="main.Entities.Database"%>
-<%@ page import="main.Entities.IndividualUser" %>
-<%@ page import="main.Utilities.PersianContent" %>
+<%@ page import="Entities.Database"%>
+<%@ page import="Entities.IndividualUser" %>
+<%@ page import="Utilities.PersianContent" %>
 
 <%
   IndividualUser loggedInUser = Database.getUser("bHomayoun");
