@@ -1,4 +1,4 @@
-package Entities;
+package main.Entities;
 
 public class House {
     private String id , area , buildingType , imageURL , dealType , basePrice,

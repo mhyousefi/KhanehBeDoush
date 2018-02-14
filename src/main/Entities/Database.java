@@ -1,6 +1,5 @@
-package Entities;
+package main.Entities;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Database {
