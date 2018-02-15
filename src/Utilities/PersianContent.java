@@ -6,7 +6,7 @@ public class PersianContent {
     public static HashMap<String, String> phrases;
 
     static {
-        phrases = new HashMap<>();
+        phrases = new HashMap<String, String>();
 
         // search form Persian content
         phrases.put("minArea", "حداقل متراژ");

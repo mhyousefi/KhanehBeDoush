@@ -7,8 +7,8 @@ public class Database {
     public static HashMap<String, House> houses;
 
     static {
-        users = new HashMap<>();
-        houses = new HashMap<>();
+        users = new HashMap<String, IndividualUser>();
+        houses = new HashMap<String, House>();
         users.put("bHomayoun", new IndividualUser("بهنام همایون", "09121102030", new Float(0), "bHomayoun", "key123"));
     }
 
