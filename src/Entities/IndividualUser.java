@@ -33,8 +33,8 @@ public class IndividualUser extends User {
         this.phone = phone;
     }
 
-    public void setBalance(Float balance) {
-        this.balance = balance;
+    public void increaseBalance(Float balance) {
+        this.balance += balance;
     }
 
     public void setUsername(String username) {
