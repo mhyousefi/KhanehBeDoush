@@ -33,14 +33,14 @@
 <%--<input type="submit" value=<%=PersianContent.getPhrase("search")%>>--%>
 <%--</form>--%>
 
-    <form action="WEB-INF/addHome.jsp">
+    <form action="addHome.jsp">
         <input type="text" name="buildingType" value=<%=PersianContent.getPhrase("buildingType")%>><br><br>
         <input type="text" name="area" value=<%=PersianContent.getPhrase("area")%>><br><br>
         <input type="text" name="dealType" value=<%=PersianContent.getPhrase("dealType")%>><br><br>
         <input type="text" name="price" value=<%=PersianContent.getPhrase("price")%>><br><br>
         <input type="text" name="address" value=<%=PersianContent.getPhrase("address")%>><br><br>
         <input type="text" name="phoneNumber" value=<%=PersianContent.getPhrase("phoneNumber")%>><br><br>
-        <input type="text" name="info" value=<%=PersianContent.getPhrase("info")%>><br><br>
+        <input type="text" name="description" value=<%=PersianContent.getPhrase("description")%>><br><br>
         <input type="submit" value=<%=PersianContent.getPhrase("addProperty")%>>
     </form>
 
