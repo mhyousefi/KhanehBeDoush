@@ -3,9 +3,13 @@ package Entities;
 public class House {
     private String id , area , buildingType , imageURL , dealType , basePrice,
             rentPrice, sellPrice, phone, description, expireTime;
+    private static Integer houseCount;
 
-    public House(String id, String area, String buildingType, String imageURL, String dealType, String basePrice, String rentPrice, String sellPrice, String phone, String description, String expireTime) {
-        this.id = id;
+    static {
+        houseCount = 0;
+    }
+
+    public House(String area, String buildingType, String imageURL, String dealType, String basePrice, String rentPrice, String sellPrice, String phone, String description, String expireTime) {
         this.area = area;
         this.buildingType = buildingType;
         this.imageURL = imageURL;
@@ -16,6 +20,9 @@ public class House {
         this.phone = phone;
         this.description = description;
         this.expireTime = expireTime;
+
+        this.id = this.houseCount.toString();
+        this.houseCount += 1;
     }
 
     public String getId() {
@@ -105,6 +112,5 @@ public class House {
     public void setExpireTime(String expireTime) {
         this.expireTime = expireTime;
     }
-
 
 }

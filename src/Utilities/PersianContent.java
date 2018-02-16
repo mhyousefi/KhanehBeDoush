@@ -21,7 +21,7 @@ public class PersianContent {
         phrases.put("price", "قیمت فروش/اجاره");
         phrases.put("address", "آدرس");
         phrases.put("phoneNumber", "شماره تلفن");
-        phrases.put("info", "توضیحات");
+        phrases.put("description", "توضیحات");
         phrases.put("addProperty", "اضافه کردن خانه جدید");
 
         // increase credit form Persian content
