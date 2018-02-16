@@ -19,7 +19,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title>Home Page</title>
 </head>
 <body>
     <h4>
@@ -48,6 +48,7 @@
         <input type="text" name="credit" value=<%=PersianContent.getPhrase("credit")%>><br><br>
         <input type="submit" value=<%=PersianContent.getPhrase("increaseCredit")%>>
     </form>
+
     <h2><%= request.getAttribute("msg")%></h2>
 </body>
 </html>
