@@ -33,7 +33,7 @@
 <%--<input type="submit" value=<%=PersianContent.getPhrase("search")%>>--%>
 <%--</form>--%>
 
-    <form action="addHome.jsp">
+    <form action="WEB-INF/addHome.jsp">
         <input type="text" name="buildingType" value=<%=PersianContent.getPhrase("buildingType")%>><br><br>
         <input type="text" name="area" value=<%=PersianContent.getPhrase("area")%>><br><br>
         <input type="text" name="dealType" value=<%=PersianContent.getPhrase("dealType")%>><br><br>

@@ -1,10 +1,12 @@
 package Entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Database {
     public static HashMap<String, IndividualUser> users;
     public static HashMap<String, House> houses;
+    public static ArrayList<House> searchResult;
 
     static {
         users = new HashMap<String, IndividualUser>();
