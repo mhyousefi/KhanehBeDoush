@@ -17,38 +17,61 @@
     IndividualUser loggedInUser = Database.getUser(Constants.getConstant("USERNAME"));
 %>
 
-<html>
-<head>
-    <title>Home Page</title>
-</head>
-<body>
-    <h4>
-        <%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; <br>
-    </h4>
-<%--<form action="WEB-INF/FormActions">--%>
-<%--<input type="text" name="minArea" value=<%=PersianContent.getPhrase("minArea")%>><br><br>--%>
-<%--<input type="text" name="propertyType" value=<%=PersianContent.getPhrase("propertyType")%>><br><br>--%>
-<%--<input type="text" name="dealType" value=<%=PersianContent.getPhrase("dealType")%>><br><br>--%>
-<%--<input type="text" name="maxPrice" value=<%=PersianContent.getPhrase("maxPrice")%>><br><br>--%>
-<%--<input type="submit" value=<%=PersianContent.getPhrase("search")%>>--%>
-<%--</form>--%>
+<html dir="rtl">
+    <head>
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h3><%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; <br></h3>
 
-    <form action="WEB-INF/addHome.jsp">
-        <input type="text" name="buildingType" value=<%=PersianContent.getPhrase("buildingType")%>><br><br>
-        <input type="text" name="area" value=<%=PersianContent.getPhrase("area")%>><br><br>
-        <input type="text" name="dealType" value=<%=PersianContent.getPhrase("dealType")%>><br><br>
-        <input type="text" name="price" value=<%=PersianContent.getPhrase("price")%>><br><br>
-        <input type="text" name="address" value=<%=PersianContent.getPhrase("address")%>><br><br>
-        <input type="text" name="phoneNumber" value=<%=PersianContent.getPhrase("phoneNumber")%>><br><br>
-        <input type="text" name="description" value=<%=PersianContent.getPhrase("description")%>><br><br>
-        <input type="submit" value=<%=PersianContent.getPhrase("addProperty")%>>
-    </form>
+        <form action="pages/searchResults.jsp">
+            <label>
+                <input type="text" name="minArea" placeholder=<%=PersianContent.getPhrase("minArea")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="propertyType" placeholder=<%=PersianContent.getPhrase("propertyType")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="dealType" placeholder=<%=PersianContent.getPhrase("dealType")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="maxPrice" placeholder=<%=PersianContent.getPhrase("maxPrice")%>>
+            </label><br><br>
+            <input type="submit" value=<%=PersianContent.getPhrase("search")%>>
+        </form>
 
-    <form action="increaseCredit" method="post">
-        <input type="text" name="credit" value=<%=PersianContent.getPhrase("credit")%>><br><br>
-        <input type="submit" value=<%=PersianContent.getPhrase("increaseCredit")%>>
-    </form>
+        <form action="pages/addHouse.jsp">
+            <label>
+                <input type="text" name="buildingType" placeholder=<%=PersianContent.getPhrase("buildingType")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="area" placeholder=<%=PersianContent.getPhrase("area")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="dealType" placeholder=<%=PersianContent.getPhrase("dealType")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="price" placeholder=<%=PersianContent.getPhrase("price")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="address" placeholder=<%=PersianContent.getPhrase("address")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="phoneNumber" placeholder=<%=PersianContent.getPhrase("phoneNumber")%>>
+            </label><br><br>
+            <label>
+                <input type="text" name="description" placeholder=<%=PersianContent.getPhrase("description")%>>
+            </label><br><br>
+            <input type="submit" value=<%=PersianContent.getPhrase("addProperty")%>>
+        </form>
 
-    <h2><%= request.getAttribute("msg")%></h2>
-</body>
+        <form action="increaseCredit" method="post">
+            <label>
+                <input type="text" name="credit" placeholder=<%=PersianContent.getPhrase("credit")%>>
+            </label><br><br>
+            <input type="submit" value=<%=PersianContent.getPhrase("increaseCredit")%>>
+        </form>
+
+        <h2><%=request.getAttribute("msg")%></h2>
+    </body>
 </html>

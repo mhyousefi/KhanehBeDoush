@@ -15,5 +15,7 @@ public class Constants {
         constants.put("apiKey", "c3932910-1011-11e8-87b4-496f79ef1988");
         constants.put("bankPostURL", "http://acm.ut.ac.ir/ieBank/pay");
         constants.put("USERNAME", "bHomayoun");
+        constants.put("AcmServerURL", "http://acm.ut.ac.ir/khaneBeDoosh/house");
+        constants.put("NO_PIC_URL", "/Images/no-pic.jpg");
     }
 }

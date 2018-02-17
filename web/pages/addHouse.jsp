@@ -9,9 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="Entities.House" %>
 <%@ page import="Entities.Database" %>
+<%@ page import="Utilities.PersianContent" %>
+<%@ page import="Utilities.HouseFactory" %>
 
 
-<html>
+<html dir="rtl">
     <head>
         <title></title>
     </head>
@@ -24,10 +26,19 @@
             String price = request.getParameter("price");
             String phoneNumber = request.getParameter("phoneNumber");
             String description = request.getParameter("info");
-            String expireTime = "";
+            String address = request.getParameter("address");
 
-            House newHouse = new House(area, buildingType, noPicURL, dealType, price, price, price, phoneNumber, description, expireTime);
-            Database.addHouse(newHouse);
+            House newHouse = null;
+
+            try {
+                newHouse = HouseFactory.createHouse(area, buildingType, noPicURL, dealType, price, phoneNumber, description, address);
+                Database.addHouse(newHouse);
+            } catch (IllegalArgumentException e) {
+                request.setAttribute("msg", "Deal type is invalid.");
+        %>
+            <jsp:forward page="../index.jsp"/>
+        <%
+            }
 
             String message = "House with following info was added:";
             message += "id: " + newHouse.getId() + "\n";
@@ -35,7 +46,7 @@
             message += "building type: " + newHouse.getBuildingType() + "\n";
             message += "deal type: " + newHouse.getDealType() + "\n";
             message += "base price: " + newHouse.getBasePrice() + "\n";
-            message += "cell price: " + newHouse.getSellPrice() + "\n";
+            message += "cell price: " + newHouse.getSellingPrice() + "\n";
             message += "rent price: " + newHouse.getRentPrice() + "\n";
             message += "phone number: " + newHouse.getPhone() + "\n";
             message += "description: " + newHouse.getDescription() + "\n";
