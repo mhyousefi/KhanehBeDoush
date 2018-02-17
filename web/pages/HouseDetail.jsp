@@ -16,9 +16,9 @@
 <%
     IndividualUser loggedInUser = Database.getUser(Constants.getConstant("USERNAME"));
     String houseID = request.getParameter("houseId");
-    House house = Database.getHouse(houseID);
+    House house = Database.getSearchedHouse(houseID);
     if (house == null) {
-        request.setAttribute("msg", "NULL pointer when searching for house with id: " + houseID);
+        request.setAttribute("msg", "Could not find house with id: " + houseID);
 %>
     <jsp:forward page="../index.jsp"/>
 <%
@@ -27,7 +27,7 @@
 
 <html dir="rtl">
     <head>
-        <title></title>
+        <title>House Detail</title>
     </head>
     <body>
         <h3><%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; <br></h3><br>
@@ -54,7 +54,7 @@
         <h5><%=PersianContent.getPhrase("description")%>:&nbsp;<%=house.getDescription()%></h5>
 
         <%
-            String buttonTxt = "";
+            String buttonTxt = "SOME NICE TEXT";
             // TODO: implement logic for identifying button text value
         %>
         <form action="../index.jsp">

@@ -19,7 +19,7 @@ import java.util.Map;
 public class Database {
     public static HashMap<String, IndividualUser> users;
     public static HashMap<String, House> houses;
-    public static HashMap<String, House> searchResults;
+    public static HashMap<String, House> lastSearchResults;
 
     static {
         users = new HashMap<String, IndividualUser>();
@@ -42,11 +42,12 @@ public class Database {
         Database.houses.put(house.getId(), house);
     }
 
-    public static House getHouse(String houseId) {
-        return searchResults.get(houseId);
+    public static House getSearchedHouse(String houseId) {
+        return lastSearchResults.get(houseId);
     }
 
     public static ArrayList<House> searchHouses(String minArea, String maxPrice, String dealType, String propertyType) throws ServletException, IOException {
+        lastSearchResults.clear();
         ArrayList<House> result = new ArrayList<House>();
         addMatchingHousesFromAcmServer(minArea, maxPrice, dealType, propertyType, result);
         addMatchingLocalHouses(minArea, maxPrice, dealType, propertyType, result);
@@ -58,14 +59,14 @@ public class Database {
         for (Map.Entry<String, House> e: houses.entrySet()) {
             house = e.getValue();
             if (house.meetsSearchCriteria(minArea, maxPrice, dealType, propertyType)) {
+                lastSearchResults.put(house.getId(), house);
                 result.add(house);
             }
         }
     }
 
     private static void addMatchingHousesFromAcmServer(String minArea, String maxPrice, String dealType, String propertyType, ArrayList<House> result) throws IOException {
-        JSONObject jsonHouseToBeAdded;
-        House house;
+        House house, houseToBeAdded;
 
         JSONObject jsonResponse = queryToAcmServer("");
         if (serverResponseIsValid(jsonResponse)) {
@@ -74,8 +75,9 @@ public class Database {
                 house = createHouseObj(data.getJSONObject(i));
                 if (house.meetsSearchCriteria(minArea, maxPrice, dealType, propertyType)) {
                     String houseId = data.getJSONObject(i).get("id").toString();
-                    jsonHouseToBeAdded = queryToAcmServer(houseId);
-                    result.add(createHouseObj(jsonHouseToBeAdded));
+                    houseToBeAdded = createHouseObj(queryToAcmServer(houseId));
+                    lastSearchResults.put(houseToBeAdded.getId(), houseToBeAdded);
+                    result.add(houseToBeAdded);
                 }
             }
         }

@@ -25,10 +25,10 @@
 
 <html dir="rtl">
     <head>
-        <title>Title</title>
+        <title>Search Results</title>
     </head>
     <body>
-        <h3><%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; <br></h3><br>
+        <h3><%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; </h3><br>
 
         <%
             for (House house : searchResults) {
