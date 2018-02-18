@@ -1,12 +1,14 @@
-package Utilities;
+package Constants;
 
 import java.util.HashMap;
 
 public class PersianContent {
-    public static HashMap<String, String> phrases;
+    private static HashMap<String, String> phrases;
+    private static HashMap<String, String> messages;
 
     static {
         phrases = new HashMap<String, String>();
+        messages = new HashMap<String, String>();
 
         // search form Persian content
         phrases.put("minArea", "حداقل متراژ");
@@ -38,9 +40,25 @@ public class PersianContent {
         phrases.put("imageLink", "لینک عکس");
         phrases.put("sellingPrice", "قیمت فروش");
         phrases.put("moreInfo", "اطلاعات بیشتر");
+
+        phrases.put("RETURN_TO_HOME_PAGE", "بازگشت به صفحه اصلی");
+        phrases.put("PHONE_NUMBER_MESSAGE_PREFIX", "شماره مالک/مشاور: ");
+        phrases.put("PAY_FOR_PHONE_NUMBER", "دریافت شماره مالک/مشاور");
+
+        // MESSAGES
+        messages.put("NOT_ENOUGH_BALANCE_TO_SEE_PHONE_NUMBER", "اعتبار شما برای دریافت شماره مالک/مشاور کافی نیست!");
+        messages.put("NOTHING_FOUND", "هیچ موردی یافت نشد.");
     }
 
     public static String getPhrase(String key) {
         return phrases.get(key);
+    }
+
+    public static String getMessage(String key) {
+        return messages.get(key);
+    }
+
+    public static String createPhoneNumberMessage(String phoneNumber) {
+        return (phrases.get("PHONE_NUMBER_MESSAGE_PREFIX") + phoneNumber);
     }
 }

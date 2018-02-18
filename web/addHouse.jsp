@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="Entities.House" %>
 <%@ page import="Entities.Database" %>
-<%@ page import="Utilities.PersianContent" %>
 <%@ page import="Utilities.HouseFactory" %>
 
 
@@ -27,16 +26,18 @@
             String phoneNumber = request.getParameter("phoneNumber");
             String description = request.getParameter("info");
             String address = request.getParameter("address");
+            String expireTime = "";
+            String id = "";
 
             House newHouse = null;
 
             try {
-                newHouse = HouseFactory.createHouse(area, buildingType, noPicURL, dealType, price, phoneNumber, description, address);
+                newHouse = HouseFactory.createHouseForUserInput(area, buildingType, noPicURL, dealType, expireTime, price, phoneNumber, description, address, id);
                 Database.addHouse(newHouse);
             } catch (IllegalArgumentException e) {
                 request.setAttribute("msg", "Deal type is invalid.");
         %>
-            <jsp:forward page="../index.jsp"/>
+            <jsp:forward page="index.jsp"/>
         <%
             }
 
@@ -54,6 +55,6 @@
 
             request.setAttribute("msg", message);
         %>
-        <jsp:forward page="../index.jsp"/>
+        <jsp:forward page="index.jsp"/>
     </body>
 </html>

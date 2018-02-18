@@ -11,7 +11,7 @@
 <%@ page import="Entities.House" %>
 <%@ page import="Entities.IndividualUser" %>
 <%@ page import="Constants.Constants" %>
-<%@ page import="Utilities.PersianContent" %>
+<%@ page import="Constants.PersianContent" %>
 
 <%
     IndividualUser loggedInUser = Database.getUser(Constants.getConstant("USERNAME"));
@@ -20,7 +20,7 @@
     if (house == null) {
         request.setAttribute("msg", "Could not find house with id: " + houseID);
 %>
-    <jsp:forward page="../index.jsp"/>
+    <jsp:forward page="index.jsp"/>
 <%
     }
 %>
@@ -30,7 +30,7 @@
         <title>House Detail</title>
     </head>
     <body>
-        <h3><%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; <br></h3><br>
+        <h3><%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; <br></h3>
 
         <h5><%=PersianContent.getPhrase("buildingType")%>:&nbsp;<%=house.getBuildingType()%></h5>
         <h5><%=PersianContent.getPhrase("dealType")%>:&nbsp;<%=house.getDealType()%></h5>
@@ -54,11 +54,18 @@
         <h5><%=PersianContent.getPhrase("description")%>:&nbsp;<%=house.getDescription()%></h5>
 
         <%
-            String buttonTxt = "SOME NICE TEXT";
-            // TODO: implement logic for identifying button text value
+            String buttonTxt = request.getParameter("phoneNumberStatus");
+            if (buttonTxt == null) {
+                buttonTxt = request.getAttribute("phoneNumberStatus").toString();
+            }
         %>
-        <form action="../index.jsp">
-            <input type="button" value="<%=buttonTxt%>"/>
+        <form action="showHousePhoneNumberAction" method="post"> <br>
+            <input type="hidden" name="houseId" value="<%=house.getId()%>">
+            <input type="submit" value="<%=buttonTxt%>"/>
+        </form>
+
+        <form action="index.jsp"> <br>
+            <input type="submit" value="<%=PersianContent.getPhrase("RETURN_TO_HOME_PAGE")%>" />
         </form>
     </body>
 </html>

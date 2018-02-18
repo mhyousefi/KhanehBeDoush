@@ -24,14 +24,16 @@ public class Database {
     static {
         users = new HashMap<String, IndividualUser>();
         houses = new HashMap<String, House>();
+        lastSearchResults = new HashMap<String, House>();
+
         users.put("bHomayoun", new IndividualUser("بهنام همایون", "09121102030", new Float(0), "bHomayoun", "key123"));
 
-        houses.put("0", new House("120", "house", "no_image", "sell", "0", "0", "1000000000",
-                "12345", "very good", "many years later...", "here!"));
-        houses.put("1", new House("130", "apartment", "no_image", "rent", "100000000", "2000000", "0",
-                "151617", "divided against itself...", "next year", "there!"));
-        houses.put("2", new House("110", "apartment", "no_image", "sell", "0", "0", "900000000",
-                "15938767", "divided against itself...", "next year", "there it is!"));
+        houses.put("0", new House("120", "house", "no_image", "خرید", "0", "0", "50",
+                "09120710732", "very good", "many years later...", "here!", ""));
+        houses.put("1", new House("130", "apartment", "no_image", "اجاره", "2000", "100", "0",
+                "09121101200", "divided against itself...", "next year", "there!", ""));
+        houses.put("2", new House("110", "apartment", "no_image", "خرید", "0", "0", "5000",
+                "09131103040", "divided against itself...", "next year", "there it is!", ""));
     }
 
     public static IndividualUser getUser(String username) {
@@ -66,33 +68,52 @@ public class Database {
     }
 
     private static void addMatchingHousesFromAcmServer(String minArea, String maxPrice, String dealType, String propertyType, ArrayList<House> result) throws IOException {
-        House house, houseToBeAdded;
+        House house, houseToBeAdded = null;
+        JSONObject temp;
 
         JSONObject jsonResponse = queryToAcmServer("");
         if (serverResponseIsValid(jsonResponse)) {
             JSONArray data = jsonResponse.getJSONArray("data");
             for (int i = 0; i < data.length(); i++) {
                 house = createHouseObj(data.getJSONObject(i));
-                if (house.meetsSearchCriteria(minArea, maxPrice, dealType, propertyType)) {
-                    String houseId = data.getJSONObject(i).get("id").toString();
-                    houseToBeAdded = createHouseObj(queryToAcmServer(houseId));
-                    lastSearchResults.put(houseToBeAdded.getId(), houseToBeAdded);
-                    result.add(houseToBeAdded);
+                if (house != null) {
+                    if (house.meetsSearchCriteria(minArea, maxPrice, dealType, propertyType)) {
+                        String houseId = data.getJSONObject(i).get("id").toString();
+                        temp = queryToAcmServer(houseId);
+                        if (serverResponseIsValid(temp))
+                            houseToBeAdded = createHouseObj(temp.getJSONObject("data"));
+                        if (!serverResponseIsValid(temp) || houseToBeAdded == null)
+                            continue;
+                        lastSearchResults.put(houseToBeAdded.getId(), houseToBeAdded);
+                        result.add(houseToBeAdded);
+                    }
                 }
             }
         }
     }
 
     private static House createHouseObj(JSONObject house) {
-        String area = house.get("area").toString();
-        String buildingType = house.get("buildingType").toString();
-        String noPicURL = Constants.getConstant("NO_PIC_URL");
-        String price = house.get("price").toString();
-        String dealType = house.get("dealType").toString();
-        String phoneNumber = house.get("phoneNumber").toString();
-        String description = house.get("info").toString();
-        String address = house.get("address").toString();
-        return HouseFactory.createHouse(area, buildingType, noPicURL, dealType, price, phoneNumber, description, address);
+        String area="", buildingType="", imageUrl="", dealType="", phoneNumber="", description="", address="", expireTime="", id="";
+        if (house.has("area")) area = house.get("area").toString();
+        if (house.has("buildingType")) buildingType = house.get("buildingType").toString();
+        if (house.has("imageUrl")) imageUrl = house.get("imageURL").toString();
+        if (house.has("dealType")) dealType = house.get("dealType").toString();
+        if (house.has("phoneNumber")) phoneNumber = house.get("phoneNumber").toString();
+        if (house.has("description")) description = house.get("description").toString();
+        if (house.has("address")) address = house.get("address").toString();
+        if (house.has("expireTime")) expireTime = house.get("expireTime").toString();
+        if (house.has("id")) id = house.get("id").toString();
+
+        JSONObject priceInfo = (house.has("price")) ? (JSONObject) house.get("price") : null;
+        if (priceInfo == null) {
+            return null;
+        }
+
+        try {
+            return HouseFactory.createHouseForAcmInput(area, buildingType, imageUrl, dealType, expireTime, priceInfo, phoneNumber, description, address, id);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 
     private static JSONObject queryToAcmServer(String id) throws IOException {
@@ -108,24 +129,11 @@ public class Database {
     }
 
     private static boolean serverResponseIsValid(JSONObject jsonResponse) {
-        if (jsonResponse.has("result")) {
+        if (jsonResponse.has("result") && jsonResponse.has("data")) {
             if (jsonResponse.get("result").toString().equals("OK")) {
                 return true;
             }
         }
         return false;
-    }
-
-    private void setPriceValues(JSONObject priceInfo, String basePrice, String rentPrice, String sellingPrice) {
-        if (priceInfo.has("sellPrice")) {
-            sellingPrice = priceInfo.get("sellPrice").toString();
-            basePrice = "0";
-            rentPrice = "0";
-            return;
-        }
-
-        sellingPrice = "0";
-        basePrice = priceInfo.get("basePrice").toString();
-        rentPrice = priceInfo.get("rentPrice").toString();
     }
 }

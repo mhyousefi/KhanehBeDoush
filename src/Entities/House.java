@@ -1,7 +1,6 @@
 package Entities;
 
-import Constants.Constants;
-import Utilities.PersianContent;
+import Constants.PersianContent;
 
 public class House {
     private String id, area, buildingType, imageURL, dealType, basePrice,
@@ -10,11 +9,11 @@ public class House {
     private static Integer houseCount;
 
     static {
-        houseCount = 0;
+        houseCount = 3;
     }
 
     public House(String area, String buildingType, String imageURL, String dealType, String basePrice, String rentPrice,
-                 String sellingPrice, String phone, String description, String expireTime, String address) {
+                 String sellingPrice, String phone, String description, String expireTime, String address, String _id) {
         this.area = area;
         this.buildingType = buildingType;
         this.imageURL = imageURL;
@@ -27,8 +26,8 @@ public class House {
         this.expireTime = expireTime;
         this.address = address;
 
-        this.id = this.houseCount.toString();
-        this.houseCount += 1;
+        this.id = (_id.equals("")) ? houseCount.toString() : _id;
+        houseCount += 1;
     }
 
     public String getId() {

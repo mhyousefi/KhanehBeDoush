@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="Entities.Database" %>
 <%@ page import="Entities.IndividualUser" %>
-<%@ page import="Utilities.PersianContent" %>
+<%@ page import="Constants.PersianContent" %>
 <%@ page import="Constants.Constants" %>
 
 
@@ -24,7 +24,7 @@
     <body>
         <h3><%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; <br></h3>
 
-        <form action="pages/searchResults.jsp">
+        <form action="searchResults.jsp">
             <label>
                 <input type="text" name="minArea" placeholder=<%=PersianContent.getPhrase("minArea")%>>
             </label><br><br>
@@ -35,12 +35,12 @@
                 <input type="text" name="dealType" placeholder=<%=PersianContent.getPhrase("dealType")%>>
             </label><br><br>
             <label>
-                <input type="text" name="maxPrice" placeholder=<%=PersianContent.getPhrase("maxPrice")%>>
+                <input type="text" name="maxPrice" placeholder="<%=PersianContent.getPhrase("maxPrice")%>">
             </label><br><br>
             <input type="submit" value=<%=PersianContent.getPhrase("search")%>>
         </form>
 
-        <form action="pages/addHouse.jsp">
+        <form action="addHouse.jsp">
             <label>
                 <input type="text" name="buildingType" placeholder=<%=PersianContent.getPhrase("buildingType")%>>
             </label><br><br>
