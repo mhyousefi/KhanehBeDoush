@@ -4,7 +4,6 @@ package Entities;
 import Constants.Constants;
 import Constants.PersianContent;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class IndividualUser extends User {

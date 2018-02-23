@@ -9,7 +9,7 @@ public class House {
     private static Integer houseCount;
 
     static {
-        houseCount = 3;
+        houseCount = 0;
     }
 
     public House(String area, String buildingType, String imageURL, String dealType, String basePrice, String rentPrice,
