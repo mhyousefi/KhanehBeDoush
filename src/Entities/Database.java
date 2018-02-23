@@ -113,7 +113,7 @@ public class Database {
 
     private static JSONObject queryToAcmServer(String id) throws IOException {
         HttpClient client = HttpClientBuilder.create().build();
-        String requestUrl = Constants.getConstant("AcmServerURL");
+        String requestUrl = Constants.getConstant("ACM_SERVER_URL");
         if (!id.equals("")) {
             requestUrl += ("/" + id);
         }

@@ -55,9 +55,9 @@ public class increaseCreditFormAction extends HttpServlet {
     }
 
     private HttpPost createHttpPost () {
-        HttpPost post = new HttpPost(Constants.getConstant("bankPostURL"));
+        HttpPost post = new HttpPost(Constants.getConstant("BANK_POST_URL"));
         post.setHeader("Content-Type", "application/json");
-        post.setHeader("apiKey", Constants.getConstant("apiKey"));
+        post.setHeader("apiKey", Constants.getConstant("API_KEY"));
         return post;
     }
 
