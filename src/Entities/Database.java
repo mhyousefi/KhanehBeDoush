@@ -27,13 +27,6 @@ public class Database {
         lastSearchResults = new HashMap<String, House>();
 
         users.put("bHomayoun", new IndividualUser("بهنام همایون", "09121102030", new Float(0), "bHomayoun", "key123"));
-
-        houses.put("0", new House("120", "house", "no_image", "خرید", "0", "0", "50",
-                "09120710732", "very good", "many years later...", "here!", ""));
-        houses.put("1", new House("130", "apartment", "no_image", "اجاره", "2000", "100", "0",
-                "09121101200", "divided against itself...", "next year", "there!", ""));
-        houses.put("2", new House("110", "apartment", "no_image", "خرید", "0", "0", "5000",
-                "09131103040", "divided against itself...", "next year", "there it is!", ""));
     }
 
     public static IndividualUser getUser(String username) {
@@ -80,10 +73,13 @@ public class Database {
                     if (house.meetsSearchCriteria(minArea, maxPrice, dealType, propertyType)) {
                         String houseId = data.getJSONObject(i).get("id").toString();
                         temp = queryToAcmServer(houseId);
+
                         if (serverResponseIsValid(temp))
                             houseToBeAdded = createHouseObj(temp.getJSONObject("data"));
                         if (!serverResponseIsValid(temp) || houseToBeAdded == null)
                             continue;
+
+                        houseToBeAdded.setId(houseId);
                         lastSearchResults.put(houseToBeAdded.getId(), houseToBeAdded);
                         result.add(houseToBeAdded);
                     }
@@ -96,18 +92,17 @@ public class Database {
         String area="", buildingType="", imageUrl="", dealType="", phoneNumber="", description="", address="", expireTime="", id="";
         if (house.has("area")) area = house.get("area").toString();
         if (house.has("buildingType")) buildingType = house.get("buildingType").toString();
-        if (house.has("imageUrl")) imageUrl = house.get("imageURL").toString();
+        if (house.has("imageURL")) imageUrl = house.get("imageURL").toString();
         if (house.has("dealType")) dealType = house.get("dealType").toString();
-        if (house.has("phoneNumber")) phoneNumber = house.get("phoneNumber").toString();
+        if (house.has("phone")) phoneNumber = house.get("phone").toString();
         if (house.has("description")) description = house.get("description").toString();
         if (house.has("address")) address = house.get("address").toString();
         if (house.has("expireTime")) expireTime = house.get("expireTime").toString();
         if (house.has("id")) id = house.get("id").toString();
 
         JSONObject priceInfo = (house.has("price")) ? (JSONObject) house.get("price") : null;
-        if (priceInfo == null) {
+        if (priceInfo == null)
             return null;
-        }
 
         try {
             return HouseFactory.createHouseForAcmInput(area, buildingType, imageUrl, dealType, expireTime, priceInfo, phoneNumber, description, address, id);

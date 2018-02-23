@@ -34,7 +34,7 @@ public class showHousePhoneNumberAction extends HttpServlet {
 
     private void moveBack (HttpServletRequest request, HttpServletResponse response, String houseId, String phoneNumberStatus)
             throws ServletException, IOException {
-        String nextJSP = "/HouseDetail.jsp?houseId=" + houseId;
+        String nextJSP = "/homeDetail.jsp?houseId=" + houseId;
         request.setAttribute("phoneNumberStatus", phoneNumberStatus);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);

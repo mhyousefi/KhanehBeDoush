@@ -53,6 +53,6 @@ public class IndividualUser extends User {
             phoneNumber = Database.getSearchedHouse(houseId).getPhone();
             return PersianContent.createPhoneNumberMessage(phoneNumber);
         }
-        return PersianContent.getPhrase("PAY_FOR_PHONE_NUMBER");
+        return PersianContent.getPhrase("PAY_FOR_PHONE_NUMBER_BTN");
     }
 }

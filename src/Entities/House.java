@@ -78,6 +78,10 @@ public class House {
         return address;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public boolean isForRent() {
         return dealType.equals(PersianContent.getPhrase("RENTAL"));
     }

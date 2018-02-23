@@ -20,11 +20,11 @@
         <%
             String area = request.getParameter("area");
             String buildingType = request.getParameter("buildingType");
-            String noPicURL = "/Images/no-pic.jpg";
+            String noPicURL = "/images/no-pic.jpg";
             String dealType = request.getParameter("dealType");
             String price = request.getParameter("price");
             String phoneNumber = request.getParameter("phoneNumber");
-            String description = request.getParameter("info");
+            String description = request.getParameter("description");
             String address = request.getParameter("address");
             String expireTime = "";
             String id = "";
@@ -42,16 +42,16 @@
             }
 
             String message = "House with following info was added:";
-            message += "id: " + newHouse.getId() + "\n";
-            message += "area: " + newHouse.getArea() + "\n";
-            message += "building type: " + newHouse.getBuildingType() + "\n";
-            message += "deal type: " + newHouse.getDealType() + "\n";
-            message += "base price: " + newHouse.getBasePrice() + "\n";
-            message += "cell price: " + newHouse.getSellingPrice() + "\n";
-            message += "rent price: " + newHouse.getRentPrice() + "\n";
-            message += "phone number: " + newHouse.getPhone() + "\n";
-            message += "description: " + newHouse.getDescription() + "\n";
-            message += "expire time: " + newHouse.getExpireTime() + "\n";
+            message += " id: " + newHouse.getId() + ",";
+            message += " area: " + newHouse.getArea() + ",";
+            message += " building type: " + newHouse.getBuildingType() + ",";
+            message += " deal type: " + newHouse.getDealType() + ",";
+            message += " base price: " + newHouse.getBasePrice() + ",";
+            message += " cell price: " + newHouse.getSellingPrice() + ",";
+            message += " rent price: " + newHouse.getRentPrice() + ",";
+            message += " phone number: " + newHouse.getPhone() + ",";
+            message += " description: " + newHouse.getDescription() + ",";
+            message += " expire time: " + newHouse.getExpireTime();
 
             request.setAttribute("msg", message);
         %>

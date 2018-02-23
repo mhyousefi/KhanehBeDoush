@@ -41,30 +41,30 @@
                 for (House house : searchResults) {
                     if (house.isForRent()) {
         %>
-                        <h5><%=PersianContent.getPhrase("basePrice")%>:&nbsp;<%=house.getBasePrice()%></h5>
-                        <h5><%=PersianContent.getPhrase("rentPrice")%>:&nbsp;<%=house.getRentPrice()%></h5>
+                        <h5><%=PersianContent.getPhrase("BASE_PRICE")%>:&nbsp;<%=house.getBasePrice()%></h5>
+                        <h5><%=PersianContent.getPhrase("RENT_PRICE")%>:&nbsp;<%=house.getRentPrice()%></h5>
         <%
                     } else {
         %>
-                        <h5><%=PersianContent.getPhrase("sellingPrice")%>:&nbsp;<%=house.getSellingPrice()%></h5>
+                        <h5><%=PersianContent.getPhrase("SELLING_PRICE")%>:&nbsp;<%=house.getSellingPrice()%></h5>
         <%
                     }
         %>
-                    <h5><%=PersianContent.getPhrase("area")%>:&nbsp;<%=house.getArea()%></h5>
-                    <h5><%=PersianContent.getPhrase("type")%>:&nbsp;<%=house.getDealType()%></h5>
-                    <h5><%=PersianContent.getPhrase("imageLink")%>:&nbsp;<%=house.getImageURL()%></h5>
-                    <form action="HouseDetail.jsp">
+                    <h5><%=PersianContent.getPhrase("AREA")%>:&nbsp;<%=house.getArea()%></h5>
+                    <h5><%=PersianContent.getPhrase("DEAL_TYPE")%>:&nbsp;<%=house.getDealType()%></h5>
+                    <a href="<%=house.getImageURL()%>">&nbsp;<%=PersianContent.getPhrase("IMAGE_LINK")%></a><br><br>
+                    <form action="homeDetail.jsp">
                         <input type="hidden" name="phoneNumberStatus" value="<%=loggedInUser.getPhoneNumberStatus(house.getId())%>">
                         <input type="hidden" name="houseId" value="<%=house.getId()%>"/>
-                        <input type="submit" value="<%=PersianContent.getPhrase("moreInfo")%>" />
-                    </form>
+                        <input type="submit" value="<%=PersianContent.getPhrase("MORE_INFO")%>" />
+                    </form><br>
         <%
                 }
             }
         %>
 
         <form action="index.jsp"> <br>
-            <input type="submit" value="<%=PersianContent.getPhrase("RETURN_TO_HOME_PAGE")%>" />
+            <input type="submit" value="<%=PersianContent.getPhrase("RETURN_TO_HOME_PAGE_BTN")%>" />
         </form>
     </body>
 </html>

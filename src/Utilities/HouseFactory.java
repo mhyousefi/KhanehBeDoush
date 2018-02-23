@@ -14,16 +14,14 @@ public class HouseFactory {
         basePrice = priceInfo.get("basePrice").toString();
         rentPrice = priceInfo.get("rentPrice").toString();
 
-        if (!dealTypeIsValid(dealType) || !pricesAreValid(basePrice, rentPrice, sellingPrice)) {
+        if (!dealTypeIsValid(dealType) || !pricesAreValid(basePrice, rentPrice, sellingPrice))
             throw new IllegalArgumentException();
-        }
 
-        if (houseIsForRent(dealType)) {
+        if (houseIsForRent(dealType))
             dealType = PersianContent.getPhrase("RENTAL");
-        }
-        else {
+
+        else
             dealType = PersianContent.getPhrase("SALE");
-        }
 
         return new House(area, buildingType, pictureURL, dealType, basePrice, rentPrice, sellingPrice, phoneNumber,
                 description, expireTime, address, id);

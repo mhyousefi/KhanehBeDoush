@@ -1,3 +1,5 @@
+package Servlets;
+
 import Entities.IndividualUser;
 
 import org.apache.http.HttpResponse;
@@ -35,7 +37,7 @@ public class increaseCreditFormAction extends HttpServlet {
 
             if (responseIsSuccessful(responseTxt)) {
                 user.increaseBalance(Float.parseFloat(creditIncrementValue));
-                request.setAttribute("msg", "User credit successfully increased by " + creditIncrementValue + " Toumans.");
+                request.setAttribute("msg", "User credit successfully increased by " + creditIncrementValue + " Toumans");
             }
             else {
                 request.setAttribute("msg", "A problem occurred while contacting the bank server: " + responseTxt);
