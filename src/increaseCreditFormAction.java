@@ -1,4 +1,7 @@
+package Servlets;
+
 import Entities.IndividualUser;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -34,7 +37,7 @@ public class increaseCreditFormAction extends HttpServlet {
 
             if (responseIsSuccessful(responseTxt)) {
                 user.increaseBalance(Float.parseFloat(creditIncrementValue));
-                request.setAttribute("msg", "User credit successfully increased by " + creditIncrementValue + " Toumans.");
+                request.setAttribute("msg", "User credit successfully increased by " + creditIncrementValue + " Toumans");
             }
             else {
                 request.setAttribute("msg", "A problem occurred while contacting the bank server: " + responseTxt);
@@ -52,9 +55,9 @@ public class increaseCreditFormAction extends HttpServlet {
     }
 
     private HttpPost createHttpPost () {
-        HttpPost post = new HttpPost(Constants.getConstant("bankPostURL"));
+        HttpPost post = new HttpPost(Constants.getConstant("BANK_POST_URL"));
         post.setHeader("Content-Type", "application/json");
-        post.setHeader("apiKey", Constants.getConstant("apiKey"));
+        post.setHeader("apiKey", Constants.getConstant("API_KEY"));
         return post;
     }
 

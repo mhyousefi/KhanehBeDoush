@@ -1,28 +1,33 @@
 package Entities;
 
+import Constants.PersianContent;
+
 public class House {
-    private String id , area , buildingType , imageURL , dealType , basePrice,
-            rentPrice, sellPrice, phone, description, expireTime;
+    private String id, area, buildingType, imageURL, dealType, basePrice,
+            rentPrice, sellingPrice, phone, description, expireTime, address;
+
     private static Integer houseCount;
 
     static {
         houseCount = 0;
     }
 
-    public House(String area, String buildingType, String imageURL, String dealType, String basePrice, String rentPrice, String sellPrice, String phone, String description, String expireTime) {
+    public House(String area, String buildingType, String imageURL, String dealType, String basePrice, String rentPrice,
+                 String sellingPrice, String phone, String description, String expireTime, String address, String _id) {
         this.area = area;
         this.buildingType = buildingType;
         this.imageURL = imageURL;
         this.dealType = dealType;
         this.basePrice = basePrice;
         this.rentPrice = rentPrice;
-        this.sellPrice = sellPrice;
+        this.sellingPrice = sellingPrice;
         this.phone = phone;
         this.description = description;
         this.expireTime = expireTime;
+        this.address = address;
 
-        this.id = this.houseCount.toString();
-        this.houseCount += 1;
+        this.id = (_id.equals("")) ? houseCount.toString() : _id;
+        houseCount += 1;
     }
 
     public String getId() {
@@ -53,8 +58,8 @@ public class House {
         return rentPrice;
     }
 
-    public String getSellPrice() {
-        return sellPrice;
+    public String getSellingPrice() {
+        return sellingPrice;
     }
 
     public String getPhone() {
@@ -69,48 +74,49 @@ public class House {
         return expireTime;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public boolean isForRent() {
+        return dealType.equals(PersianContent.getPhrase("RENTAL"));
     }
 
-    public void setBuildingType(String buildingType) {
-        this.buildingType = buildingType;
+    public boolean isForSale() {
+        return dealType.equals(PersianContent.getPhrase("SALE"));
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
-    }
+    public boolean meetsSearchCriteria(String searchedMinArea, String searchedMaxPrice, String searchedDealType, String searchedPropertyType) {
+        if (!searchedDealType.equals("")) { // deal type was specified
+            if (!dealType.equals(searchedDealType))
+                return false;
+        }
 
-    public void setDealType(String dealType) {
-        this.dealType = dealType;
-    }
+        if (!searchedPropertyType.equals("")) { // property type was specified
+            if (!buildingType.equals(searchedPropertyType))
+                return false;
+        }
 
-    public void setBasePrice(String basePrice) {
-        this.basePrice = basePrice;
-    }
+        if (!searchedMinArea.equals("")) { // min area was specified
+            if (Float.parseFloat(area) < Float.parseFloat(searchedMinArea))
+                return false;
+        }
 
-    public void setRentPrice(String rentPrice) {
-        this.rentPrice = rentPrice;
-    }
+        // deal type violation is already checked at this point
+        if (!searchedMaxPrice.equals("")) { // max price was specified
+            if (this.isForSale()) {
+                if (Float.parseFloat(sellingPrice) > Float.parseFloat(searchedMaxPrice))
+                    return false;
+            } else if (this.isForRent()) {
+                if (Float.parseFloat(rentPrice) > Float.parseFloat(searchedMaxPrice))
+                    return false;
+            }
+        }
 
-    public void setSellPrice(String sellPrice) {
-        this.sellPrice = sellPrice;
+        return true;
     }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setExpireTime(String expireTime) {
-        this.expireTime = expireTime;
-    }
-
 }
