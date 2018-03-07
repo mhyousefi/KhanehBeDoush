@@ -50,6 +50,7 @@ option:first-child {
     justify-content: center;
     flex: 1;
     background-color: #6BCFCA;
+    height: 60px;
 
     text-align: center;
     padding: 1px;

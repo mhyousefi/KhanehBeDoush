@@ -4,10 +4,17 @@
     justify-content: center;
 
     width: 100%;
-    height: 250px;
 
     padding: 0;
     margin: 0;
+}
+
+.defaultHeaderHeight {
+    height: 250px;
+}
+
+.addCreditHeaderHeight {
+    height: 700px;
 }
 
 .headerUpperRowContainer {
