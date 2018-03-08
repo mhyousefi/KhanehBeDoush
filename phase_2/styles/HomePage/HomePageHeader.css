@@ -1,0 +1,87 @@
+.homePageHeaderContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    height: 700px;
+
+    padding: 0;
+    margin: 0;
+}
+
+/*Header Upper Row*/
+.homePageHeaderUpper {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+    width: 100%;
+    max-width: 1900px;
+    margin-top: 1.5%;
+    margin-left: 8%;
+
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.homePageProfileArea {
+    display: flex;
+    border: #FDFDFD solid 1.6px;
+    justify-content: flex-end;
+    align-items: center;
+
+    height: 37%;
+    width: 10.5%;
+    padding: 0 1%;
+}
+
+.homePageProfileAreaTxt {
+    font-family: Shabnam;
+    font-size: 22px;
+    margin: 0 1%;
+    color: #FDFDFD;
+    font-weight: 300;
+}
+
+/*Header Middle Row*/
+.homePageHeaderMiddle {
+    display: flex;
+    flex-direction: column;
+    flex: 2.5;
+
+    width: 100%;
+    max-width: 1300px;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+    margin-top: -9%;
+}
+
+.homePageLogo {
+    max-width: 60%;
+    max-height: 60%;
+    margin: 0 1%;
+}
+
+.homePageTitle {
+    font-family: Shabnam;
+    font-size: 30px;
+    font-weight: 500;
+    color: #FDFDFD;
+}
+
+/*Header Lower ROW*/
+.homePageHeaderLower {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+
+    width: 75%;
+    max-width: 1200px;
+    margin-top: -5%;
+
+    justify-content: center;
+    align-items: center;
+}

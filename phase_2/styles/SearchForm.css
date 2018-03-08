@@ -1,8 +1,6 @@
-
 .searchFormContainer {
     display: flex;
     flex-direction: column;
-
     align-items: center;
 
     width: 92.3%;
@@ -10,6 +8,18 @@
     margin: 5% 0;
 
     background-color: #999999;
+}
+
+.homePageSearchFormBackground{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 92.3%;
+    height: 230px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 3%;
 }
 
 .searchFormUpper {
@@ -86,4 +96,25 @@
 
 #searchFormRightMostItem {
     margin-right: 0;
+}
+
+.searchFormBottomPart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 10%;
+    width: 92.3%;
+    margin-top: 2%;
+}
+
+.transparentColor {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.searchFormBottomPartTxt {
+    font-family: Shabnam;
+    color: #F4F4F4;
+    font-size: 20px;
+    font-weight: 100;
 }
