@@ -33,28 +33,6 @@ option:first-child {
     border-radius: 8px;
 }
 
-.textInput {
-    width: auto;
-    height: 40%;
-    background-color: #fefefe;
-    margin: 0 16% 0 0;
-    font-size: 20px;
-    text-align: right;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-    background-color: #6BCFCA;
-    height: 60px;
-
-    text-align: center;
-    padding: 1px;
-    margin: 2vh 0;
-    max-height: 55px;
-}
-
 .text {
     font-family: Shabnam;
     text-align: center;
