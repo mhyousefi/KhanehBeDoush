@@ -1,10 +1,10 @@
 .homePageAdBoxContainer{
     display: flex;
     flex-direction: row;
-    flex: 1.8;
     justify-content: space-between;
 
     width: 100%;
+    height: 380px;
 }
 
 .homePageAdBox{
@@ -27,8 +27,6 @@
     height: 30%;
     margin: 13% 0;
     padding: 0 10%;
-
-    /*background-color: #2C5856;*/
 }
 
 .homePageAdBoxTxtArea {
@@ -72,4 +70,26 @@
     font-size: 22px;
     font-weight: 100;
     color: #6f6f6f;
+}
+
+@media only screen and (max-width: 1200px) {
+    .homePageAdBoxContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 1000px;
+        margin-top: -7%;
+    }
+
+    .homePageAdBox{
+        width: 75%;
+        height: 80%;
+        margin: 2% 0;
+    }
+
+    .homePageAdBoxImage{
+        /*height: 30%;*/
+        margin: 5% 0;
+        padding: 0 10%;
+    }
 }

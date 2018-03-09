@@ -4,7 +4,7 @@
     justify-content: center;
 
     width: 100%;
-    height: 700px;
+    /*height: 700px;*/
 
     padding: 0;
     margin: 0;
@@ -14,10 +14,11 @@
 .homePageHeaderUpper {
     display: flex;
     flex-direction: row;
-    flex: 1;
 
     width: 100%;
     max-width: 1900px;
+    height: 93px;
+
     margin-top: 1.5%;
     margin-left: 8%;
 
@@ -48,20 +49,19 @@
 .homePageHeaderMiddle {
     display: flex;
     flex-direction: column;
-    flex: 2.5;
 
     width: 100%;
     max-width: 1300px;
-    height: 100%;
+    height: 240px;
 
     justify-content: center;
     align-items: center;
-    margin-top: -9%;
+    margin-top: -8%;
 }
 
 .homePageLogo {
-    max-width: 60%;
-    max-height: 60%;
+    max-width: 50%;
+    max-height: 50%;
     margin: 0 1%;
 }
 
@@ -76,12 +76,11 @@
 .homePageHeaderLower {
     display: flex;
     flex-direction: column;
-    flex: 4;
 
     width: 75%;
     max-width: 1200px;
-    margin-top: -5%;
+    height: 400px;
 
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }

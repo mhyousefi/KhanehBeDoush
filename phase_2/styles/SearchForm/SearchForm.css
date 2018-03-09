@@ -4,7 +4,7 @@
     align-items: center;
 
     width: 92.3%;
-    margin: 5% 0;
+    height: 90%;
 
     background-color: #999999;
 }
@@ -132,12 +132,14 @@
 
 .searchFormBottomPart{
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 
-    height: 10%;
+    height: 30%;
+    max-height: 40px;
     width: 92.3%;
-    margin-top: 2%;
+    margin: 1.5% 0;
 }
 
 .transparentColor {
@@ -162,4 +164,8 @@
 
     background-color: rgba(0, 0, 0, 0.5);
     margin-top: 3%;
+}
+
+.searchResultsSearchFormMargin {
+    margin: 5% 0;
 }

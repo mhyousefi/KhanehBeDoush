@@ -8,17 +8,21 @@
   <link rel="stylesheet" href="../styles/Footer/Footer.css">
   <link rel="stylesheet" href="../styles/PageContainers.css">
   <link rel="stylesheet" href="../styles/SearchForm/SearchForm.css">
+  <link rel="stylesheet" href="../styles/SearchForm/SearchFormMediaQuery.css">
   <link rel="stylesheet" href="../styles/SearchResultsPage/SearchBox.css">
   <link rel="stylesheet" href="../styles/Header/fadingHeader.css">
   <link rel="stylesheet" href="../styles/HomePage/HomePageHeader.css">
   <link rel="stylesheet" href="../styles/HomePage/HomePageAdBox.css">
   <link rel="stylesheet" href="../styles/HomePage/HomePageInfo.css">
+  <link rel="stylesheet" href="../styles/HomePage/HomePageResponsiveSearchForm.css">
+
+  <title>صفحه اصلی</title>
 </head>
 
 <body dir="rtl">
 <header class="homePageHeaderContainer">
   <div id="cf3">
-    <img class="last" src="../images/Banner/mahdiar-mahmoodi-452489-unsplash.jpg" />
+    <img class="last" src="../images/Banner/mahdiar-mahmoodi-452489-unsplash.jpg"/>
     <img class="first" src="../images/Banner/casey-horner-533586-unsplash.jpg" />
     <img class="second" src="../images/Banner/luke-van-zyl-504032-unsplash.jpg" />
     <img class="third" src="../images/Banner/michal-kubalczyk-260909-unsplash.jpg" />
@@ -35,17 +39,19 @@
       </div>
     </div>
     <div class="homePageHeaderLower">
-      <form action="" class="curvedCorner homePageSearchFormBackground">
+      <form action="" class="searchFormContainer curvedCorner homePageSearchFormBackground">
         <div class="searchFormUpper">
           <div class="searchFormUpperItem">
             <div class="searchFormUpperItemTxt">متر مربع</div>
             <input class="textInput curvedCorner" type="text" placeholder="حداکثر متراژ">
           </div>
+
           <div class="searchFormUpperItem">
             <div class="searchFormUpperItemTxt">تومان</div>
             <input class="textInput curvedCorner" type="text" placeholder="حداکثر قیمت">
           </div>
-          <div class="searchFormUpperItem">
+
+          <div class="searchFormUpperItem" id="searchFormPropertyInput">
             <div class="searchFormUpperItemTxt"></div>
             <select class="searchFormUpperItemSelectBox curvedCorner" id="searchFormRightMostItem" name="propertyType">
               <option value="" disabled selected>نوع ملک</option>
@@ -56,18 +62,22 @@
             </select>
           </div>
         </div>
+
         <div class="searchFormLower">
-          <button class="buttons curvedCorner">
-            <p class="text searchFormBtnTxt">جستجو</p>
-          </button>
-          <div class="searchFormLowerRightItem">
-            <div style="display: flex; flex:1;">
-              <input class="radioButton" type="radio" name="propertyType" value="خرید"> خرید
+          <div class="searchFormRadioContainer">
+            <div class="searchFormRadioBtn">
+              <input class="radioButton" type="radio" name="propertyType" value="رهن و اجاره">
+              رهن و اجاره
             </div>
-            <div style="display: flex; flex:2.2; margin-left: 50%">
-              <input class="radioButton" type="radio" name="propertyType" value="رهن و اجاره">رهن و اجاره
+            <div class="searchFormRadioBtn">
+              <input class="radioButton" type="radio" name="propertyType" value="خرید">
+              خرید
             </div>
           </div>
+
+          <button class="searchFormBtn curvedCorner searchFormBtnTxt">
+            جستجو
+          </button>
         </div>
       </form>
       <div class="searchFormBottomPart transparentColor curvedCorner">

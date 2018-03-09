@@ -1,9 +1,9 @@
 .homePageInfoContainer {
     display: flex;
     flex-direction: column;
-    flex: 2;
 
     width: 100%;
+    height: 430px;
 }
 
 .homePageInfoTitle {
@@ -81,4 +81,46 @@
 
     background: url("../../images/why-khanebedoosh.jpg") no-repeat center;
     background-size: contain;
+}
+
+@media only screen and (max-width: 1200px) {
+    .homePageInfoContainer {
+        height: 800px;
+    }
+
+    .homePageInfoLower {
+        flex-direction: column;
+
+        align-items: center;
+        margin-top: 1%;
+    }
+
+    .homePageInfoTitle {
+        justify-content: center;
+        text-align: center;
+
+        width: 100%;
+        height: 10%;
+        margin: 1% 3%;
+    }
+
+    .homePageInfoSentences {
+        justify-content: flex-start;
+        width: 90%;
+        height: 55%;
+        margin: 1%;
+    }
+
+    .homePageSentence {
+        justify-content: center;
+    }
+
+    .homePageInfoImgContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        width: 90%;
+        height: 45%;
+    }
 }
