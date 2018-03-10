@@ -5,6 +5,7 @@
     font-size: 23px;
     font-weight: 100;
     color: grey;
+    z-index: 1500;
 }
 
 .searchBoxContainer {

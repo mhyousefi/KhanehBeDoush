@@ -4,33 +4,52 @@
   <meta charset="UTF-8">
   <meta name="description" content="IE phase 2 designs">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+  <link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1'
+        type='text/css' media='all' />
 
   <link rel="stylesheet" href="../styles/General.css">
+  <link rel="stylesheet" href="../styles/text.css">
   <link rel="stylesheet" href="../styles/Header/Header.css">
   <link rel="stylesheet" href="../styles/Footer/Footer.css">
   <link rel="stylesheet" href="../styles/PageContainers.css">
+
   <link rel="stylesheet" href="../styles/SearchForm/SearchForm.css">
   <link rel="stylesheet" href="../styles/SearchForm/SearchFormMediaQuery.css">
   <link rel="stylesheet" href="../styles/SearchResultsPage/SearchBox.css">
+  <link rel="stylesheet" href="../styles/UserInfoCard/UserInfoCard.css">
 
   <title>نتایج جستجو</title>
 </head>
+
 <body dir="rtl">
-<header class="headerContainer defaultHeaderHeight">
+  <header class="addCreditHeaderContainer defaultHeaderHeight">
   <div class="headerUpperRowContainer">
     <div class="headerUpperRow">
       <img class="headerLogo" src="../images/logo.png" alt="KhanehBeDoushTwitter">
       <div class="headerPageTitleTxt">
         خانه به دوش
       </div>
+
       <div class="headerProfileArea">
-        <!--TODO: smiley face icon...-->
-        <!--<i class="material-icons" style="font-size: 22px; color: #585598"></i>-->
-        <div class="headerProfileAreaTxt">
-          ناحیه کاربری
+        <div class="profileAreaDropDown">
+          <i class="far fa-smile homePageSmileyFaceIcon magentaColor"></i>
+          <div class="headerProfileAreaTxt">
+            ناحیه کاربری
+          </div>
+        </div>
+        <div class="profileAreaDropDownContent curvedCorner">
+          <div class="text userInfoCardUpperRow userInfoCardCommonRowProps">بهنام همایون</div>
+          <div class="userInfoCardMiddleRow userInfoCardCommonRowProps">
+            <div class="text">اعتبار</div>
+            <div class="text">۲۰۰۰ تومان</div>
+          </div>
+          <div class="userInfoCardLowerRow">
+            <button class="userInfoCardBtn text curvedCorner">
+              افزایش اعتبار
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -38,186 +57,186 @@
   <div class="headerImageBarContainer">
     <div class="headerImageBar">
       <div class="headerImageBarTitle">
-        نتایج جستجو
+  نتایج جستجو
       </div>
     </div>
   </div>
-</header>
+  </header>
 
-<div class="defaultPageContainer">
-  <div class="searchResultsUpperSentence‌">
-    برای مشاهده اطلاعات بیشتر درباره هر ملک روی آن کلیک کنید.
-  </div>
+  <div class="defaultPageContainer">
+    <div class="searchResultsUpperSentence‌">
+      برای مشاهده اطلاعات بیشتر درباره هر ملک روی آن کلیک کنید.
+    </div>
 
-  <div class="searchBoxContainer">
-    <div class="searchBoxRow">
-      <div class="searchBox curvedCorner">
-        <div class="searchBoxImg curvedCorner" style="background-image: url(../images/house2.jpg)">
-          <div class="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
-            فروش
-          </div>
-        </div>
-        <div class="searchBoxLower">
-          <div class="searchBoxAreaLocationRow">
-            <div class="searchBoxAreaTxt text">۴۰۰۰ متر مربع</div>
-            <div class="searchBoxLocation">
-              <i class="material-icons iconSize searchBoxSaleIconColor">place</i>
-              <div class="searchBoxLocationTxt text">خیابان مصدق</div>
+    <div class="searchBoxContainer">
+      <div class="searchBoxRow">
+        <div class="searchBox curvedCorner">
+          <div class="searchBoxImg curvedCorner" style="background-image: url(../images/house2.jpg)">
+            <div class="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
+              فروش
             </div>
           </div>
-          <div class="separatingLine"></div>
-          <div class="searchBoxPriceRow">
-            <div class="searchBoxSalePrice text">
-              قیمت ۲۰۰۰۰۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
+          <div class="searchBoxLower">
+            <div class="searchBoxAreaLocationRow">
+              <div class="searchBoxAreaTxt text">۴۰۰۰ متر مربع</div>
+              <div class="searchBoxLocation">
+                <i class="material-icons iconSize searchBoxSaleIconColor">place</i>
+                <div class="searchBoxLocationTxt text">خیابان مصدق</div>
+              </div>
+            </div>
+            <div class="separatingLine"></div>
+            <div class="searchBoxPriceRow">
+              <div class="searchBoxSalePrice text">
+                قیمت ۲۰۰۰۰۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="searchBox curvedCorner">
+          <div class="searchBoxImg curvedCorner" style="background-image: url(../images/TheGorgousEmpireState.jpg)">
+            <div class="searchBoxTagCommon searchBoxRentTagCostum curvedCorner">
+              رهن و اجاره
+            </div>
+          </div>
+          <div class="searchBoxLower">
+            <div class="searchBoxAreaLocationRow">
+              <div class="searchBoxAreaTxt text">۵۰۰۰ متر مربع</div>
+              <div class="searchBoxLocation">
+                <i class="material-icons iconSize searchBoxRentIconColor">place</i>
+                <div class="searchBoxLocationTxt text">شایر</div>
+              </div>
+            </div>
+            <div class="separatingLine"></div>
+            <div class="searchBoxPriceRow">
+              <div class="searchBoxBasePrice text">
+                رهن ۲۰۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
+              <div class="searchBoxRentPrice text">
+                اجاره ۱۵۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="searchBox curvedCorner">
-        <div class="searchBoxImg curvedCorner" style="background-image: url(../images/TheGorgousEmpireState.jpg)">
-          <div class="searchBoxTagCommon searchBoxRentTagCostum curvedCorner">
-            رهن و اجاره
+      <div class="searchBoxRow">
+        <div class="searchBox curvedCorner">
+          <div class="searchBoxImg curvedCorner" style="background-image: url(../images/house2.jpg)">
+            <div class="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
+              فروش
+            </div>
+          </div>
+          <div class="searchBoxLower">
+            <div class="searchBoxAreaLocationRow">
+              <div class="searchBoxAreaTxt text">۴۰۰۰ متر مربع</div>
+              <div class="searchBoxLocation">
+                <i class="material-icons iconSize searchBoxSaleIconColor">place</i>
+                <div class="searchBoxLocationTxt text">خیابان مصدق</div>
+              </div>
+            </div>
+            <div class="separatingLine"></div>
+            <div class="searchBoxPriceRow">
+              <div class="searchBoxSalePrice text">
+                قیمت ۲۰۰۰۰۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="searchBoxLower">
-          <div class="searchBoxAreaLocationRow">
-            <div class="searchBoxAreaTxt text">۵۰۰۰ متر مربع</div>
-            <div class="searchBoxLocation">
-              <i class="material-icons iconSize searchBoxRentIconColor">place</i>
-              <div class="searchBoxLocationTxt text">شایر</div>
+        <div class="searchBox curvedCorner">
+          <div class="searchBoxImg curvedCorner" style="background-image: url(../images/TheGorgousEmpireState.jpg)">
+            <div class="searchBoxTagCommon searchBoxRentTagCostum curvedCorner">
+              رهن و اجاره
             </div>
           </div>
-          <div class="separatingLine"></div>
-          <div class="searchBoxPriceRow">
-            <div class="searchBoxBasePrice text">
-              رهن ۲۰۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
+          <div class="searchBoxLower">
+            <div class="searchBoxAreaLocationRow">
+              <div class="searchBoxAreaTxt text">۵۰۰۰ متر مربع</div>
+              <div class="searchBoxLocation">
+                <i class="material-icons iconSize searchBoxRentIconColor">place</i>
+                <div class="searchBoxLocationTxt text">شایر</div>
+              </div>
             </div>
-            <div class="searchBoxRentPrice text">
-              اجاره ۱۵۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
+            <div class="separatingLine"></div>
+            <div class="searchBoxPriceRow">
+              <div class="searchBoxBasePrice text">
+                رهن ۲۰۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
+              <div class="searchBoxRentPrice text">
+                اجاره ۱۵۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="searchBoxRow">
+        <div class="searchBox curvedCorner">
+          <div class="searchBoxImg curvedCorner" style="background-image: url(../images/house2.jpg)">
+            <div class="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
+              فروش
+            </div>
+          </div>
+          <div class="searchBoxLower">
+            <div class="searchBoxAreaLocationRow">
+              <div class="searchBoxAreaTxt text">۴۰۰۰ متر مربع</div>
+              <div class="searchBoxLocation">
+                <i class="material-icons iconSize searchBoxSaleIconColor">place</i>
+                <div class="searchBoxLocationTxt text">خیابان مصدق</div>
+              </div>
+            </div>
+            <div class="separatingLine"></div>
+            <div class="searchBoxPriceRow">
+              <div class="searchBoxSalePrice text">
+                قیمت ۲۰۰۰۰۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="searchBox curvedCorner">
+          <div class="searchBoxImg curvedCorner" style="background-image: url(../images/TheGorgousEmpireState.jpg)">
+            <div class="searchBoxTagCommon searchBoxRentTagCostum curvedCorner">
+              رهن و اجاره
+            </div>
+          </div>
+          <div class="searchBoxLower">
+            <div class="searchBoxAreaLocationRow">
+              <div class="searchBoxAreaTxt text">۵۰۰۰ متر مربع</div>
+              <div class="searchBoxLocation">
+                <i class="material-icons iconSize searchBoxRentIconColor">place</i>
+                <div class="searchBoxLocationTxt text">شایر</div>
+              </div>
+            </div>
+            <div class="separatingLine"></div>
+            <div class="searchBoxPriceRow">
+              <div class="searchBoxBasePrice text">
+                رهن ۲۰۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
+              <div class="searchBoxRentPrice text">
+                اجاره ۱۵۰۰۰۰۰۰۰
+                &nbsp;
+                <div class="searchBoxTouman">تومان</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="searchBoxRow">
-      <div class="searchBox curvedCorner">
-        <div class="searchBoxImg curvedCorner" style="background-image: url(../images/house2.jpg)">
-          <div class="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
-            فروش
-          </div>
-        </div>
-        <div class="searchBoxLower">
-          <div class="searchBoxAreaLocationRow">
-            <div class="searchBoxAreaTxt text">۴۰۰۰ متر مربع</div>
-            <div class="searchBoxLocation">
-              <i class="material-icons iconSize searchBoxSaleIconColor">place</i>
-              <div class="searchBoxLocationTxt text">خیابان مصدق</div>
-            </div>
-          </div>
-          <div class="separatingLine"></div>
-          <div class="searchBoxPriceRow">
-            <div class="searchBoxSalePrice text">
-              قیمت ۲۰۰۰۰۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="searchBox curvedCorner">
-        <div class="searchBoxImg curvedCorner" style="background-image: url(../images/TheGorgousEmpireState.jpg)">
-          <div class="searchBoxTagCommon searchBoxRentTagCostum curvedCorner">
-            رهن و اجاره
-          </div>
-        </div>
-        <div class="searchBoxLower">
-          <div class="searchBoxAreaLocationRow">
-            <div class="searchBoxAreaTxt text">۵۰۰۰ متر مربع</div>
-            <div class="searchBoxLocation">
-              <i class="material-icons iconSize searchBoxRentIconColor">place</i>
-              <div class="searchBoxLocationTxt text">شایر</div>
-            </div>
-          </div>
-          <div class="separatingLine"></div>
-          <div class="searchBoxPriceRow">
-            <div class="searchBoxBasePrice text">
-              رهن ۲۰۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
-            </div>
-            <div class="searchBoxRentPrice text">
-              اجاره ۱۵۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="searchBoxRow">
-      <div class="searchBox curvedCorner">
-        <div class="searchBoxImg curvedCorner" style="background-image: url(../images/house2.jpg)">
-          <div class="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
-            فروش
-          </div>
-        </div>
-        <div class="searchBoxLower">
-          <div class="searchBoxAreaLocationRow">
-            <div class="searchBoxAreaTxt text">۴۰۰۰ متر مربع</div>
-            <div class="searchBoxLocation">
-              <i class="material-icons iconSize searchBoxSaleIconColor">place</i>
-              <div class="searchBoxLocationTxt text">خیابان مصدق</div>
-            </div>
-          </div>
-          <div class="separatingLine"></div>
-          <div class="searchBoxPriceRow">
-            <div class="searchBoxSalePrice text">
-              قیمت ۲۰۰۰۰۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="searchBox curvedCorner">
-        <div class="searchBoxImg curvedCorner" style="background-image: url(../images/TheGorgousEmpireState.jpg)">
-          <div class="searchBoxTagCommon searchBoxRentTagCostum curvedCorner">
-            رهن و اجاره
-          </div>
-        </div>
-        <div class="searchBoxLower">
-          <div class="searchBoxAreaLocationRow">
-            <div class="searchBoxAreaTxt text">۵۰۰۰ متر مربع</div>
-            <div class="searchBoxLocation">
-              <i class="material-icons iconSize searchBoxRentIconColor">place</i>
-              <div class="searchBoxLocationTxt text">شایر</div>
-            </div>
-          </div>
-          <div class="separatingLine"></div>
-          <div class="searchBoxPriceRow">
-            <div class="searchBoxBasePrice text">
-              رهن ۲۰۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
-            </div>
-            <div class="searchBoxRentPrice text">
-              اجاره ۱۵۰۰۰۰۰۰۰
-              &nbsp;
-              <div class="searchBoxTouman">تومان</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <form action="" class="searchFormContainer curvedCorner searchResultsSearchFormMargin">
+    <form action="" class="searchFormContainer curvedCorner searchResultsSearchFormMargin">
     <div class="searchFormUpper">
       <div class="searchFormUpperItem">
         <div class="searchFormUpperItemTxt">متر مربع</div>
@@ -259,9 +278,9 @@
       </button>
     </div>
   </form>
-</div>
+  </div>
 
-<footer class="footerRowContainer">
+  <footer class="footerRowContainer">
   <div class="footerRow">
     <div class="footerTxt">
       تمای حقوق مادی و معنوی این وب‌سایت متعلق به محمد حسین یوسفی و سید محمد حسین کاظمی است.
@@ -278,6 +297,6 @@
       </div>
     </div>
   </div>
-</footer>
+  </footer>
 </body>
 </html>
