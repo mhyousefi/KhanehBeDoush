@@ -1,0 +1,171 @@
+.searchFormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 92.3%;
+    height: 90%;
+
+    background-color: #999999;
+}
+
+/*Form Upper Section*/
+.searchFormUpper {
+    display: flex;
+    flex-direction: row-reverse;
+
+    justify-content: space-between;
+    text-align: start;
+
+    width: 85%;
+    height: 130px;
+}
+
+.searchFormUpperItem {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+    margin-top: 3%;
+
+    width: 33.3%;
+    height: 95%;
+}
+
+.searchFormUpperItemTxt {
+    display: flex;
+    width: auto;
+
+    justify-content: flex-end;
+
+    height: 40%;
+    margin: 0 1.5%;
+
+    font-family: "Shabnam";
+    font-size: 20px;
+    color: #FBFBFB;
+}
+
+.searchFormUpperItemSelectBox {
+    display: flex;
+
+    width: auto;
+    height: 40%;
+    margin: 0 16% 0 0;
+
+    background-color: #fefefe;
+    font-size: 20px;
+}
+
+.textInput {
+    width: auto;
+    height: 35%;
+    background-color: #fefefe;
+    margin: 0 16% 0 0;
+    font-size: 20px;
+    text-align: right;
+}
+
+/*Form Lower Section*/
+.searchFormLower {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    width: 85%;
+    height: 130px;
+}
+
+.searchFormRadioContainer {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 65%;
+    height: 100%;
+
+    font-size: 20px;
+    font-family: Shabnam;
+    color: #FBFBFB;
+}
+
+.searchFormBtnContainer {
+    display: flex;
+    flex-direction: row;
+
+    width: 35%;
+    height: 100%;
+}
+
+.searchFormRadioBtn {
+    display: flex;
+    flex-direction: row;
+
+    width: 30%;
+}
+
+.searchFormBtn {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+
+    width: 35%;
+    height: 40%;
+
+    background-color: #6BCFCA;
+}
+
+.searchFormBtnTxt {
+    font-family: Shabnam;
+    color: #FFFFFF;
+    font-size: 24px;
+}
+
+#searchFormRightMostItem {
+    margin-right: 0;
+}
+
+.searchFormBottomPart{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    height: 30%;
+    max-height: 40px;
+    width: 92.3%;
+    margin: 1.5% 0;
+}
+
+.transparentColor {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.searchFormBottomPartTxt {
+    font-family: Shabnam;
+    color: #F4F4F4;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+/*HomePage Customization*/
+.homePageSearchFormBackground{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 92.3%;
+    height: 230px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 3%;
+}
+
+.searchResultsSearchFormMargin {
+    margin: 5% 0;
+}
