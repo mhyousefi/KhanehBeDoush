@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
 import './styles/General.css'
-import Layout from './components/general/layout/Layout'
+import AddCreditPage from './components/pages/AddCreditPage'
 
 export default class App extends Component {
   render () {
     return (
-      <Layout>
-        <h1>HEYYYYYY I DID IT!</h1>
-      </Layout>
+      <Switch>
+        {/*<Route exact path='/' component={HomePage}/>*/}
+        <Route exact path='/AddCredit' component={AddCreditPage}/>
+        {/*<Route path='/SearchResults' component={SearchResultsPage}/>*/}
+      </Switch>
     )
   }
 }
