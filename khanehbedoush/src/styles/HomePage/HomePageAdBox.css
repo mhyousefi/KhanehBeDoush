@@ -1,0 +1,95 @@
+.homePageAdBoxContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 380px;
+}
+
+.homePageAdBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    width: 30%;
+    height: 85%;
+    margin-top: -4%;
+
+    background: #FFFFFF no-repeat center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.07);
+}
+
+.homePageAdBoxImage{
+    display: flex;
+
+    height: 30%;
+    margin: 13% 0;
+    padding: 0 10%;
+}
+
+.homePageAdBoxTxtArea {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    height: 70%;
+    margin: 2% 0;
+    padding: 0 10%;
+}
+
+
+.homePageAdBoxTitle {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    font-family: Shabnam;
+    font-size: 36px;
+    color: #4C4C4C;
+}
+
+.homePageAdBoxTxt {
+    display: flex;
+    flex: 2;
+    flex-direction: row;
+
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    font-family: Shabnam;
+    font-size: 22px;
+    font-weight: 100;
+    color: #6f6f6f;
+}
+
+@media only screen and (max-width: 1200px) {
+    .homePageAdBoxContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 1000px;
+        margin-top: -7%;
+    }
+
+    .homePageAdBox{
+        width: 75%;
+        height: 80%;
+        margin: 2% 0;
+    }
+
+    .homePageAdBoxImage{
+        /*height: 30%;*/
+        margin: 5% 0;
+        padding: 0 10%;
+    }
+}

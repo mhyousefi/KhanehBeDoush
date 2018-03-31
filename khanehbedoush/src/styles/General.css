@@ -1,0 +1,65 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+select {
+    color: #999999;
+}
+
+option:first-child {
+    color: #999999;
+}
+
+.radioButton {
+    margin: 2% 5%;
+    width: 17px;
+    height: 17px;
+}
+
+.separatingLine {
+    width: 93%;
+    margin: 3% 2%;
+    height: 2px;
+    border-bottom: solid 2px #ccc;
+}
+
+.curvedCorner {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.text {
+    font-family: Shabnam;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
+.iconSize {
+    font-size: 26px;
+}
+
+.homePageSmileyFaceIcon{
+    color: #FFFFFF;
+    font-size: 1.5em;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.fullHeight {
+    min-height: 100vh;
+}
+
+.HeaderBottomMargin{
+    margin-top: 250px;
+}

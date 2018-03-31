@@ -1,0 +1,97 @@
+.homePageHeaderContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: fixed;
+    top: 0;
+    z-index: 2000;
+    width: 100%;
+}
+
+/*Header Upper Row*/
+.homePageHeaderUpper {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+    width: 100%;
+    max-width: 1900px;
+    height: 93px;
+
+    margin-top: 1.5%;
+    margin-left: 8%;
+
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.homePageProfileArea {
+    border: #FDFDFD solid 1.6px;
+    max-width: 140px;
+    max-height: 45px;
+}
+
+#homePageProfileArea {
+    margin: 1% 0;
+}
+
+.homePageProfileArea:hover ~ .userInfoCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    width: 15%;
+    background-color: #FCFCFC;
+}
+
+.homePageProfileAreaTxt {
+    font-family: Shabnam;
+    font-size: 22px;
+    margin: 0 1%;
+    color: #FDFDFD;
+    font-weight: 300;
+}
+
+/*Header Middle Row*/
+.homePageHeaderMiddle {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 1300px;
+    height: 240px;
+
+    justify-content: center;
+    align-items: center;
+    margin-top: -8%;
+}
+
+.homePageLogo {
+    max-width: 50%;
+    max-height: 50%;
+    margin: 0 1%;
+}
+
+.homePageTitle {
+    font-family: Shabnam;
+    font-size: 30px;
+    font-weight: 500;
+    color: #FDFDFD;
+}
+
+/*Header Lower ROW*/
+.homePageHeaderLower {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+
+    width: 75%;
+    max-width: 1200px;
+    height: 400px;
+    margin-top: -5%;
+
+    justify-content: center;
+    align-items: center;
+}
