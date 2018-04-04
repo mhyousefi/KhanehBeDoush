@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Layout from '../general/layout/Layout'
-import Fa from '../../constants/Fa'
-import '../../styles/AddCreditPage/AddCreditPage.css'
-import '../../styles/General.css'
-import '../../styles/text.css'
+import Layout from 'src/components/general/Layout/Layout'
+import Fa from 'src/constants/Fa'
+import 'src/styles/AddCreditPage/AddCreditPage.css'
+import 'src/styles/General.css'
+import 'src/styles/text.css'
 
 
 export default class AddCreditPage extends Component {

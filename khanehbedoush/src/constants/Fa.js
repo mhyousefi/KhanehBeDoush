@@ -5,6 +5,7 @@ module.exports = {
 
   'increase credit': 'افزایش اعتبار',
   'Touman': 'تومان',
+  'meters square': 'متر مربع',
   '20000': '۲۰۰۰۰',
 
   //page titles
@@ -24,4 +25,17 @@ module.exports = {
   //add credit page
   'current credit': 'اعتبار کنونی',
   'amount to be added': 'مبلغ مورد نظر',
+
+  //SearchForm
+  'SearchFormSlogan': 'صاحب خانه هستید؟ خانه خود را ثبت کنید',
+  'max area': 'حداکثر متراژ',
+  'max price': 'حداکثر قیمت',
+  'property type': 'نوع ملک',
+  'apartment': 'آپارتمان',
+  'villa': 'ویلایی',
+  'tower': 'برج',
+  'kolangi': 'کلنگی',
+  'rental': 'رهن و اجاره',
+  'purchase': 'خرید',
+  'search': 'جستجو',
 }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Fa from '../../../../constants/Fa'
-import '../../../../styles/Header/Header.css'
-import '../../../../styles/UserInfoCard/UserInfoCard.css'
-
-import LogoImg from '../../../../assets/images/logo.png'
 import ProfileArea from './ProfileArea'
+import Fa from 'src/constants/Fa'
+import 'src/styles/Header/Header.css'
+import 'src/styles/UserInfoCard/UserInfoCard.css'
+
+import LogoImg from 'src/assets/images/logo.png'
 
 export default class HeaderUpperRow extends Component {
   render() {

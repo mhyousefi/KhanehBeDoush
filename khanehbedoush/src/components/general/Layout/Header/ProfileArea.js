@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Fa from '../../../../constants/Fa'
-import '../../../../styles/Header/Header.css'
-import '../../../../styles/UserInfoCard/UserInfoCard.css'
 import ProfileAreaDropDown from './ProfileAreaDropDown'
+import Fa from 'src/constants/Fa'
+import 'src/styles/Header/Header.css'
+import 'src/styles/UserInfoCard/UserInfoCard.css'
 
 // TODO: Find the right way to do icons...
 export default class ProfileArea extends Component {
@@ -15,7 +15,7 @@ export default class ProfileArea extends Component {
             {Fa['profile area']}
           </div>
         </div>
-        <ProfileAreaDropDown/>
+        <ProfileAreaDropDown isHomePage={false}/>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Fa from '../../../../constants/Fa'
-import '../../../../styles/Header/Header.css'
+import 'src/styles/Header/Header.css'
 
 export default class HeaderImageBar extends Component {
   render() {
