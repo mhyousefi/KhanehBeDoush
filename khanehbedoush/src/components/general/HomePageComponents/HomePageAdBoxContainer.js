@@ -5,7 +5,7 @@ export default class HomePageAdBoxContainer extends Component {
         return(
             <div className="homePageAdBoxContainer">
                 <div className="homePageAdBox curvedCorner">
-                    <img className="homePageAdBoxImage" src="../../../../../assets/images/icons/726446.svg"/>
+                    <img className="homePageAdBoxImage" src="../../../assets/images/icons/726446.svg"/>
                     <div className="homePageAdBoxTxtArea">
                         <div className="homePageAdBoxTitle">
                             آسان
@@ -16,7 +16,7 @@ export default class HomePageAdBoxContainer extends Component {
                     </div>
                 </div>
                 <div className="homePageAdBox curvedCorner">
-                    <img className="homePageAdBoxImage" src="../../../../../assets/images/icons/726488.svg"/>
+                    <img className="homePageAdBoxImage" src="../../../assets/images/icons/726488.svg"/>
                     <div className="homePageAdBoxTxtArea">
                         <div className="homePageAdBoxTitle">
                             مطمئن
@@ -27,7 +27,7 @@ export default class HomePageAdBoxContainer extends Component {
                     </div>
                 </div>
                 <div className="homePageAdBox curvedCorner">
-                    <img className="homePageAdBoxImage" src="../../../../../assets/images/icons/726499.svg"/>
+                    <img className="homePageAdBoxImage" src="../../../assets/images/icons/726499.svg"/>
                     <div className="homePageAdBoxTxtArea">
                         <div className="homePageAdBoxTitle">
                             گسترده
