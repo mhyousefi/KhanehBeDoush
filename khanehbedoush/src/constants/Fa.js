@@ -39,13 +39,4 @@ module.exports = {
   'purchase': 'خرید',
   'search': 'جستجو',
 
-  //HomePageInfo
-  'HomePageInfoTitle': 'چرا خانه به دوش؟',
-  'HomePageInfoSlogan1': 'اطلاعات کامل و صحیح از املاک قابل معامله',
-  'HomePageInfoSlogan2': 'بدون محدودیت، ۲۴ ساعته و در تمام ایام هقته',
-  'HomePageInfoSlogan3': 'جستجوی هوشمند ملک، صرفه جویی در زمان',
-  'HomePageInfoSlogan4': 'تنوع در املاک، افزایش قدرت انتخاب مشتریان',
-  'HomePageInfoSlogan5': 'بانکی جامع از اطلاعات هزاران آگهی به روز',
-  'HomePageInfoSlogan6': 'دستیابی به نتیجه مطلوب در کمترین زمان ممکن',
-  'HomePageInfoSlogan7': 'همکاری با مشاوران متخصص در حوزه املاک',
 }

@@ -8,13 +8,13 @@ import 'src/styles/PageContainers.css'
 export default class HomePageLayout extends Component {
   render () {
     return (
-      <body dir="rtl">
+      <div dir="rtl">
         <HomePageHeader/>
         <div className="homePageContainer">
           {this.props.children}
         </div>
         <Footer/>
-      </body>
+      </div>
     )
   }
 }
