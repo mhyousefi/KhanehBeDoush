@@ -7,3 +7,27 @@
         height: 340px;
     }
 }
+
+@media only screen and (min-width: 1700px) {
+    .homePageHeaderMiddle {
+        height: 300px;
+    }
+
+    .homePageLogo {
+        max-width: 40%;
+        max-height: 40%;
+        margin: 0 1%;
+    }
+}
+
+@media only screen and (min-width: 2300px) {
+    .homePageHeaderMiddle {
+        height: 350px;
+    }
+
+    .homePageLogo {
+        max-width: 37%;
+        max-height: 37%;
+        margin: 0 1%;
+    }
+}
