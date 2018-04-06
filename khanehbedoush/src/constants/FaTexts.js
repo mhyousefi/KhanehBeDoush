@@ -32,3 +32,72 @@ export const AdBoxes = [
     'image': AdBoxPhoto3,
   },
 ]
+
+export const SearchBoxes = [
+  {
+    'area': '',
+    'district': '',
+    'dealType': '',
+    'priceInfo': {
+      'sellPrice': '',
+      'rentPrice': '',
+      'basePrice': '',
+    },
+    'image': '',
+  },
+  {
+    'area': '',
+    'district': '',
+    'dealType': '',
+    'priceInfo': {
+      'sellPrice': '',
+      'rentPrice': '',
+      'basePrice': '',
+    },
+    'image': '',
+  },
+  {
+    'area': '',
+    'district': '',
+    'dealType': '',
+    'priceInfo': {
+      'sellPrice': '',
+      'rentPrice': '',
+      'basePrice': '',
+    },
+    'image': '',
+  },
+  {
+    'area': '',
+    'district': '',
+    'dealType': '',
+    'priceInfo': {
+      'sellPrice': '',
+      'rentPrice': '',
+      'basePrice': '',
+    },
+    'image': '',
+  },
+  {
+    'area': '',
+    'district': '',
+    'dealType': '',
+    'priceInfo': {
+      'sellPrice': '',
+      'rentPrice': '',
+      'basePrice': '',
+    },
+    'image': '',
+  },
+  {
+    'area': '',
+    'district': '',
+    'dealType': '',
+    'priceInfo': {
+      'sellPrice': '',
+      'rentPrice': '',
+      'basePrice': '',
+    },
+    'image': '',
+  }
+]
