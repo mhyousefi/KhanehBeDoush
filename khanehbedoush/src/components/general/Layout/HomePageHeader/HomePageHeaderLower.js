@@ -7,7 +7,7 @@ export default class HomePageHeaderLower extends Component {
   render () {
     return (
       <div className="homePageHeaderLower">
-        <SearchForm/>
+        <SearchForm isHomePage={true}/>
         <SearchFormBottomSlogan/>
       </div>
     )

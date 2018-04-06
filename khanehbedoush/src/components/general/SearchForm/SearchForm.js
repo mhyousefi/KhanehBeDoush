@@ -9,8 +9,9 @@ import 'src/styles/SearchForm/SearchFormMediaQuery.css'
 
 export default class SearchForm extends Component {
   render() {
+    const { isHomePage } = this.props
     return (
-      <form action="" className="searchFormContainer curvedCorner homePageSearchFormBackground">
+      <form action="" className={"searchFormContainer curvedCorner" + isHomePage ? "homePageSearchFormBackground" : "searchResultsSearchFormMargin"}>
         <SearchFormUpper/>
         <SearchFormLower/>
       </form>

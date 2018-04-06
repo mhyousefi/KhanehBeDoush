@@ -5,6 +5,7 @@ import 'src/styles/HomePage/HomePageResponsive.css'
 import 'src/styles/SearchForm/SearchForm.css'
 import 'src/styles/SearchForm/SearchFormMediaQuery.css'
 
+
 export default class SearchFormLower extends Component {
   render() {
     return (
