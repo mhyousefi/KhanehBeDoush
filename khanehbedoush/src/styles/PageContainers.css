@@ -28,8 +28,15 @@
     }
 }
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1200px) {
     .homePageContainer {
-        margin-top: 560px;
+        margin-top: 640px;
     }
 }
+
+@media only screen and (min-width: 14700px) {
+    .homePageContainer {
+        margin-top: 650px;
+    }
+}
+
