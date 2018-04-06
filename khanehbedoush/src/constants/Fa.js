@@ -5,6 +5,12 @@ module.exports = {
 
   'increase credit': 'افزایش اعتبار',
   'Touman': 'تومان',
+  'price': 'قیمت',
+  'price not available': 'قیمت برای این ملک موجود نیست.',
+  'Rahn': 'رهن',
+  'rent': 'اجاره',
+  'Rahn and rent': 'رهن و اجاره',
+  'sell': 'فروش',
   'meters square': 'متر مربع',
   '20000': '۲۰۰۰۰',
 
@@ -39,4 +45,6 @@ module.exports = {
   'purchase': 'خرید',
   'search': 'جستجو',
 
+  //SearchResults page
+  'SearchResults upper sentence': 'برای مشاهده اطلاعات بیشتر درباره هر ملک روی آن کلیک کنید.',
 }

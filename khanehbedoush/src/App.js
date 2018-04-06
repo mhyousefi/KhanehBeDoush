@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
-import './styles/General.css'
-import AddCreditPage from './components/pages/AddCreditPage'
-import HomePage from './components/pages/HomePage'
+import AddCreditPage from 'src/components/pages/AddCreditPage'
+import HomePage from 'src/components/pages/HomePage'
+import SearchResultsPage from 'src/components/pages/SearchResultsPage'
+import 'src/styles/General.css'
+
 
 export default class App extends Component {
   render () {
@@ -10,7 +12,7 @@ export default class App extends Component {
       <Switch>
         <Route exact path='/' component={HomePage}/>
         <Route exact path='/AddCredit' component={AddCreditPage}/>
-        {/*<Route path='/SearchResults' component={SearchResultsPage}/>*/}
+        <Route path='/SearchResults' component={SearchResultsPage}/>
       </Switch>
     )
   }
