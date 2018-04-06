@@ -101,3 +101,39 @@ export const SearchBoxes = [
     'image': '',
   }
 ]
+
+export const testHouses = [
+  {
+    'area': '۱۱۰',
+    'district': 'امیر آباد',
+    'dealType': 'sell',
+    'priceInfo': {
+      'sellPrice': '۵۰۰۰۰۰',
+      'rentPrice': '۶۰۰',
+      'basePrice': '۷۶۰',
+    },
+    'image': 'https://www.newyorksightseeing.com/media/catalog/product/cache/29/thumbnail/9df78eab33525d08d6e5fb8d27136e95/e/s/esb_1_1.jpg',
+  },
+  {
+    'area': '۲۲۰',
+    'district': 'قیطریه',
+    'dealType': 'rental',
+    'priceInfo': {
+      'sellPrice': '۱۰۰۰۰۰۰',
+      'rentPrice': '۲۰۰۰',
+      'basePrice': '۳۰۰۰',
+    },
+    'image': 'http://www.reservenewyorkcity.com/travelguide/wp-content/uploads/sites/10/2017/09/Dropbox_Empire-State-ThinkstockPhotos-486334510-med-2-750x450.jpg',
+  },
+  {
+    'area': '۲۲۰',
+    'district': 'نیاوران',
+    'dealType': 'rental',
+    'priceInfo': {
+      'sellPrice': '۱۰۰۰۰۰۰',
+      'rentPrice': '۲۰۰۰',
+      'basePrice': '۳۰۰۰',
+    },
+    'image': 'https://www.newyorksightseeing.com/media/catalog/product/cache/29/thumbnail/9df78eab33525d08d6e5fb8d27136e95/e/s/esb_1_1.jpg',
+  }
+]

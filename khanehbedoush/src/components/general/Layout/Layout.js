@@ -9,7 +9,7 @@ import Footer from './Footer'
 export default class Layout extends Component {
   render() {
     return (
-      <div className="body">
+      <div className="body rtl">
         <GeneralHeader/>
         <div className="defaultPageContainer">
           {this.props.children}

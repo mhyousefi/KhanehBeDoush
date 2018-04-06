@@ -41,22 +41,37 @@ export default class SearchBoxItem extends Component {
     }
   }
 
+  _createTag = () => {
+    if (this.props.dealType === "rental") {
+      return (
+        <div className="searchBoxTagCommon searchBoxRentTagCostum curvedCorner">
+          {Fa["Rahn and rent"]}
+        </div>
+      )
+    } else {
+      return (
+        <div className="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
+          {Fa["sell"]}
+        </div>
+      )
+    }
+  }
+
   render() {
-    const {dealType, district, area, priceInfo} = this.props
+    const {district, area, priceInfo, imageUrl} = this.props
+    // TODO: location icon needed in this component
     return (
       <div className="searchBox curvedCorner">
-        <div className="searchBoxImg curvedCorner">
-          <div className="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
-            {(dealType === 'sell') ? Fa["sell"] : Fa["Rahn and rent"]}
-          </div>
+        <div className="searchBoxImg curvedCorner" style={{backgroundImage: "url(" + imageUrl + ")"}}>
+          {this._createTag()}
         </div>
         <div className="searchBoxLower">
           <div className="searchBoxAreaLocationRow">
             <div className="searchBoxAreaTxt text">
-              {area} &nbsp {Fa["meters square"]}
+              {area} {Fa["meters square"]}
             </div>
             <div className="searchBoxLocation">
-              {/*<i className="material-icons iconSize searchBoxSaleIconColor">place</i>*/}
+              {/*location icon needed here*/}
               <div className="searchBoxLocationTxt text">{district}</div>
             </div>
           </div>

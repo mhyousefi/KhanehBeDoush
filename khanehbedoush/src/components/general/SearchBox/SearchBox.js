@@ -2,48 +2,43 @@ import React, { Component } from 'react'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import SearchBoxItem from './SearchBoxItem'
 
-const house1 = {
-  'area': '۲۲۰',
-  'district': 'قیطریه',
-  'dealType': 'rental',
-  'priceInfo': {
-    'sellPrice': '۱۰۰۰۰۰۰',
-    'rentPrice': '۲۰۰۰',
-    'basePrice': '۳۰۰۰',
-  },
-  'image': '',
-}
-
-const house2 = {
-  'area': '۱۱۰',
-  'district': 'امیر آباد',
-  'dealType': 'sell',
-  'priceInfo': {
-    'sellPrice': '۵۰۰۰۰۰',
-    'rentPrice': '۶۰۰',
-    'basePrice': '۷۶۰',
-  },
-  'image': '',
-}
 
 export default class SearchBox extends Component {
+  _createSearchBoxes = (houses) => {
+    let rows = []
+    let rowCount = houses.length / 2
+    for (let i = 0; i < rowCount; i++) {
+      rows.push(this._createSearchBoxRow(houses, 2 * i))
+    }
+    return rows
+  }
+
+  _createSearchBoxRow = (houses, strIndex) => {
+    let rowHeight = (!houses[strIndex + 1]) ? '500px' : ''
+    return (
+      <div className="searchBoxRow" style={{height: rowHeight}}>
+        <SearchBoxItem
+          dealType={houses[strIndex]['dealType']}
+          area={houses[strIndex]['area']}
+          district={houses[strIndex]['district']}
+          priceInfo={houses[strIndex]['priceInfo']}
+          imageUrl={houses[strIndex]['image']}
+        />
+        {houses[strIndex + 1] && <SearchBoxItem
+          dealType={houses[strIndex + 1]['dealType']}
+          area={houses[strIndex + 1]['area']}
+          district={houses[strIndex + 1]['district']}
+          priceInfo={houses[strIndex + 1]['priceInfo']}
+          imageUrl={houses[strIndex + 1]['image']}
+        />}
+      </div>
+    )
+  }
+
   render () {
     return (
       <div className="searchBoxContainer">
-        <div className="searchBoxRow">
-          <SearchBoxItem
-            dealType={house1['dealType']}
-            area={house1['area']}
-            district={house1['district']}
-            priceInfo={house1['priceInfo']}
-          />
-          <SearchBoxItem
-            dealType={house2['dealType']}
-            area={house2['area']}
-            district={house2['district']}
-            priceInfo={house2['priceInfo']}
-          />
-        </div>
+        {this._createSearchBoxes(this.props.houses)}
       </div>
     )
   }
