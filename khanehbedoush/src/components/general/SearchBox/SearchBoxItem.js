@@ -25,7 +25,7 @@ export default class SearchBoxItem extends Component {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxSalePrice text">
-            {Fa["price"]} {priceInfo["sellingPrice"]} &nbsp;
+            {Fa["price"]} {priceInfo["sellPrice"]} &nbsp;
             <div className="searchBoxTouman">
               {Fa["Touman"]}
             </div>
