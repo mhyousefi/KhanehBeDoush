@@ -29,7 +29,7 @@ export default class ProfileAreaDropDown extends Component {
           <div className="text">{Fa['2000 Toumans']}</div>
         </div>
         <div className="userInfoCardLowerRow">
-          <button className="userInfoCardBtn text curvedCorner" onClick={() => {this._handleButtonClick()}}>
+          <button className="userInfoCardBtn text curvedCorner" onClick={this._handleButtonClick}>
             {Fa['increase credit']}
           </button>
         </div>
