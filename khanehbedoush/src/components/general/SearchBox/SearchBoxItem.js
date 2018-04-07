@@ -5,7 +5,6 @@ import 'src/styles/General.css'
 import 'src/styles/text.css'
 
 
-
 export default class SearchBoxItem extends Component {
   _createPriceRow = (priceInfo) => {
     if (this.props.dealType === "rental") {
@@ -57,9 +56,16 @@ export default class SearchBoxItem extends Component {
     }
   }
 
+  _createLocationIcon = () => {
+    if (this.props.dealType === "rental") {
+      return <i className="material-icons iconSize searchBoxRentIconColor">place</i>
+    } else {
+      return <i className="material-icons iconSize searchBoxSaleIconColor">place</i>
+    }
+  }
+
   render() {
     const {district, area, priceInfo, imageUrl} = this.props
-    // TODO: location icon needed in this component
     return (
       <div className="searchBox curvedCorner">
         <div className="searchBoxImg curvedCorner" style={{backgroundImage: "url(" + imageUrl + ")"}}>
@@ -71,7 +77,7 @@ export default class SearchBoxItem extends Component {
               {area} {Fa["meters square"]}
             </div>
             <div className="searchBoxLocation">
-              {/*location icon needed here*/}
+              {this._createLocationIcon()}
               <div className="searchBoxLocationTxt text">{district}</div>
             </div>
           </div>

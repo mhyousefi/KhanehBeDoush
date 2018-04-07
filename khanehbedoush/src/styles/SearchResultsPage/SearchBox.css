@@ -81,6 +81,14 @@
     background-color: #EF5350;
 }
 
+.searchBoxSaleIconColor {
+    color: #673AB7;
+}
+
+.searchBoxRentIconColor {
+    color: #EF5350;
+}
+
 .searchBoxLower {
     display: flex;
     flex-direction: column;
@@ -158,14 +166,6 @@
 .searchBoxTouman {
     color: grey;
     flex: 0;
-}
-
-.searchBoxSaleIconColor {
-    color: #544F99;
-}
-
-.searchBoxRentIconColor {
-    color: #E3656D;
 }
 
 @media only screen and (max-width: 1200px) {

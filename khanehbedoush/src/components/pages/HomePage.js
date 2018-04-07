@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import HomePageLayout from 'src/components/general/Layout/HomePageLayout'
+import Layout from 'src/components/general/Layout/Layout'
 import HomePageAdBox from 'src/components/general/HomePageComponents/HomePageAdBox'
 import HomePageInfo from 'src/components/general/HomePageComponents/HomePageInfo'
 
 export default class HomePage extends Component {
   render () {
     return (
-      <HomePageLayout>
+      <Layout isHomePage={true}>
         <HomePageAdBox/>
         <HomePageInfo/>
-      </HomePageLayout>
+      </Layout>
     )
   }
 }

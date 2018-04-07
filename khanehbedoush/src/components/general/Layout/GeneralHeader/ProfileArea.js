@@ -4,7 +4,7 @@ import Fa from 'src/constants/Fa'
 import 'src/styles/Header/Header.css'
 import 'src/styles/UserInfoCard/UserInfoCard.css'
 
-// TODO: Find the right way to do icons...
+
 export default class ProfileArea extends Component {
   render() {
     return (
