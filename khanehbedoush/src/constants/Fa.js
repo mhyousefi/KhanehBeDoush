@@ -12,6 +12,7 @@ module.exports = {
   'Rahn and rent': 'رهن و اجاره',
   'sell': 'فروش',
   'meters square': 'متر مربع',
+  'area': 'متراژ',
   '20000': '۲۰۰۰۰',
 
   //page titles
@@ -47,4 +48,9 @@ module.exports = {
 
   //SearchResults page
   'SearchResults upper sentence': 'برای مشاهده اطلاعات بیشتر درباره هر ملک روی آن کلیک کنید.',
+
+  //HomeDetail
+  'owner phone number': 'شماره مالک/مشاور',
+  'description': 'توضیحات',
+  'address': 'آدرس',
 }

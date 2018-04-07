@@ -137,3 +137,33 @@ export const testHouses = [
     'image': 'https://www.newyorksightseeing.com/media/catalog/product/cache/29/thumbnail/9df78eab33525d08d6e5fb8d27136e95/e/s/esb_1_1.jpg',
   }
 ]
+
+export const house1 = {
+  'phoneNumber': '۰۹۱۲۰۷۱۰۷۳۲',
+  'dealType': 'rental',
+  'propertyType': 'کلنگی',
+  'district': 'زعفرانیه',
+  'area': '۲۵۰',
+  'priceInfo': {
+    'sellPrice': '۵۰۰۰۰۰',
+    'rentPrice': '۶۰۰',
+    'basePrice': '۷۶۰',
+  },
+  'imageUrl': 'https://www.newyorksightseeing.com/media/catalog/product/cache/29/thumbnail/9df78eab33525d08d6e5fb8d27136e95/e/s/esb_1_1.jpg',
+  'description': 'میتونی باهاش یه برج با شکوه بسازی!'
+}
+
+export const house2 = {
+  'phoneNumber': '۰۹۱۲۱۱۰۳۰۴۰',
+  'dealType': 'selling',
+  'propertyType': 'برج',
+  'district': 'الهیه',
+  'area': '۴۰۰',
+  'priceInfo': {
+    'sellPrice': '۹۰۰۰۰۰۰۰۰۰',
+    'rentPrice': '۶۰۰',
+    'basePrice': '۷۶۰',
+  },
+  'imageUrl': 'http://www.reservenewyorkcity.com/travelguide/wp-content/uploads/sites/10/2017/09/Dropbox_Empire-State-ThinkstockPhotos-486334510-med-2-750x450.jpg',
+  'description': 'خیلی خفنه! این قدر بالاست!'
+}
