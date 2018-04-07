@@ -3,13 +3,36 @@ import { Helmet } from 'react-helmet'
 import 'src/styles/Background.css'
 import 'src/styles/General.css'
 import 'src/styles/PageContainers.css'
-import Footer from './Footer'
-import GeneralHeader from './Header/GeneralHeader'
-import HomePageHeader from './HomePageHeader/HomePageHeader'
+import Footer from 'src/components/general/Layout/Footer'
+import GeneralHeader from 'src/components/general/Layout/GeneralHeader/GeneralHeader'
+import HomePageHeader from 'src/components/general/Layout/HomePageHeader/HomePageHeader'
 
 export default class Layout extends Component {
+  _chooseHeader = () => {
+    if (this.props.isHomePage) {
+      return <HomePageHeader/>
+    } else {
+      return <GeneralHeader/>
+    }
+  }
+
+  _chooseBody = () => {
+    if (this.props.isHomePage) {
+      return (
+        <div className="homePageContainer">
+          {this.props.children}
+        </div>
+      )
+    } else {
+      return (
+        <div className="defaultPageContainer">
+          {this.props.children}
+        </div>
+      )
+    }
+  }
+
   render () {
-    const { isHomePage } = this.props
     return (
       <div className="body rtl">
         <Helmet>
@@ -19,11 +42,8 @@ export default class Layout extends Component {
                 href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1'
                 type='text/css' media='all'/>
         </Helmet>
-        {isHomePage && <HomePageHeader/>}
-        {!isHomePage && <GeneralHeader/>}
-        <div className="defaultPageContainer">
-          {this.props.children}
-        </div>
+        {this._chooseHeader()}
+        {this._chooseBody()}
         <Footer/>
       </div>
     )

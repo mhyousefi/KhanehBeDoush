@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProfileAreaDropDown from "../Header/ProfileAreaDropDown"
+import ProfileAreaDropDown from "src/components/general/Layout/GeneralHeader/ProfileAreaDropDown"
 import Fa from 'src/constants/Fa'
 import 'src/styles/Header/Header.css'
 import 'src/styles/HomePage/HomePageHeader.css'
