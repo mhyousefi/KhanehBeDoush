@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
-import ProfileArea from './ProfileArea'
+import { Link } from 'react-router-dom'
+import LogoImg from 'src/assets/images/logo.png'
 import Fa from 'src/constants/Fa'
+import 'src/styles/General.css'
 import 'src/styles/Header/Header.css'
 import 'src/styles/UserInfoCard/UserInfoCard.css'
-
-import LogoImg from 'src/assets/images/logo.png'
+import ProfileArea from './ProfileArea'
 
 export default class HeaderUpperRow extends Component {
-  render() {
+  render () {
     return (
       <div className="headerUpperRowContainer">
         <div className="headerUpperRow">
           <img className="headerLogo" src={LogoImg}/>
-          <div className="headerPageTitleTxt">
+          <Link to='/' className="headerPageTitleTxt noUnderLine">
             {Fa['KhanehBeDoush']}
-          </div>
+          </Link>
           <ProfileArea/>
         </div>
       </div>

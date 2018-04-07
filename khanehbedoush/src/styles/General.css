@@ -14,6 +14,10 @@ option:first-child {
     color: #999999;
 }
 
+.noUnderLine{
+    text-decoration: none;
+}
+
 .radioButton {
     margin: 2% 5%;
     width: 17px;
