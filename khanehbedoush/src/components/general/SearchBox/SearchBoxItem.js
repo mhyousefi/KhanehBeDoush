@@ -68,7 +68,7 @@ export default class SearchBoxItem extends Component {
   render() {
     const {district, area, priceInfo, imageUrl, houseId} = this.props
     return (
-      <Link to={"/HomeDerails:" + houseId} className="searchBox curvedCorner noUnderLine">
+      <Link to={"/HomeDetail/" + houseId} className="searchBox curvedCorner noUnderLine">
         <div className="searchBoxImg curvedCorner" style={{backgroundImage: "url(" + imageUrl + ")"}}>
           {this._createTag()}
         </div>

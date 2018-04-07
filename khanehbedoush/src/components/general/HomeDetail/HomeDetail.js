@@ -8,7 +8,7 @@ export default class HomeDetail extends Component {
     const { house } = this.props
     return (
       <div className="homeDetailContainer">
-        <HomeDetailInfo houseId={house["id"]}/>
+        <HomeDetailInfo house={house}/>
         <div className="homeDetailLeft">
           <img className="homeDetailPhoto curvedCorner" src={house['image']} alt={house['phoneNumber']}/>
           <div className="phoneNumStatus curvedCorner">
