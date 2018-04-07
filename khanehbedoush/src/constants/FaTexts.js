@@ -36,6 +36,7 @@ export const AdBoxes = [
 
 export const testHouses = [
   {
+    'id': '0',
     'phoneNumber': '۰۹۱۲۱۱۰۳۰۴۰',
     'dealType': 'sell',
     'propertyType': 'کلنگی',
@@ -50,6 +51,7 @@ export const testHouses = [
     'description': 'میتونی باهاش یه برج با شکوه بسازی!',
   },
   {
+    'id': '1',
     'phoneNumber': '۰۹۱۲۱۱۰۳۰۴۱',
     'dealType': 'rental',
     'propertyType': 'آپارتمان',
@@ -64,6 +66,7 @@ export const testHouses = [
     'description': 'خیلی خفنه! این قدر بالاست!',
   },
   {
+    'id': '2',
     'phoneNumber': '۰۹۱۲۱۱۰۳۰۴۲',
     'dealType': 'rental',
     'propertyType': 'کلنگی',

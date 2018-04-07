@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Fa from 'src/constants/Fa'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import 'src/styles/General.css'
@@ -65,9 +66,9 @@ export default class SearchBoxItem extends Component {
   }
 
   render() {
-    const {district, area, priceInfo, imageUrl} = this.props
+    const {district, area, priceInfo, imageUrl, houseId} = this.props
     return (
-      <div className="searchBox curvedCorner">
+      <Link to={"/HomeDerails:" + houseId} className="searchBox curvedCorner noUnderLine">
         <div className="searchBoxImg curvedCorner" style={{backgroundImage: "url(" + imageUrl + ")"}}>
           {this._createTag()}
         </div>
@@ -84,7 +85,7 @@ export default class SearchBoxItem extends Component {
           <div className="separatingLine"/>
           {this._createPriceRow(priceInfo)}
         </div>
-      </div>
+      </Link>
     )
   }
 }

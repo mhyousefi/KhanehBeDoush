@@ -23,6 +23,7 @@ export default class SearchBox extends Component {
           district={houses[strIndex]['district']}
           priceInfo={houses[strIndex]['priceInfo']}
           imageUrl={houses[strIndex]['image']}
+          houseId={houses[strIndex]['id']}
         />
         {houses[strIndex + 1] && <SearchBoxItem
           dealType={houses[strIndex + 1]['dealType']}
@@ -30,15 +31,17 @@ export default class SearchBox extends Component {
           district={houses[strIndex + 1]['district']}
           priceInfo={houses[strIndex + 1]['priceInfo']}
           imageUrl={houses[strIndex + 1]['image']}
+          houseId={houses[strIndex + 1]['id']}
         />}
       </div>
     )
   }
 
   render () {
+    const { houses } = this.props
     return (
       <div className="searchBoxContainer">
-        {this._createSearchBoxes(this.props.houses)}
+        {this._createSearchBoxes(houses)}
       </div>
     )
   }

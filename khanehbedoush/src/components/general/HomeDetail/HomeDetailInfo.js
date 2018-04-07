@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Paper, MuiThemeProvider, RaisedButton } from 'material-ui'
+import { Paper, MuiThemeProvider } from 'material-ui'
 import HomeDetailInfoRow from './HomeDetailInfoRow'
 import Fa from 'src/constants/Fa'
 import 'src/styles/HomeDetail/HomeDetail.css'
@@ -7,6 +7,8 @@ import 'src/styles/General.css'
 
 
 export default class HomeDetailInfo extends Component {
+
+
   _createPriceInfo = (priceInfo) => {
     let rows = []
     if (this.props.house["dealType"] === "rental") {

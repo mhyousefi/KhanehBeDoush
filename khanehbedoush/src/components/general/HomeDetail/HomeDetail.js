@@ -5,12 +5,12 @@ import HomeDetailInfo from './HomeDetailInfo'
 
 export default class HomeDetail extends Component {
   render () {
-    const {house} = this.props
+    const { house } = this.props
     return (
       <div className="homeDetailContainer">
-        <HomeDetailInfo house={house}/>
+        <HomeDetailInfo houseId={house["id"]}/>
         <div className="homeDetailLeft">
-          <img className="homeDetailPhoto curvedCorner" src={house['imageUrl']} alt={house['phoneNumber']}/>
+          <img className="homeDetailPhoto curvedCorner" src={house['image']} alt={house['phoneNumber']}/>
           <div className="phoneNumStatus curvedCorner">
             مشاهده شماره مالک/مشاور
           </div>
