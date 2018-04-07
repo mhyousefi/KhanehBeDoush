@@ -33,7 +33,7 @@
 }
 
 #homePageProfileArea {
-    margin: 1% 0;
+    margin: -20% 0;
 }
 
 .homePageProfileArea:hover ~ .userInfoCard{

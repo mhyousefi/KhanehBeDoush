@@ -61,12 +61,17 @@
 }
 
 .searchBoxTagCommon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
     margin: 2% 0 0 2%;
-    color: azure;
-    text-align: center;
+
     font-family: Shabnam;
     font-size: 17px;
     font-weight: 100;
+    color: azure;
 }
 
 .searchBoxSaleTagCostum {
@@ -164,6 +169,7 @@
 }
 
 .searchBoxTouman {
+    margin-right: 6px;
     color: grey;
     flex: 0;
 }

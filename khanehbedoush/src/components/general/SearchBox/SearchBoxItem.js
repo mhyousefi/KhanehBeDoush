@@ -12,12 +12,16 @@ export default class SearchBoxItem extends Component {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxBasePrice text">
-            {Fa["Rahn"]} {priceInfo["basePrice"]} &nbsp;
-            <div className="searchBoxTouman">تومان</div>
+            {Fa["Rahn"] + " " + priceInfo["basePrice"]}
+            <div className="searchBoxTouman">
+              {Fa["Touman"]}
+            </div>
           </div>
           <div className="searchBoxRentPrice text">
-            {Fa["rent"]} {priceInfo["rentPrice"]} &nbsp;
-            <div className="searchBoxTouman">تومان</div>
+            {Fa["rent"] + " " + priceInfo["rentPrice"]}
+            <div className="searchBoxTouman">
+              {Fa["Touman"]}
+            </div>
           </div>
         </div>
       )
@@ -25,7 +29,7 @@ export default class SearchBoxItem extends Component {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxSalePrice text">
-            {Fa["price"]} {priceInfo["sellPrice"]} &nbsp;
+            {Fa["price"] + " " + priceInfo["sellPrice"]}
             <div className="searchBoxTouman">
               {Fa["Touman"]}
             </div>

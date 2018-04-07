@@ -9,7 +9,7 @@ import 'src/styles/text.css'
 export default class AddCreditPage extends Component {
   render() {
     return (
-      <Layout isHomePage={false}>
+      <Layout isHomePage={false} pageTitle={Fa["add credit page"]}>
         <div className="addCreditContainer rtl">
           <div className="currentCreditBox">
             <div className="addCreditTxt greyTxt">

@@ -3,7 +3,7 @@ module.exports = {
 
   'NBSP': '\xa0', // non-breaking space
 
-  'increase credit': 'افزایش اعتبار',
+  //General
   'Touman': 'تومان',
   'price': 'قیمت',
   'price not available': 'قیمت برای این ملک موجود نیست.',
@@ -15,10 +15,12 @@ module.exports = {
   'area': 'متراژ',
   '20000': '۲۰۰۰۰',
 
-  //page titles
-  'increase balance': 'افزایش موجودی',
-  'home page': '',
-  'search results': '',
+  //Page Titles
+  'home page': 'خانه',
+  'add credit page': 'افزایش اعتبار',
+  'search results page': 'نتایج جستجو',
+  'home detail page': 'مشخصات کامل ملک',
+
 
   //header
   'profile area': 'ناحیه کاربری',
@@ -30,6 +32,7 @@ module.exports = {
   'footer text': 'تمای حقوق مادی و معنوی این وب‌سایت متعلق به محمد حسین یوسفی و سید محمد حسین کاظمی است.',
 
   //add credit page
+  'increase credit': 'افزایش اعتبار',
   'current credit': 'اعتبار کنونی',
   'amount to be added': 'مبلغ مورد نظر',
 

@@ -8,11 +8,11 @@ import GeneralHeader from 'src/components/general/Layout/GeneralHeader/GeneralHe
 import HomePageHeader from 'src/components/general/Layout/HomePageHeader/HomePageHeader'
 
 export default class Layout extends Component {
-  _chooseHeader = () => {
+  _chooseHeader = (pageTitle) => {
     if (this.props.isHomePage) {
       return <HomePageHeader/>
     } else {
-      return <GeneralHeader/>
+      return <GeneralHeader pageTitle={pageTitle}/>
     }
   }
 
@@ -33,6 +33,7 @@ export default class Layout extends Component {
   }
 
   render () {
+    const { pageTitle } = this.props
     return (
       <div className="body rtl">
         <Helmet>
@@ -41,8 +42,9 @@ export default class Layout extends Component {
           <link rel='stylesheet' id='fontawesome-css'
                 href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1'
                 type='text/css' media='all'/>
+          <title>{pageTitle}</title>
         </Helmet>
-        {this._chooseHeader()}
+        {this._chooseHeader(pageTitle)}
         {this._chooseBody()}
         <Footer/>
       </div>

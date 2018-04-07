@@ -9,7 +9,7 @@ import 'src/styles/SearchResultsPage/SearchBox.css'
 export default class SearchResults extends Component {
   render () {
     return (
-      <Layout isHomePage={false}>
+      <Layout isHomePage={false} pageTitle={Fa["search results page"]}>
         <div className="searchResultsUpperSentence‌">
           {Fa['SearchResults upper sentence']}
         </div>
