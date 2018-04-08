@@ -15,7 +15,7 @@ export default class ProfileArea extends Component {
             {Fa['profile area']}
           </div>
         </div>
-        <ProfileAreaDropDown isHomePage={false}/>
+        <ProfileAreaDropDown isHomePage={false} credit={this.props.credit}/>
       </div>
     )
   }

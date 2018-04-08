@@ -16,7 +16,7 @@ export default class HeaderUpperRow extends Component {
           <Link to='/' className="headerPageTitleTxt noUnderLine">
             {Fa['KhanehBeDoush']}
           </Link>
-          <ProfileArea/>
+          <ProfileArea credit={this.props.credit}/>
         </div>
       </div>
     )

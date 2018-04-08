@@ -20,7 +20,7 @@ export default class HomePageHeader extends Component {
           <img className="second" src={HomePageHeaderPic3}/>
           <img className="third" src={HomePageHeaderPic4}/>
 
-          <HomePageHeaderUpper/>
+          <HomePageHeaderUpper credit={this.props.credit}/>
           <HomePageHeaderMiddle/>
           <HomePageHeaderLower/>
         </div>

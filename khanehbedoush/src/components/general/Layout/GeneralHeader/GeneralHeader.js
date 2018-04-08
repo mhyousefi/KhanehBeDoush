@@ -6,10 +6,10 @@ import 'src/styles/General.css'
 
 export default class GeneralHeader extends Component {
   render() {
-    const { pageTitle } = this.props
+    const { pageTitle, credit } = this.props
     return (
       <header className="addCreditHeaderContainer defaultHeaderHeight rtl">
-        <HeaderUpperRow/>
+        <HeaderUpperRow credit={credit}/>
         <HeaderImageBar pageTitle={pageTitle}/>
       </header>
     )

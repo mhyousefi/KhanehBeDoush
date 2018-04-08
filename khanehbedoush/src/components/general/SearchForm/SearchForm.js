@@ -34,22 +34,22 @@ export default class SearchForm extends Component {
 
   _handleMaxPriceChange = (newMaxPrice) => {
     this.setState({maxPrice: newMaxPrice})
-    console.log("NEW MAX PRICE ====> " + newMaxPrice)
+    // console.log("NEW MAX PRICE ====> " + newMaxPrice)
   }
 
   _handleMinAreaChange = (newMinArea) => {
     this.setState({minArea: newMinArea})
-    console.log("NEW MIN AREA ====> " + newMinArea)
+    // console.log("NEW MIN AREA ====> " + newMinArea)
   }
 
   _handlePropertyTypeChange = (newPropertyType) => {
     this.setState({propertyType: newPropertyType})
-    console.log("NEW PROPERTY TYPE ====> " + newPropertyType)
+    // console.log("NEW PROPERTY TYPE ====> " + newPropertyType)
   }
 
   _handleDealTypeChange = (newDealType) => {
     this.setState({dealType: newDealType})
-    console.log("NEW DEAL TYPE ====> " + newDealType)
+    // console.log("NEW DEAL TYPE ====> " + newDealType)
   }
 
   _handleSearchClick = () => {

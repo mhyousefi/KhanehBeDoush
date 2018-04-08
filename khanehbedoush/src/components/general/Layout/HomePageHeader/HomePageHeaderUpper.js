@@ -16,7 +16,7 @@ export default class HomePageHeaderUpper extends Component {
               {Fa["profile area"]}
             </div>
           </div>
-          <ProfileAreaDropDown isHomePage={true}/>
+          <ProfileAreaDropDown isHomePage={true} credit={this.props.credit}/>
         </div>
       </div>
     )

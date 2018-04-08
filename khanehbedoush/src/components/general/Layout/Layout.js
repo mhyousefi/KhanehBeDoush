@@ -1,32 +1,54 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
-import 'src/styles/Background.css'
-import 'src/styles/General.css'
-import 'src/styles/PageContainers.css'
 import Footer from 'src/components/general/Layout/Footer'
 import GeneralHeader from 'src/components/general/Layout/GeneralHeader/GeneralHeader'
 import HomePageHeader from 'src/components/general/Layout/HomePageHeader/HomePageHeader'
+import config from 'src/constants/appConfig'
+import 'src/styles/Background.css'
+import 'src/styles/General.css'
+import 'src/styles/PageContainers.css'
+
 
 export default class Layout extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      customerCredit: config["initial credit"]
+    };
+    this._handleCreditChange = this._handleCreditChange.bind(this)
+  }
+
+  _handleCreditChange = (amount) => {
+    if (!isNaN(amount)) {
+      const newCredit = parseInt(this.state.customerCredit) + parseInt(amount)
+      this.setState({customerCredit: newCredit})
+    }
+  }
+
   _chooseHeader = (pageTitle) => {
+    const {customerCredit} = this.state
     if (this.props.isHomePage) {
-      return <HomePageHeader/>
+      return <HomePageHeader credit={customerCredit}/>
     } else {
-      return <GeneralHeader pageTitle={pageTitle}/>
+      return <GeneralHeader pageTitle={pageTitle} credit={customerCredit}/>
     }
   }
 
   _chooseBody = () => {
+    const { children } = this.props;
+    let childrenWithProps = React.Children.map(children, child =>
+      React.cloneElement(child, { onCreditChange: this._handleCreditChange }));
+
     if (this.props.isHomePage) {
       return (
         <div className="homePageContainer">
-          {this.props.children}
+          {childrenWithProps}
         </div>
       )
     } else {
       return (
         <div className="defaultPageContainer">
-          {this.props.children}
+          {childrenWithProps}
         </div>
       )
     }

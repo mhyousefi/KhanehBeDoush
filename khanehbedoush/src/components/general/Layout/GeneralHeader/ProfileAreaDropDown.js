@@ -15,6 +15,8 @@ export default class ProfileAreaDropDown extends Component {
   }
 
   render() {
+    const { credit } = this.props
+
     if (this.state.redirectToAddCredit) {
       return <Redirect to='/AddCredit'/>
     }
@@ -26,7 +28,7 @@ export default class ProfileAreaDropDown extends Component {
         </div>
         <div className="userInfoCardMiddleRow userInfoCardCommonRowProps">
           <div className="text">{Fa['credit']}</div>
-          <div className="text">{Fa['2000 Toumans']}</div>
+          <div className="text">{credit + " " + Fa['Touman']}</div>
         </div>
         <div className="userInfoCardLowerRow">
           <button className="userInfoCardBtn text curvedCorner" onClick={this._handleButtonClick}>

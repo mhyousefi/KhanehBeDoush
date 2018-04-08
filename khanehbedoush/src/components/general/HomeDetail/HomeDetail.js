@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import HomeDetailInfo from './HomeDetailInfo'
-import { homeDetailMessages as messages } from 'src/constants/FaTexts'
+import { messages } from 'src/constants/FaTexts'
 import { payForPhoneNum } from 'src/api/PhoneNumPurchase'
 import 'src/styles/General.css'
 import 'src/styles/HomeDetail/HomeDetail.css'
@@ -27,7 +27,6 @@ export default class HomeDetail extends Component {
 
   render () {
     const { house } = this.props
-    console.log("this.state.phoneNumVisible ==========> " + this.state.phoneNumVisible)
     return (
       <div className="homeDetailContainer">
         <HomeDetailInfo house={house} phoneNumVisible={this.state.phoneNumVisible}/>
