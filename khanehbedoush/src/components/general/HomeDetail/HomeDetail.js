@@ -6,16 +6,22 @@ import 'src/styles/General.css'
 import 'src/styles/HomeDetail/HomeDetail.css'
 
 export default class HomeDetail extends Component {
-  state = {
-    phoneNumVisible: false,
+  constructor(props) {
+    super(props)
+    this.state = {
+      phoneNumVisible: this.props.hasPaid
+    }
   }
 
   _handleButtonClick = () => {
-    const phoneNumber = this.props.house["phoneNumber"]
-    if (payForPhoneNum(phoneNumber) === false) {
-      alert(messages["insufficient credit"])
-    } else {
-      this.setState({phoneNumVisible: true})
+    const {house, hasPaid} = this.props
+    const phoneNumber = house["phoneNumber"]
+    if (!hasPaid) {
+      if (payForPhoneNum(phoneNumber) === false) {
+        alert(messages["insufficient credit"])
+      } else {
+        this.setState({phoneNumVisible: true})
+      }
     }
   }
 
