@@ -67,3 +67,7 @@ option:first-child {
 .HeaderBottomMargin{
     margin-top: 250px;
 }
+
+.handCursor{
+    cursor: pointer;
+}
