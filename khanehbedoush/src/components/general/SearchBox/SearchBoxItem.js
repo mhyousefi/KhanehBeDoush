@@ -4,6 +4,7 @@ import Fa from 'src/constants/Fa'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import 'src/styles/General.css'
 import 'src/styles/text.css'
+import { toPersian } from '../../../Utilities/formats'
 
 
 export default class SearchBoxItem extends Component {
@@ -12,13 +13,13 @@ export default class SearchBoxItem extends Component {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxBasePrice text">
-            {Fa["Rahn"] + " " + priceInfo["basePrice"]}
+            {Fa["Rahn"] + " " + toPersian(priceInfo["basePrice"])}
             <div className="searchBoxTouman">
               {Fa["Touman"]}
             </div>
           </div>
           <div className="searchBoxRentPrice text">
-            {Fa["rent"] + " " + priceInfo["rentPrice"]}
+            {Fa["rent"] + " " + toPersian(priceInfo["rentPrice"])}
             <div className="searchBoxTouman">
               {Fa["Touman"]}
             </div>
@@ -29,7 +30,7 @@ export default class SearchBoxItem extends Component {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxSalePrice text">
-            {Fa["price"] + " " + priceInfo["sellPrice"]}
+            {Fa["price"] + " " + toPersian(priceInfo["sellPrice"])}
             <div className="searchBoxTouman">
               {Fa["Touman"]}
             </div>
@@ -79,7 +80,7 @@ export default class SearchBoxItem extends Component {
         <div className="searchBoxLower">
           <div className="searchBoxAreaLocationRow">
             <div className="searchBoxAreaTxt text">
-              {area} {Fa["meters square"]}
+              {toPersian(area)} {Fa["meters square"]}
             </div>
             <div className="searchBoxLocation">
               {this._createLocationIcon()}
