@@ -41,7 +41,7 @@ export default class AddCredit extends Component {
             {Fa['current credit']}
           </div>
           <div className="addCreditNumberTxt blackTxt">
-            {Fa['20000']} {Fa['NBSP']}
+            {this.props.credit} {Fa["NBSP"]}
           </div>
           <div className="addCreditTxt greyTxt">
             {Fa['Touman']}

@@ -37,7 +37,7 @@ export default class Layout extends Component {
   _chooseBody = () => {
     const { children } = this.props;
     let childrenWithProps = React.Children.map(children, child =>
-      React.cloneElement(child, { onCreditChange: this._handleCreditChange }));
+      React.cloneElement(child, { onCreditChange: this._handleCreditChange, credit: this.state.customerCredit }));
 
     if (this.props.isHomePage) {
       return (

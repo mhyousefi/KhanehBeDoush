@@ -12,7 +12,11 @@ export default class HomeDetailPage extends Component {
     const {houseId} = match.params
     return (
       <Layout isHomePage={false} pageTitle={Fa["home detail page"]}>
-        <HomeDetail house={getHouseWithId(houseId)} hasPaid={hasPaidForPhoneNum(houseId)}/>
+        <HomeDetail
+          house={getHouseWithId(houseId)}
+          hasPaid={hasPaidForPhoneNum(houseId)}
+          onCreditChange={this.props.onCreditChange}
+        />
       </Layout>
     )
   }
