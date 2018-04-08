@@ -38,7 +38,7 @@ module.exports = {
 
   //SearchForm
   'SearchFormSlogan': 'صاحب خانه هستید؟ خانه خود را ثبت کنید',
-  'max area': 'حداکثر متراژ',
+  'min area': 'حداقل متراژ',
   'max price': 'حداکثر قیمت',
   'property type': 'نوع ملک',
   'apartment': 'آپارتمان',

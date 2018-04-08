@@ -7,8 +7,6 @@ import 'src/styles/General.css'
 
 
 export default class HomeDetailInfo extends Component {
-
-
   _createPriceInfo = (priceInfo) => {
     let rows = []
     if (this.props.house["dealType"] === "rental") {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import Fa from 'src/constants/Fa'
 import 'src/styles/HomePage/HomePageHeader.css'
 import 'src/styles/HomePage/HomePageResponsive.css'
@@ -8,33 +7,48 @@ import 'src/styles/SearchForm/SearchFormMediaQuery.css'
 
 
 export default class SearchFormLower extends Component {
-  state = {
-    redirectToSearchResults: false
+  constructor(props) {
+    super(props)
+    this._handleRentalRadioClick = this._handleRentalRadioClick.bind(this)
+    this._handleForSaleRadioClick = this._handleForSaleRadioClick.bind(this)
   }
 
-  _handleButtonClick = () => {
-    this.setState({ redirectToSearchResults: true })
+  _handleRentalRadioClick(event) {
+    this.props.onDealTypeChange(event.target.value)
+  }
+
+  _handleForSaleRadioClick(event) {
+    this.props.onDealTypeChange(event.target.value)
   }
 
   render() {
-    if (this.state.redirectToSearchResults) {
-      return <Redirect to="/SearchResults"/>
-    }
-
+    const {onSearchClick} = this.props
     return (
       <div className="searchFormLower">
         <div className="searchFormRadioContainer">
           <div className="searchFormRadioBtn">
-            <input className="radioButton" type="radio" name="propertyType" value="رهن و اجاره"/>
+            <input
+              className="radioButton"
+              type="radio"
+              name="propertyType"
+              value={"rental"}
+              onClick={this._handleRentalRadioClick}
+            />
             {Fa["rental"]}
           </div>
           <div className="searchFormRadioBtn">
-            <input className="radioButton" type="radio" name="propertyType" value="خرید"/>
+            <input
+              className="radioButton"
+              type="radio"
+              name="propertyType"
+              value={"forSale"}
+              onClick={this._handleForSaleRadioClick}
+            />
             {Fa["purchase"]}
           </div>
         </div>
 
-        <button className="searchFormBtn curvedCorner searchFormBtnTxt" onClick={this._handleButtonClick}>
+        <button className="searchFormBtn curvedCorner searchFormBtnTxt" onClick={onSearchClick}>
           {Fa["search"]}
         </button>
       </div>

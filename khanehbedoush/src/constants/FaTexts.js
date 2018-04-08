@@ -33,6 +33,10 @@ export const AdBoxes = [
   },
 ]
 
+export const homeDetailMessages = {
+  'show phone number': 'مشاهده شماره مالک/مشاور',
+  'insufficient credit': 'اعتبار شما برای مشاهده شماره مالک/مشاور این ملک کافی نیست.',
+}
 
 export const testHouses = [
   {

@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
+import HomeDetailInfo from './HomeDetailInfo'
+import { homeDetailMessages as messages } from 'src/constants/FaTexts'
 import 'src/styles/General.css'
 import 'src/styles/HomeDetail/HomeDetail.css'
-import HomeDetailInfo from './HomeDetailInfo'
 
 export default class HomeDetail extends Component {
+  state = {
+    phoneNumVisible: false,
+    message: messages["show phone number"]
+  }
+
+  _createMessage = () => {
+    return this.state.phoneNumVisible
+  }
+
+  __handleButtonClick = () => {
+    this.setState({
+      phoneNumVisible: true,
+      message: ''
+    })
+
+  }
+
   render () {
     const { house } = this.props
     return (
@@ -11,9 +29,9 @@ export default class HomeDetail extends Component {
         <HomeDetailInfo house={house}/>
         <div className="homeDetailLeft">
           <img className="homeDetailPhoto curvedCorner" src={house['image']} alt={house['phoneNumber']}/>
-          <div className="phoneNumStatus curvedCorner">
-            مشاهده شماره مالک/مشاور
-          </div>
+          {(this.state.phoneNumVisible === false) && <div className="phoneNumStatus curvedCorner" onClick={this._handleButtonClick}>
+            {this.state.message}
+          </div>}
         </div>
       </div>
     )
