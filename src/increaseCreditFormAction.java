@@ -1,7 +1,6 @@
-package Servlets;
-
 import Entities.IndividualUser;
 
+import Utilities.JSONFunctions;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -18,36 +17,47 @@ import Constants.Constants;
 import Entities.Database;
 import org.json.JSONObject;
 
+/*
+*
+* {
+	"credit" : 2000
+}
+* */
+
 @WebServlet("/increaseCredit")
-public class increaseCreditFormAction extends HttpServlet {
+public class IncreaseCreditFormAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
         HttpClient client = HttpClientBuilder.create().build();
         HttpPost post = createHttpPost();
 
         IndividualUser user = Database.getUser(Constants.getConstant("USERNAME"));
-        String creditIncrementValue = request.getParameter("credit");
-
+//        String creditIncrementValue = request.getParameter("credit");
+        String creditIncrementValue = requestInJson.get("credit").toString();
         JSONObject requestParams = createRequestParams(user.getPhone(), creditIncrementValue);
-
+        PrintWriter out = response.getWriter();
         try {
             post.setEntity(new StringEntity(requestParams.toString(), "UTF8"));
             HttpResponse bankResponse = client.execute(post);
             String responseTxt = EntityUtils.toString(bankResponse.getEntity());
-
+            JSONObject jsonResponse = new JSONObject();
             if (responseIsSuccessful(responseTxt)) {
                 user.increaseBalance(Float.parseFloat(creditIncrementValue));
-                request.setAttribute("msg", "User credit successfully increased by " + creditIncrementValue + " Toumans");
+                jsonResponse.put("response", "true");
+                out.print(jsonResponse);
+                out.flush();
             }
             else {
-                request.setAttribute("msg", "A problem occurred while contacting the bank server: " + responseTxt);
+                jsonResponse.put("response", "false");
+                out.print(jsonResponse);
+                out.flush();
             }
 
-        } catch (IOException e) {
-            request.setAttribute("msg", "Exception caught: " + e.getMessage());
-        }
+        } catch (IOException ignored) {}
 
-        moveToPreviousPage(request, response);
+//        moveToPreviousPage(request, response);
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -73,10 +83,10 @@ public class increaseCreditFormAction extends HttpServlet {
         return jsonResponse.has("success") && jsonResponse.get("success").toString().equals("true");
     }
 
-    private void moveToPreviousPage (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String nextJSP = "/index.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);
-    }
+//    private void moveToPreviousPage (HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        String nextJSP = "/index.jsp";
+//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+//        dispatcher.forward(request, response);
+//    }
 }
