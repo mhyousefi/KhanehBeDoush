@@ -7,7 +7,12 @@ import Fa from 'src/constants/Fa'
 export default class HomePage extends Component {
   render () {
     return (
-      <Layout isHomePage={true} pageTitle={Fa["home page"]}>
+      <Layout
+        isHomePage={true}
+        pageTitle={Fa["home page"]}
+        credit={this.props.credit}
+        onCreditChange={this.props.onCreditChange}
+      >
         <HomePageAdBox/>
         <HomePageInfo/>
       </Layout>

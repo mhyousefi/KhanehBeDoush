@@ -6,13 +6,21 @@ import Fa from 'src/constants/Fa'
 import 'src/styles/PageContainers.css'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 
-export default class SearchResults extends Component {
+export default class SearchResultsPage extends Component {
 
   render () {
-    const {match} = this.props
-    const {maxPrice, minArea, propertyType, dealType} = match.params
+    console.log("HERE IS match.params ========> ")
+    console.log(this.props.match)
+    const {maxPrice, minArea, propertyType, dealType} = this.props.match.params
+    const {credit, onCreditChange} = this.props
+
     return (
-      <Layout isHomePage={false} pageTitle={Fa["search results page"]}>
+      <Layout
+        isHomePage={false}
+        pageTitle={Fa["search results page"]}
+        credit={credit}
+        onCreditChange={onCreditChange}
+      >
         <div className="searchResultsUpperSentence‌">
           {Fa['SearchResults upper sentence']}
         </div>

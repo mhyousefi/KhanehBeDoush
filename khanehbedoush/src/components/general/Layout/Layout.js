@@ -3,59 +3,40 @@ import { Helmet } from 'react-helmet'
 import Footer from 'src/components/general/Layout/Footer'
 import GeneralHeader from 'src/components/general/Layout/GeneralHeader/GeneralHeader'
 import HomePageHeader from 'src/components/general/Layout/HomePageHeader/HomePageHeader'
-import config from 'src/constants/appConfig'
 import 'src/styles/Background.css'
 import 'src/styles/General.css'
 import 'src/styles/PageContainers.css'
 
 
 export default class Layout extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      customerCredit: config["initial credit"]
-    };
-    this._handleCreditChange = this._handleCreditChange.bind(this)
-  }
-
-  _handleCreditChange = (amount) => {
-    if (!isNaN(amount)) {
-      const newCredit = parseInt(this.state.customerCredit) + parseInt(amount)
-      this.setState({customerCredit: newCredit})
-    }
-  }
-
   _chooseHeader = (pageTitle) => {
-    const {customerCredit} = this.state
-    if (this.props.isHomePage) {
-      return <HomePageHeader credit={customerCredit}/>
+    const {credit, isHomePage} = this.props
+    if (isHomePage) {
+      return <HomePageHeader credit={credit}/>
     } else {
-      return <GeneralHeader pageTitle={pageTitle} credit={customerCredit}/>
+      return <GeneralHeader pageTitle={pageTitle} credit={credit}/>
     }
   }
 
   _chooseBody = () => {
-    const { children } = this.props;
-    let childrenWithProps = React.Children.map(children, child =>
-      React.cloneElement(child, { onCreditChange: this._handleCreditChange, credit: this.state.customerCredit }));
-
-    if (this.props.isHomePage) {
+    const {isHomePage} = this.props
+    if (isHomePage) {
       return (
         <div className="homePageContainer">
-          {childrenWithProps}
+          {this.props.children}
         </div>
       )
     } else {
       return (
         <div className="defaultPageContainer">
-          {childrenWithProps}
+          {this.props.children}
         </div>
       )
     }
   }
 
   render () {
-    const { pageTitle } = this.props
+    const {pageTitle} = this.props
     return (
       <div className="body rtl">
         <Helmet>

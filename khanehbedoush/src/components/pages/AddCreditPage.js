@@ -9,8 +9,16 @@ export default class AddCreditPage extends Component {
 
   render () {
     return (
-      <Layout isHomePage={false} pageTitle={Fa['add credit page']}>
-        <AddCredit/>
+      <Layout
+        isHomePage={false}
+        pageTitle={Fa['add credit page']}
+        credit={this.props.credit}
+        onCreditChange={this.props.onCreditChange}
+      >
+        <AddCredit
+          credit={this.props.credit}
+          onCreditChange={this.props.onCreditChange}
+        />
       </Layout>
     )
   }
