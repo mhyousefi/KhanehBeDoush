@@ -1,8 +1,8 @@
 import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
 
-
 export const changeCredit = (amount) => {
-  fetch('localhost:8080/increaseCredit', {
+  console.log("ENTERED changeCredit")
+  fetch('http://localhost:8080/increaseCredit', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ export const changeCredit = (amount) => {
       credit: amount,
     }),
   })
-  fetch('localhost:8080/increaseCredit')
+  fetch('http://localhost:8080/increaseCredit')
     .then(checkStatus)
     .then(parseJSON)
     .then(function (data) {
