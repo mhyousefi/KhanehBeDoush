@@ -17,16 +17,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Database {
-    public static HashMap<String, IndividualUser> users;
-    public static HashMap<String, House> houses;
-    public static HashMap<String, House> lastSearchResults;
+    private static HashMap<String, IndividualUser> users;
+    private static HashMap<String, House> houses;
+    private static HashMap<String, House> lastSearchResults;
 
     static {
         users = new HashMap<String, IndividualUser>();
         houses = new HashMap<String, House>();
         lastSearchResults = new HashMap<String, House>();
 
-        users.put("bHomayoun", new IndividualUser("بهنام همایون", "09121102030", new Float(0), "bHomayoun", "key123"));
+        users.put("bHomayoun", new IndividualUser("بهنام همایون", "09121102030", 0f, "bHomayoun", "key123"));
     }
 
     public static IndividualUser getUser(String username) {
@@ -36,6 +36,8 @@ public class Database {
     public static void addHouse(House house) {
         Database.houses.put(house.getId(), house);
     }
+
+    public static House getHouseById(String id){ return Database.houses.get(id); }
 
     public static House getSearchedHouse(String houseId) {
         return lastSearchResults.get(houseId);

@@ -6,52 +6,83 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="Entities.Database" %>
-<%@ page import="Entities.IndividualUser" %>
-<%@ page import="Constants.PersianContent" %>
-<%@ page import="Constants.Constants" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
-
-<%
-    IndividualUser loggedInUser = Database.getUser(Constants.getConstant("USERNAME"));
-%>
 
 <html>
     <head>
         <title>Home Page</title>
     </head>
     <body>
-        <h4 dir="rtl"><%= loggedInUser.getName() %> &nbsp; <%= loggedInUser.getBalance() %> &nbsp; <br></h4>
 
-        <h3 dir="rtl"><%=PersianContent.getPhrase("SEARCH_HOME_TITLE")%></h3>
-        <form action="searchResults.jsp" dir="rtl">
-            <input name="minArea" placeholder="<%=PersianContent.getPhrase("MIN_AREA")%>">
-            <input name="propertyType" placeholder="<%=PersianContent.getPhrase("PROPERTY_TYPE")%>">
-            <input name="dealType" placeholder="<%=PersianContent.getPhrase("DEAL_TYPE")%>">
-            <input name="maxPrice" placeholder="<%=PersianContent.getPhrase("MAX_PRICE")%>">
-            <input type="submit" value="<%=PersianContent.getPhrase("SEARCH_BTN")%>"><br><br>
-        </form>
 
-        <h3 dir="rtl"><%=PersianContent.getPhrase("ADD_PROPERTY_TITLE")%></h3>
-        <form action="addHouse.jsp" dir="rtl">
-            <input name="buildingType" placeholder="<%=PersianContent.getPhrase("BUILDING_TYPE")%>">
-            <input name="area" placeholder="<%=PersianContent.getPhrase("AREA")%>">
-            <input name="dealType" placeholder="<%=PersianContent.getPhrase("DEAL_TYPE")%>">
-            <input name="price" placeholder="<%=PersianContent.getPhrase("PRICE")%>"><br><br>
-            <input name="address" placeholder="<%=PersianContent.getPhrase("ADDRESS")%>">
-            <input name="phoneNumber" placeholder="<%=PersianContent.getPhrase("PHONE_NUMBER")%>">
-            <input name="description" placeholder="<%=PersianContent.getPhrase("DESCRIPTION")%>">
-            <input type="submit" value="<%=PersianContent.getPhrase("ADD_PROPERTY_BTN")%>"><br><br>
-        </form>
 
-        <h3 dir="rtl"><%=PersianContent.getPhrase("ADD_CREDIT_TITLE")%></h3>
-        <form action="increaseCredit" method="post" dir="rtl">
-            <input name="credit" placeholder="<%=PersianContent.getPhrase("CREDIT")%>">
-            <input type="submit" value="<%=PersianContent.getPhrase("INCREASE_CREDIT_BTN")%>"><br><br>
-        </form>
+///////////////////
+    <servlet>
+        <servlet-name>HasPaidForPhoneNum</servlet-name>
+        <jsp-file>index.jsp</jsp-file>
+    </servlet>
 
-        <h3>"Message:"</h3>
-        <p><%=request.getAttribute("msg")%></p>
+    <servlet-mapping>
+        <servlet-name>HasPaidForPhoneNum</servlet-name>
+        <url-pattern>/hasPaidForPhoneNum</url-pattern>
+    </servlet-mapping>
+
+
+////////////////////
+    <servlet>
+        <servlet-name>GetHomeById</servlet-name>
+        <jsp-file>index.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetHomeById</servlet-name>
+        <url-pattern>/getHomeById</url-pattern>
+    </servlet-mapping>
+
+////////////////////
+    <servlet>
+        <servlet-name>ShowHousePhoneNumberAction</servlet-name>
+        <jsp-file>index.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShowHousePhoneNumberAction</servlet-name>
+        <url-pattern>/showHousePhoneNumber</url-pattern>
+    </servlet-mapping>
+
+////////////////////
+    <servlet>
+        <servlet-name>searchResults</servlet-name>
+        <jsp-file>index.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>searchResults</servlet-name>
+        <url-pattern>/searchResults</url-pattern>
+    </servlet-mapping>
+
+/////////////////////
+    <servlet>
+        <servlet-name>AddHouseAction</servlet-name>
+        <jsp-file>index.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddHouseAction</servlet-name>
+        <url-pattern>/addHouse</url-pattern>
+    </servlet-mapping>
+
+////////////////////
+    <servlet>
+        <servlet-name>IncreaseCreditFormAction</servlet-name>
+        <jsp-file>index.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>IncreaseCreditFormAction</servlet-name>
+        <url-pattern>/increaseCredit</url-pattern>
+    </servlet-mapping>
+
     </body>
 </html>

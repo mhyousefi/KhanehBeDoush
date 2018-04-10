@@ -2,41 +2,43 @@ import Constants.Constants;
 import Constants.PersianContent;
 import Entities.Database;
 import Entities.IndividualUser;
+import Utilities.JSONFunctions;
+import org.json.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet("/showHousePhoneNumberAction")
-public class showHousePhoneNumberAction extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+@WebServlet("/showHousePhoneNumber")
+public class ShowHousePhoneNumberAction extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
         IndividualUser loggedInUser = Database.getUser(Constants.getConstant("USERNAME"));
-        String houseId = request.getParameter("houseId");
-        String phoneNumber = Database.getSearchedHouse(houseId).getPhone();
-        String phoneNumberStatus;
-        if (loggedInUser.hasPaidToSeePhoneNumber(houseId))
-            phoneNumberStatus = PersianContent.createPhoneNumberMessage(phoneNumber);
-        else if (loggedInUser.hasEnoughBalance(Constants.getConstant("PRICE_TO_SEE_PHONE_NUMBER"))) {
+        String houseId = requestInJson.get("houseId").toString();
+        JSONObject jsonResponse = new JSONObject();
+        if (loggedInUser.hasPaidToSeePhoneNumber(houseId)) {
+            jsonResponse.put("status", true);
+            jsonResponse.put("balance", loggedInUser.getBalance());
+        }else if (loggedInUser.hasEnoughBalance(Constants.getConstant("PRICE_TO_SEE_PHONE_NUMBER"))) {
             loggedInUser.payToSeePhoneNumber(houseId);
-            phoneNumberStatus = PersianContent.createPhoneNumberMessage(phoneNumber);
+            jsonResponse.put("status", true);
+            jsonResponse.put("balance", loggedInUser.getBalance());
         } else {
-            phoneNumberStatus = PersianContent.getMessage("NOT_ENOUGH_BALANCE_TO_SEE_PHONE_NUMBER");
+            jsonResponse.put("status", false);
+            jsonResponse.put("balance", loggedInUser.getBalance());
         }
-        moveBack(request, response, houseId, phoneNumberStatus);
+        try{
+            PrintWriter out = response.getWriter();
+            out.print(jsonResponse);
+            out.flush();
+        }catch (Exception ignored){}
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
-    }
-
-    private void moveBack (HttpServletRequest request, HttpServletResponse response, String houseId, String phoneNumberStatus)
-            throws ServletException, IOException {
-        String nextJSP = "/homeDetail.jsp?houseId=" + houseId;
-        request.setAttribute("phoneNumberStatus", phoneNumberStatus);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);
     }
 }
