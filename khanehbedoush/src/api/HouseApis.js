@@ -1,4 +1,4 @@
-import { testHouses } from 'src/constants/FaTexts'
+import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
 
 export const searchHouses = (maxPrice, minArea, propertyType, dealType) => {
 	fetch('localhost:8080/searchResults', {

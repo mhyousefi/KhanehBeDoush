@@ -1,3 +1,6 @@
+import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
+
+
 export const payForPhoneNum = (houseId) => {
 	fetch('localhost:8080/showHousePhoneNumber', {
 	  method: 'POST',
