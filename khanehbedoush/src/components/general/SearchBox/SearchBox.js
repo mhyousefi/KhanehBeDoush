@@ -2,22 +2,9 @@ import React, { Component } from 'react'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import SearchBoxItem from './SearchBoxItem'
 
-
 export default class SearchBox extends Component {
   constructor (props) {
-      super(props)
-      this.state = {
-        hasReceivedHouses: false
-      }
-   }
-
-  componentWillReceiveProps() {
-    console.log("RECEIVING SOMETHING")
-    const { houses } = this.props
-    if (houses && houses.length > 0) {
-      console.log("IT WAS NOT EMPTY")
-      this.setState({hasReceivedHouses: true})
-    }
+    super(props)
   }
 
   _createSearchBoxes = (houses) => {
@@ -63,13 +50,12 @@ export default class SearchBox extends Component {
   }
 
   render () {
-    const { hasReceivedHouses } = this.state
-    const { houses } = this.props
+    const {houses} = this.props
 
     return (
       <div className="searchBoxContainer">
-        {!hasReceivedHouses && <h1>Loading</h1>}
-        {hasReceivedHouses && this._createSearchBoxes(houses)}
+        {!houses && <h1>Loading</h1>}
+        {houses && this._createSearchBoxes(houses)}
       </div>
     )
   }

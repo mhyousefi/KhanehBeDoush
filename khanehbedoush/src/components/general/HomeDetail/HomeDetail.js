@@ -10,7 +10,6 @@ export default class HomeDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      hasReceivedHouses: false,
       phoneNumVisible: this.props.hasPaid
     }
   }
@@ -33,17 +32,10 @@ export default class HomeDetail extends Component {
     }
   }
 
-  componentWillReceiveProps() {
-    if (this.props.house) {
-      this.setState({hasReceivedHouses: true})
-    }
-  }
-
   render () {
-    const { house } = this.props
-    const { hasReceivedHouses } = this.state
+    const { house, hasPaid } = this.props
 
-    if (!hasReceivedHouses) {
+    if (!hasPaid) {
       return <h1>Loading</h1>
     }
 

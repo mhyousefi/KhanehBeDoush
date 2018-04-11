@@ -11,7 +11,7 @@ export default class SearchResultsPage extends Component {
   constructor (props) {
       super(props)
       this.state = {
-        houses: []
+        houses: null
       }
    }
 
@@ -24,8 +24,20 @@ export default class SearchResultsPage extends Component {
   }
 
   componentWillMount() {
+    console.log("WILL MOUNT: houses: ")
+    console.log(this.state.houses)
+  }
+
+  componentDidMount() {
     const {maxPrice, minArea, propertyType, dealType} = this.props.match.params
     this._searchForHouses(maxPrice, minArea, propertyType, dealType)
+    console.log("DID MOUNT houses: ")
+    console.log(this.state.houses)
+  }
+
+  componentWillUnmount() {
+    console.log("WILL UNMOUNT houses: ")
+    console.log(this.state.houses)
   }
 
   render () {
