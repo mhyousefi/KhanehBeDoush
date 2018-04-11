@@ -16,7 +16,7 @@ export const changeCreditApi = async (amount) => {
     .then(function (data) {
       return data.response === 'true';
     }).catch(function (error) {
-      console.log("Fetch error ==> " + error)
+      console.log("Fetch error ==> " + error.message)
       return false
   })
 }
@@ -33,7 +33,7 @@ export const currentCreditApi = () => {
     .then(function (data) {
       return data.currentCredit
     }).catch(function (error) {
-      console.log("Fetch error ==> " + error)
+      console.log("Fetch error ==> " + error.message)
       return false
     })
 }

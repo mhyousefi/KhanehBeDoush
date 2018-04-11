@@ -13,22 +13,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
-/*
-*
-* {
-	"minArea" : "",
-	"maxPrice" : 100000,
-	"dealType" : "sale",
-	"propertyType" : ""
-}
-*
-* */
-
 @WebServlet("/searchResults")
 public class SearchResultsAction extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
-            response.setHeader("Access-Control-Allow-Origin", "*");
+            response.setCharacterEncoding("UTF-8");
+            response.addHeader("Accept-Language", "en-ca,en,fa");
             JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
             String minArea = requestInJson.get("minArea").toString();
             String maxPrice = requestInJson.get("maxPrice").toString();

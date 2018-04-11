@@ -5,13 +5,29 @@ import { searchHouses } from 'src/api/HouseApis'
 import Fa from 'src/constants/Fa'
 import 'src/styles/PageContainers.css'
 import 'src/styles/SearchResultsPage/SearchBox.css'
-import { testHouses } from 'src/constants/FaTexts'
+
 
 export default class SearchResultsPage extends Component {
+  constructor (props) {
+      super(props)
+      this.state = {
+        houses: []
+      }
+   }
+
+  _searchForHouses = (maxPrice, minArea, propertyType, dealType) => {
+    searchHouses(maxPrice, minArea, propertyType, dealType).then((response) => {
+      console.log("RESPONSE: ")
+      console.log(response)
+      this.setState({houses: response})
+    })
+  }
 
   render () {
     const {maxPrice, minArea, propertyType, dealType} = this.props.match.params
     const {credit, onCreditChange} = this.props
+
+    this._searchForHouses(maxPrice, minArea, propertyType, dealType)
 
     return (
       <Layout
@@ -23,7 +39,7 @@ export default class SearchResultsPage extends Component {
         <div className="searchResultsUpperSentence‌">
           {Fa['SearchResults upper sentence']}
         </div>
-        <SearchBox houses={testHouses}/>
+        <SearchBox houses={this.state.houses}/>
       </Layout>
     )
   }

@@ -1,4 +1,4 @@
-const dict = {
+const dictFa = {
   '0': '۰',
   '1': '۱',
   '2': '۲',
@@ -11,13 +11,66 @@ const dict = {
   '9': '۹',
 }
 
-export const toPersian = function (str = '') {
-  return `${str}`.replace(/[0-9]/g, (v) => {
-    return dict[v] || v
+const dictEn = {
+  '۰': '0',
+  '۱': '1',
+  '۲': '2',
+  '۳': '3',
+  '۴': '4',
+  '۵': '5',
+  '۶': '6',
+  '۷': '7',
+  '۸': '8',
+  '۹': '9',
+}
+
+export const toPersian = function(str = '') {
+  if (str === null) {
+    return ''
+  }
+  return `${str}`.replace(/[0-9]/g, v => {
+    return dictFa[v]
   })
 }
-export const toEnglish = function (str = '') {
-  return `${str}`.replace(/[۰-۹]/g, (v) => {
-    return dict[v] || v
+
+export const toEnglish = function(str = '') {
+  if (str === null) {
+    return ''
+  }
+  return `${str}`.replace(/[۰-۹]/g, v => {
+    return dictEn[v]
   })
+}
+
+export const isPositiveNum = (num) => {
+  if (!isNaN(num) && parseInt(num) <= 0)
+    return false
+
+  if (!isNaN(toEnglish(num)) && parseInt(toEnglish(num)) <= 0)
+    return false
+
+  return true
+}
+
+export const isNumber = (num) => {
+  let isEnglishNum = !isNaN(num)
+  let isPersianNum = !isNaN(toEnglish(num))
+  return isEnglishNum || isPersianNum;
+
+}
+
+export const searchParamsAreValid = (maxPrice, minArea, propertyType, dealType) => {
+  if (maxPrice === '' || minArea === '' || propertyType === '' || dealType === ''){
+    return false
+  }
+
+  if (!isNumber(maxPrice) || !isNumber(minArea)){
+    return false
+  }
+
+  if (!isPositiveNum(maxPrice) || !isPositiveNum(minArea)){
+    return false
+  }
+
+  return true
 }

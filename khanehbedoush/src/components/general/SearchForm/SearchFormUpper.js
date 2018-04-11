@@ -59,10 +59,10 @@ export default class SearchFormUpper extends Component {
                   onChange={this._handlePropertyTypeChange}
           >
             <option value="" disabled selected>{Fa["property type"]}</option>
-            <option value="apartment">{Fa["apartment"]}</option>
-            <option value="villa">{Fa["villa"]}</option>
-            <option value="tower">{Fa["tower"]}</option>
-            <option value="kolangi">{Fa["kolangi"]}</option>
+            <option value={Fa["apartment"]}>{Fa["apartment"]}</option>
+            <option value={Fa["villa"]}>{Fa["villa"]}</option>
+            <option value={Fa["tower"]}>{Fa["tower"]}</option>
+            <option value={Fa["kolangi"]}>{Fa["kolangi"]}</option>
           </select>
         </div>
       </div>

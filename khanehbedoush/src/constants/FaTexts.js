@@ -38,6 +38,7 @@ export const messages = {
   'insufficient credit': 'اعتبار شما برای مشاهده شماره مالک/مشاور این ملک کافی نیست.',
   'invalid credit input': 'ورودی باید یک عدد بزرگ تر از صفر باشد!',
   'bank issue. try again': 'مشکلی در ارتباط با بانک به وجود آمد. لطفا دوباره تلاش کنید.',
+  'invalid search params': 'ورودی های جستجو معتبر نیستند.',
 }
 
 export const testHouses = [

@@ -8,29 +8,30 @@ import { toPersian } from '../../../Utilities/formats'
 
 
 export default class SearchBoxItem extends Component {
-  _createPriceRow = (priceInfo) => {
-    if (this.props.dealType === "rental") {
+  _createPriceRow = () => {
+    const {dealType, basePrice, rentPrice, sellingPrice} = this.props
+    if (dealType === Fa["rent"]) {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxBasePrice text">
-            {Fa["Rahn"] + " " + toPersian(priceInfo["basePrice"])}
+            {Fa["Rahn"] + " " + toPersian(basePrice)}
             <div className="searchBoxTouman">
               {Fa["Touman"]}
             </div>
           </div>
           <div className="searchBoxRentPrice text">
-            {Fa["rent"] + " " + toPersian(priceInfo["rentPrice"])}
+            {Fa["rent"] + " " + toPersian(rentPrice)}
             <div className="searchBoxTouman">
               {Fa["Touman"]}
             </div>
           </div>
         </div>
       )
-    } else if (this.props.dealType === "sell") {
+    } else if (dealType === Fa["purchase"]) {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxSalePrice text">
-            {Fa["price"] + " " + toPersian(priceInfo["sellPrice"])}
+            {Fa["price"] + " " + toPersian(sellingPrice)}
             <div className="searchBoxTouman">
               {Fa["Touman"]}
             </div>
@@ -71,7 +72,7 @@ export default class SearchBoxItem extends Component {
   }
 
   render() {
-    const {district, area, priceInfo, imageUrl, houseId} = this.props
+    const {district, area, imageUrl, houseId} = this.props
     return (
       <Link to={"/HomeDetail/" + houseId} className="searchBox curvedCorner noUnderLine">
         <div className="searchBoxImg curvedCorner" style={{backgroundImage: "url(" + imageUrl + ")"}}>
@@ -88,7 +89,7 @@ export default class SearchBoxItem extends Component {
             </div>
           </div>
           <div className="separatingLine"/>
-          {this._createPriceRow(priceInfo)}
+          {this._createPriceRow()}
         </div>
       </Link>
     )

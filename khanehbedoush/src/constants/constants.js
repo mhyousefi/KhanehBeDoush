@@ -7,6 +7,6 @@ export const apiUrls = {
   'currentCredit': 'http://localhost:8080/currentCredit',
   'payForPhone': '',
   'getHouseById': '',
-  'searchHouse': '',
+  'searchHouse': 'http://localhost:8080/searchResults',
   'hasPaidForPhoneNum': '',
 }

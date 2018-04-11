@@ -31,7 +31,7 @@ export default class SearchFormLower extends Component {
               className="radioButton"
               type="radio"
               name="propertyType"
-              value={"rental"}
+              value={Fa["rental"]}
               onClick={this._handleRentalRadioClick}
             />
             {Fa["rental"]}
@@ -41,7 +41,7 @@ export default class SearchFormLower extends Component {
               className="radioButton"
               type="radio"
               name="propertyType"
-              value={"forSale"}
+              value={Fa["purchase"]}
               onClick={this._handleForSaleRadioClick}
             />
             {Fa["purchase"]}

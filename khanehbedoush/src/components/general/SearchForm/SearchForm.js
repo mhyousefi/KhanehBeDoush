@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { searchParamsAreValid } from 'src/Utilities/formats'
+import { messages } from 'src/constants/FaTexts'
 import SearchFormUpper from './SearchFormUpper'
 import SearchFormLower from './SearchFormLower'
 import 'src/styles/HomePage/HomePageHeader.css'
 import 'src/styles/HomePage/HomePageResponsive.css'
 import 'src/styles/SearchForm/SearchForm.css'
 import 'src/styles/SearchForm/SearchFormMediaQuery.css'
+import { toEnglish } from 'src/Utilities/formats'
+import Fa from 'src/constants/Fa'
+
 
 
 export default class SearchForm extends Component {
@@ -21,7 +26,8 @@ export default class SearchForm extends Component {
   }
 
   _createUrl = (maxPrice, minArea, propertyType, dealType) => {
-    return '/SearchResults/' + maxPrice + '/' + minArea + '/' + propertyType + '/' + dealType
+    let persianDealType = (dealType === 'rental') ? Fa["rent"] : Fa["buy"]
+    return '/SearchResults/' + maxPrice + '/' + minArea + '/' + propertyType + '/' + persianDealType
   }
 
   _createFormStyle = () => {
@@ -52,16 +58,21 @@ export default class SearchForm extends Component {
     // console.log("NEW DEAL TYPE ====> " + newDealType)
   }
 
-  _handleSearchClick = () => {
-    // TODO: search params exception handling + show a modal (and not enable redirect) in case of an error
-    this.setState({redirectToSearchResults: true})
+  _handleSearchClick = (event) => {
+    event.preventDefault()
+    const { maxPrice, minArea, propertyType, dealType } = this.state
+    if (searchParamsAreValid(maxPrice, minArea, propertyType, dealType)) {
+      this.setState({redirectToSearchResults: true})
+    } else {
+      alert(messages['invalid search params'])
+    }
   }
 
   render() {
     const { maxPrice, minArea, propertyType, dealType } = this.state
 
     if (this.state.redirectToSearchResults) {
-      return <Redirect to={this._createUrl(maxPrice, minArea, propertyType, dealType)}/>
+      return <Redirect to={this._createUrl(toEnglish(maxPrice), toEnglish(minArea), propertyType, dealType)}/>
     }
 
     return (

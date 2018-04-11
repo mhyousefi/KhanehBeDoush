@@ -1,28 +1,29 @@
 import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
-import { testHouses } from '../constants/FaTexts'
+import { apiUrls } from 'src/constants/constants'
+import { testHouses } from 'src/constants/FaTexts'
 
-export const searchHouses = (maxPrice, minArea, propertyType, dealType) => {
-	fetch('localhost:8080/searchResults', {
-	  method: 'GET',
-	  headers: {
-	    'Content-Type': 'application/json'
-	  },
-	  body: JSON.stringify({
-    		minArea: minArea,
-    		maxPrice : maxPrice,
-    		propertyType : propertyType,
-    		dealType : dealType
-		})
-	})
-	fetch('localhost:8080/searchResults')
-	  .then(checkStatus)
-	  .then(parseJSON)
-	  .then(function(data) {
-	  	console.log('parsed json field', data.results)
-	  	return data.results
-	  }).catch(function(error) {
-	    return false
-	})
+
+export const searchHouses = async (maxPrice, minArea, propertyType, dealType) => {
+  return fetch(apiUrls['searchHouse'], {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      'minArea': '230',
+      'maxPrice': '10000000000000',
+      'propertyType': '',
+      'dealType': '',
+    }),
+  })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(function (data) {
+      return data.results
+    }).catch(function (error) {
+      console.log("Fetch error ==> " + error.message)
+      return false
+    })
 }
 
 export const getHouseWithId = (houseId) => {

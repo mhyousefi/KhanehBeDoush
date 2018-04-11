@@ -11,6 +11,7 @@ module.exports = {
   'rent': 'اجاره',
   'Rahn and rent': 'رهن و اجاره',
   'sell': 'فروش',
+  'buy': 'خرید',
   'meters square': 'متر مربع',
   'area': 'متراژ',
   '20000': '۲۰۰۰۰',
