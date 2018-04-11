@@ -21,7 +21,11 @@ export default class SearchResultsPage extends Component {
   }
 
   componentDidMount () {
-    const {maxPrice, minArea, propertyType, dealType} = this.props.match.params
+    let {maxPrice, minArea, propertyType, dealType} = this.props.match.params
+    maxPrice = maxPrice === '!' ? '' : maxPrice
+    minArea = minArea === '!' ? '' : minArea
+    propertyType = propertyType === '!' ? '' : propertyType
+    dealType = dealType === '!' ? '' : dealType
     this._searchForHouses(maxPrice, minArea, propertyType, dealType)
     console.log(this.state.houses)
   }

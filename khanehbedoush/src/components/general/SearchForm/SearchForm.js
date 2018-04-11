@@ -25,9 +25,27 @@ export default class SearchForm extends Component {
     };
   }
 
+  _findDealType = (input) => {
+    if (input === '') {
+      return '!'
+    }
+
+    if (input === Fa['purchase']) {
+      return 'sale'
+    }
+
+    if (input === Fa['rent'] || input === Fa["Rahn and rent"]) {
+      return 'rental'
+    }
+  }
+
   _createUrl = (maxPrice, minArea, propertyType, dealType) => {
-    let persianDealType = (dealType === 'rental') ? Fa["rent"] : Fa["buy"]
-    return '/SearchResults/' + maxPrice + '/' + minArea + '/' + propertyType + '/' + persianDealType
+    // let persianDealType = (dealType === 'rental') ? Fa["rent"] : Fa["buy"]
+    return  '/SearchResults' +
+            '/' + (maxPrice || '!') +
+            '/' + (minArea || '!') +
+            '/' + (propertyType || '!') +
+            '/' + (this._findDealType(dealType))
   }
 
   _createFormStyle = () => {

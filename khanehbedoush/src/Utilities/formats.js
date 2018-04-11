@@ -60,10 +60,6 @@ export const isNumber = (num) => {
 }
 
 export const searchParamsAreValid = (maxPrice, minArea, propertyType, dealType) => {
-  if (maxPrice === '' || minArea === '' || propertyType === '' || dealType === ''){
-    return false
-  }
-
   if (!isNumber(maxPrice) || !isNumber(minArea)){
     return false
   }

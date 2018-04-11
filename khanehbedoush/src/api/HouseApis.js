@@ -8,10 +8,10 @@ export const searchHousesAPI = async (maxPrice, minArea, propertyType, dealType)
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      'minArea': minArea,
-      'maxPrice': maxPrice,
-      'propertyType': '',
-      'dealType': '',
+      'minArea': minArea || '',
+      'maxPrice': maxPrice || '',
+      'propertyType': propertyType || '',
+      'dealType': dealType || '',
     }),
   })
     .then(checkStatus)
