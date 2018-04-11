@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import SearchBoxItem from './SearchBoxItem'
+import { CircularProgress, LinearProgress, MuiThemeProvider } from 'material-ui'
+import { messages } from '../../../constants/FaTexts'
 
 export default class SearchBox extends Component {
   constructor (props) {
@@ -52,10 +54,20 @@ export default class SearchBox extends Component {
   render () {
     const {houses} = this.props
 
+    if (!houses) {
+      return (
+        <MuiThemeProvider>
+          <h2>{messages['loading']}</h2>
+          <br/>
+          <CircularProgress size={100} thickness={7} style={{ color: 'purple' }} />
+        </MuiThemeProvider>
+      )
+    }
+
     return (
       <div className="searchBoxContainer">
-        {!houses && <h1>Loading</h1>}
-        {houses && this._createSearchBoxes(houses)}
+        {houses.length === 0 && <h2>{messages["no results found"]}</h2>}
+        {houses.length !== 0 && this._createSearchBoxes(houses)}
       </div>
     )
   }

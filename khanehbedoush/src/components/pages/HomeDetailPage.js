@@ -55,14 +55,9 @@ export default class HomeDetailPage extends Component {
   }
 
   componentDidMount() {
-    console.log("HELLO")
     const {houseId} = this.props.match.params
     this._getHouseFromServer(houseId)
     this._getPaymentStatus(houseId)
-  }
-
-  componentWillUnmount() {
-    console.log("WILL BE UNMOUNTED!")
   }
 
   render () {
@@ -79,9 +74,9 @@ export default class HomeDetailPage extends Component {
       >
         <HomeDetail
           house={searchResult}
+          hasPaid={hasPaidForPhoneNum}
           houseId={houseId}
           credit={credit}
-          hasPaid={hasPaidForPhoneNum}
           onCreditChange={onCreditChange}
         />
       </Layout>

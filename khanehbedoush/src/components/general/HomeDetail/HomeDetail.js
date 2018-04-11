@@ -3,6 +3,7 @@ import HomeDetailInfo from './HomeDetailInfo'
 import { messages } from 'src/constants/FaTexts'
 import { payForPhoneNumAPI } from 'src/api/PhoneNumPurchase'
 import { config } from 'src/constants/constants'
+import { CircularProgress, MuiThemeProvider } from 'material-ui'
 import 'src/styles/General.css'
 import 'src/styles/HomeDetail/HomeDetail.css'
 
@@ -34,17 +35,24 @@ export default class HomeDetail extends Component {
 
   render () {
     const { house, hasPaid } = this.props
+    let hidePurchaseBtn = (hasPaid || this.state.phoneNumVisible)
 
-    if (!hasPaid) {
-      return <h1>Loading</h1>
+    if (!house) {
+      return (
+        <MuiThemeProvider>
+          <h2>{messages['loading']}</h2>
+          <br/>
+          <CircularProgress size={100} thickness={7} style={{ color: 'purple' }} />
+        </MuiThemeProvider>
+      )
     }
 
     return (
       <div className="homeDetailContainer">
-        <HomeDetailInfo house={house} phoneNumVisible={this.state.phoneNumVisible}/>
+        <HomeDetailInfo house={house} phoneNumVisible={hasPaid || this.state.phoneNumVisible}/>
         <div className="homeDetailLeft">
           <img className="homeDetailPhoto curvedCorner" src={house['imageUrl']} alt={house['phoneNumber']}/>
-          {(this.state.phoneNumVisible === false) &&
+          {!hidePurchaseBtn &&
             <input
               className="phoneNumStatus curvedCorner handCursor"
               type="button"

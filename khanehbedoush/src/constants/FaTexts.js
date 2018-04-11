@@ -40,6 +40,8 @@ export const messages = {
   'invalid credit input': 'ورودی باید یک عدد بزرگ تر از صفر باشد!',
   'bank issue. try again': 'مشکلی در ارتباط با بانک به وجود آمد. لطفا دوباره تلاش کنید.',
   'invalid search params': 'ورودی های جستجو معتبر نیستند.',
+  'loading': 'در حال بارگزاری، لطفا شکیبا باشید',
+  'no results found': 'هیچ موردی پیدا نشد!',
 }
 
 export const testHouses = [

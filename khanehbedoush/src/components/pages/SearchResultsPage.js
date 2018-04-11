@@ -17,26 +17,13 @@ export default class SearchResultsPage extends Component {
 
   _searchForHouses = (maxPrice, minArea, propertyType, dealType) => {
     searchHousesAPI(maxPrice, minArea, propertyType, dealType).then((response) => {
-      console.log("RESPONSE: ")
-      console.log(response)
       this.setState({houses: response})
     })
-  }
-
-  componentWillMount() {
-    console.log("WILL MOUNT: houses: ")
-    console.log(this.state.houses)
   }
 
   componentDidMount() {
     const {maxPrice, minArea, propertyType, dealType} = this.props.match.params
     this._searchForHouses(maxPrice, minArea, propertyType, dealType)
-    console.log("DID MOUNT houses: ")
-    console.log(this.state.houses)
-  }
-
-  componentWillUnmount() {
-    console.log("WILL UNMOUNT houses: ")
     console.log(this.state.houses)
   }
 
