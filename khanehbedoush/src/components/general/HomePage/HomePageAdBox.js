@@ -9,8 +9,8 @@ export default class HomePageAdBox extends Component {
   render () {
     return (
       <div className="homePageAdBoxContainer">
-        {AdBoxes.map(_AddBox => (
-          <AdBox image={_AddBox['image']} title={_AddBox['title']} text={_AddBox['text']}/>
+        {AdBoxes.map((_AddBox, c) => (
+          <AdBox key={c} image={_AddBox['image']} title={_AddBox['title']} text={_AddBox['text']}/>
         ))}
       </div>
     )

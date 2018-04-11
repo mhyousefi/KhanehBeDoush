@@ -15,8 +15,8 @@ export default class HomePageInfo extends Component {
         </div>
         <div className="homePageInfoLower">
           <div className="homePageInfoSentences">
-            {slogans.map(slogan => (
-              <InfoSentence slogan={slogan}/>
+            {slogans.map((slogan, c) => (
+              <InfoSentence slogan={slogan} key={c}/>
             ))}
           </div>
           <div className="homePageInfoImgContainer">
