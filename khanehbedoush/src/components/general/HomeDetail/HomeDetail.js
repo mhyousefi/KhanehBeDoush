@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import HomeDetailInfo from './HomeDetailInfo'
 import { messages } from 'src/constants/FaTexts'
 import { payForPhoneNum } from 'src/api/PhoneNumPurchase'
-import config from 'src/constants/appConfig'
+import { config } from 'src/constants/constants'
 import 'src/styles/General.css'
 import 'src/styles/HomeDetail/HomeDetail.css'
 

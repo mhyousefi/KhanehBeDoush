@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { changeCredit } from 'src/api/BankApi'
 import AddCreditPage from 'src/components/pages/AddCreditPage'
 import HomePage from 'src/components/pages/HomePage'
 import SearchResultsPage from 'src/components/pages/SearchResultsPage'
@@ -16,10 +15,8 @@ export default class App extends Component {
 
   _handleCreditChange = (amount) => {
     if (!isNaN(amount)) {
-      if (changeCredit(amount) === true) {
-        const newCredit = parseInt(this.state.customerCredit) + parseInt(amount)
-        this.setState({customerCredit: newCredit})
-      }
+      const newCredit = parseInt(this.state.customerCredit) + parseInt(amount)
+      this.setState({customerCredit: newCredit})
     }
   }
 
@@ -41,19 +38,20 @@ export default class App extends Component {
     )
   }
 
-  _renderSearchResultsPage = (match) => {
+  _renderSearchResultsPage = (props) => {
     return (
       <SearchResultsPage
-        match={match}
+        match={props.match}
         credit={this.state.customerCredit}
         onCreditChange={this._handleCreditChange}
       />
     )
   }
 
-  _renderHomeDetailPage = () => {
+  _renderHomeDetailPage = (props) => {
     return (
       <HomeDetailPage
+        match={props.match}
         credit={this.state.customerCredit}
         onCreditChange={this._handleCreditChange}
       />

@@ -1,24 +1,23 @@
 import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
+import { apiUrls } from 'src/constants/constants'
 
-export const changeCredit = (amount) => {
-  console.log("ENTERED changeCredit")
-  fetch('http://localhost:8080/increaseCredit', {
+export const changeCredit = async (amount) => {
+  return fetch(apiUrls['increaseCredit'], {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      credit: amount,
+      'credit': amount,
     }),
   })
-  fetch('http://localhost:8080/increaseCredit')
     .then(checkStatus)
     .then(parseJSON)
     .then(function (data) {
-      console.log('parsed json field', data.response)
-      return (data.response === 'true')
+      return data.response === 'true';
     }).catch(function (error) {
-    return false
+      console.log("Fetch error ==> " + error)
+      return false
   })
 }
 

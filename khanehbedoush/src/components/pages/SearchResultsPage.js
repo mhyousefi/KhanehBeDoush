@@ -5,12 +5,11 @@ import { searchHouses } from 'src/api/HouseApis'
 import Fa from 'src/constants/Fa'
 import 'src/styles/PageContainers.css'
 import 'src/styles/SearchResultsPage/SearchBox.css'
+import { testHouses } from 'src/constants/FaTexts'
 
 export default class SearchResultsPage extends Component {
 
   render () {
-    console.log("HERE IS match.params ========> ")
-    console.log(this.props.match)
     const {maxPrice, minArea, propertyType, dealType} = this.props.match.params
     const {credit, onCreditChange} = this.props
 
@@ -24,7 +23,7 @@ export default class SearchResultsPage extends Component {
         <div className="searchResultsUpperSentence‌">
           {Fa['SearchResults upper sentence']}
         </div>
-        <SearchBox houses={searchHouses(maxPrice, minArea, propertyType, dealType)}/>
+        <SearchBox houses={testHouses}/>
       </Layout>
     )
   }

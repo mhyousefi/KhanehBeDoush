@@ -8,8 +8,7 @@ import { hasPaidForPhoneNum } from 'src/api/PhoneNumPurchase'
 
 export default class HomeDetailPage extends Component {
   render() {
-    const {match} = this.props
-    const {houseId} = match.params
+    const {houseId} = this.props.match.params
     return (
       <Layout
         isHomePage={false}

@@ -26,14 +26,17 @@ export default class AddCredit extends Component {
     event.preventDefault()
 
     if (typedAmount === '' || isNaN(typedAmount) || parseInt(typedAmount) <= 0) {
-      alert(messages["not a number"])
+      alert(messages["invalid credit input"])
     } else {
-      if (changeCredit(parseInt(typedAmount))) {
-        onCreditChange(typedAmount)
-      } else {
-        alert(messages["bank issue. try again."])
-      }
+      changeCredit(typedAmount).then(function(response) {
+        if (response === true) {
+          onCreditChange(typedAmount)
+        } else {
+          alert(messages["bank issue. try again"])
+        }
+      })
     }
+
   }
 
   render() {
