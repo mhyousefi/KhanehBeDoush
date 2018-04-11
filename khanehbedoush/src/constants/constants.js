@@ -5,8 +5,8 @@ export const config = {
 export const apiUrls = {
   'increaseCredit': 'http://localhost:8080/increaseCredit',
   'currentCredit': 'http://localhost:8080/currentCredit',
-  'payForPhone': '',
+  'payForPhone': 'http://localhost:8080/payForPhoneNumber',
   'getHouseById': 'http://localhost:8080/getHomeById',
   'searchHouse': 'http://localhost:8080/searchResults',
-  'hasPaidForPhoneNum': '',
+  'hasPaidForPhoneNum': 'http://localhost:8080/hasPaidForPhoneNum',
 }

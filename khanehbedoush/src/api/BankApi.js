@@ -1,7 +1,7 @@
 import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
 import { apiUrls } from 'src/constants/constants'
 
-export const changeCreditApi = async (amount) => {
+export const changeCreditAPI = async (amount) => {
   return fetch(apiUrls['increaseCredit'], {
     method: 'POST',
     headers: {
@@ -21,7 +21,7 @@ export const changeCreditApi = async (amount) => {
   })
 }
 
-export const currentCreditApi = () => {
+export const currentCreditAPI = () => {
   return fetch(apiUrls['currentCredit'], {
     method: 'GET',
     headers: {

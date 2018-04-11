@@ -23,11 +23,13 @@ export default class SearchResultsPage extends Component {
     })
   }
 
-  render () {
+  componentWillMount() {
     const {maxPrice, minArea, propertyType, dealType} = this.props.match.params
-    const {credit, onCreditChange} = this.props
-
     this._searchForHouses(maxPrice, minArea, propertyType, dealType)
+  }
+
+  render () {
+    const {credit, onCreditChange} = this.props
 
     return (
       <Layout

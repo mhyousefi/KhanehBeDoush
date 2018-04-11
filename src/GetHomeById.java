@@ -29,7 +29,7 @@ public class GetHomeById extends HttpServlet{
                     jsonResponse.put("basePrice", house.getBasePrice());
                     jsonResponse.put("rentPrice", house.getRentPrice());
 
-                }else{
+                } else {
                     jsonResponse.put("sellingPrice", house.getSellingPrice());
                 }
                 jsonResponse.put("imageUrl", house.getImageURL());

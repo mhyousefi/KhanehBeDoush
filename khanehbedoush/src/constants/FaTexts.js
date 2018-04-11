@@ -36,6 +36,7 @@ export const AdBoxes = [
 export const messages = {
   'show phone number': 'مشاهده شماره مالک/مشاور',
   'insufficient credit': 'اعتبار شما برای مشاهده شماره مالک/مشاور این ملک کافی نیست.',
+  'server error': 'خطایی در سرور رخ داد. لطفا لحظاتی دیگر دوباره تلاش کنید.',
   'invalid credit input': 'ورودی باید یک عدد بزرگ تر از صفر باشد!',
   'bank issue. try again': 'مشکلی در ارتباط با بانک به وجود آمد. لطفا دوباره تلاش کنید.',
   'invalid search params': 'ورودی های جستجو معتبر نیستند.',

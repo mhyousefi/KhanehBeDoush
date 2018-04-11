@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 
 @WebServlet("/hasPaidForPhoneNum")
 public class HasPaidForPhoneNum extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
         String houseId = requestInJson.get("houseId").toString();

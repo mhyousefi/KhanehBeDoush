@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Paper, MuiThemeProvider } from 'material-ui'
-import HomeDetailInfoRow from './HomeDetailInfoRow'
-import Fa from 'src/constants/Fa'
 import { toPersian } from 'src/Utilities/formats'
+import Fa from 'src/constants/Fa'
+import HomeDetailInfoRow from './HomeDetailInfoRow'
+import HomeTag from './HomeTag'
 import 'src/styles/HomeDetail/HomeDetail.css'
 import 'src/styles/General.css'
-import HomeTag from './HomeTag'
 
 
 export default class HomeDetailInfo extends Component {

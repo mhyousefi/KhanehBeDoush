@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import HomeDetailInfo from './HomeDetailInfo'
 import { messages } from 'src/constants/FaTexts'
-import { payForPhoneNum } from 'src/api/PhoneNumPurchase'
+import { payForPhoneNumAPI } from 'src/api/PhoneNumPurchase'
 import { config } from 'src/constants/constants'
 import 'src/styles/General.css'
 import 'src/styles/HomeDetail/HomeDetail.css'
@@ -16,14 +16,19 @@ export default class HomeDetail extends Component {
   }
 
   _handleButtonClick = () => {
-    const {house, hasPaid, onCreditChange} = this.props
-    const phoneNumber = house["phoneNumber"]
+    const {hasPaid, onCreditChange, houseId, credit} = this.props
     if (!hasPaid) {
-      if (payForPhoneNum(phoneNumber) === false) {
-        alert(messages["insufficient credit"])
+      if (parseInt(credit) < 1000) {
+        alert(messages['insufficient credit'])
       } else {
-        this.setState({phoneNumVisible: true})
-        onCreditChange("-" + config["home price"])
+        payForPhoneNumAPI(houseId).then((response) => {
+          if (response === false) {
+            alert(messages["server error"])
+          } else {
+            this.setState({phoneNumVisible: true})
+            onCreditChange("-" + config["home price"])
+          }
+        })
       }
     }
   }
