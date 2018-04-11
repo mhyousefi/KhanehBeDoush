@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { currentCreditApi } from './api/BankApi'
 import AddCreditPage from 'src/components/pages/AddCreditPage'
 import HomePage from 'src/components/pages/HomePage'
 import SearchResultsPage from 'src/components/pages/SearchResultsPage'
@@ -11,6 +12,12 @@ export default class App extends Component {
     this.state = {
       customerCredit: '0',
     }
+  }
+
+  componentWillMount() {
+    currentCreditApi().then((response) => {
+      this.setState({customerCredit: response})
+    })
   }
 
   _handleCreditChange = (amount) => {

@@ -4,7 +4,7 @@ export const config = {
 
 export const apiUrls = {
   'increaseCredit': 'http://localhost:8080/increaseCredit',
-  'getCredit': '',
+  'currentCredit': 'http://localhost:8080/currentCredit',
   'payForPhone': '',
   'getHouseById': '',
   'searchHouse': '',

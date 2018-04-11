@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { messages } from 'src/constants/FaTexts'
-import { changeCredit } from 'src/api/BankApi'
+import { changeCreditApi } from 'src/api/BankApi'
 import Fa from 'src/constants/Fa'
 import 'src/styles/AddCreditPage/AddCreditPage.css'
 import 'src/styles/General.css'
@@ -28,7 +28,7 @@ export default class AddCredit extends Component {
     if (typedAmount === '' || isNaN(typedAmount) || parseInt(typedAmount) <= 0) {
       alert(messages["invalid credit input"])
     } else {
-      changeCredit(typedAmount).then(function(response) {
+      changeCreditApi(typedAmount).then(function(response) {
         if (response === true) {
           onCreditChange(typedAmount)
         } else {
