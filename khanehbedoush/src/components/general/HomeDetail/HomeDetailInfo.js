@@ -41,7 +41,7 @@ export default class HomeDetailInfo extends Component {
             {this._createPriceInfo(house["priceInfo"])}
             <HomeDetailInfoRow rightText={Fa["address"]} leftText={house["district"]}/><div className="separatingLine"/>
             <HomeDetailInfoRow rightText={Fa["area"]} leftText={toPersian(house["area"]) + " " + Fa["meters square"]}/><div className="separatingLine"/>
-            <HomeDetailInfoRow rightText={Fa["description"]} leftText={house["description"]}/><div className="separatingLine"/>
+            <HomeDetailInfoRow rightText={Fa["description"]} leftText={house["description"]}/>
           </Paper>
         </MuiThemeProvider>
       </div>
