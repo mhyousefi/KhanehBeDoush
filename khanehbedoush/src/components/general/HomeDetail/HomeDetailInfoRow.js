@@ -4,6 +4,7 @@ import 'src/styles/HomeDetail/HomeDetail.css'
 export default class HomeDetailInfoRow extends Component {
   render () {
     const { rightText, leftText } = this.props
+
     return (
       <div className="infoRow">
         <div className="infoRowRight">

@@ -5,6 +5,7 @@ import Fa from 'src/constants/Fa'
 import { toPersian } from 'src/Utilities/formats'
 import 'src/styles/HomeDetail/HomeDetail.css'
 import 'src/styles/General.css'
+import HomeTag from './HomeTag'
 
 
 export default class HomeDetailInfo extends Component {
@@ -22,14 +23,6 @@ export default class HomeDetailInfo extends Component {
     return rows;
   }
 
-  _createTag = () => {
-    if (this.props.house["dealType"] === "rental") {
-      return <div className="tagCommon tagText rentalTagCustom curvedCorner">{Fa["Rahn and rent"]}</div>
-    } else {
-      return <div className="tagCommon tagText sellingTagCustom curvedCorner">{Fa["sell"]}</div>
-    }
-  }
-
   _createPhoneNum = () => {
     const {phoneNumVisible, house} = this.props
     const persianPhoneNum = toPersian(house["phoneNumber"])
@@ -41,20 +34,14 @@ export default class HomeDetailInfo extends Component {
     return (
       <div className="homeDetailRight">
         <MuiThemeProvider>
-          {this._createTag()}
+          <HomeTag dealType={house["dealType"]}/>
           <Paper className="homeDetailPaper" zDepth={2}>
-            <HomeDetailInfoRow rightText={Fa["owner phone number"]} leftText={this._createPhoneNum()}/>
-            <div className="separatingLine"/>
-            <HomeDetailInfoRow rightText={Fa["property type"]} leftText={house["propertyType"]}/>
-            <div className="separatingLine"/>
-
+            <HomeDetailInfoRow rightText={Fa["owner phone number"]} leftText={this._createPhoneNum()}/><div className="separatingLine"/>
+            <HomeDetailInfoRow rightText={Fa["property type"]} leftText={house["propertyType"]}/><div className="separatingLine"/>
             {this._createPriceInfo(house["priceInfo"])}
-
-            <HomeDetailInfoRow rightText={Fa["address"]} leftText={house["district"]}/>
-            <div className="separatingLine"/>
-            <HomeDetailInfoRow rightText={Fa["area"]} leftText={toPersian(house["area"]) + " " + Fa["meters square"]}/>
-            <div className="separatingLine"/>
-            <HomeDetailInfoRow rightText={Fa["description"]} leftText={house["description"]}/>
+            <HomeDetailInfoRow rightText={Fa["address"]} leftText={house["district"]}/><div className="separatingLine"/>
+            <HomeDetailInfoRow rightText={Fa["area"]} leftText={toPersian(house["area"]) + " " + Fa["meters square"]}/><div className="separatingLine"/>
+            <HomeDetailInfoRow rightText={Fa["description"]} leftText={house["description"]}/><div className="separatingLine"/>
           </Paper>
         </MuiThemeProvider>
       </div>

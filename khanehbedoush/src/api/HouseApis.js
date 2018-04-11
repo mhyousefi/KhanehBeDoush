@@ -1,5 +1,4 @@
 import { apiUrls } from 'src/constants/constants'
-import Fa from 'src/constants/Fa'
 import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
 
 export const searchHousesAPI = async (maxPrice, minArea, propertyType, dealType) => {
@@ -9,8 +8,8 @@ export const searchHousesAPI = async (maxPrice, minArea, propertyType, dealType)
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      'minArea': '230',
-      'maxPrice': '10000000000000',
+      'minArea': minArea,
+      'maxPrice': maxPrice,
       'propertyType': '',
       'dealType': '',
     }),
@@ -43,32 +42,4 @@ export const getHouseWithIdAPI = (houseId) => {
       console.log('Fetch error ==> ' + error.message)
       return false
     })
-}
-
-export const getHouseWithId = (houseId) => {
-  getHouseWithIdAPI(houseId).then((response) => {
-    console.log('response: ')
-    console.log(response)
-
-    let priceInfo = {}
-    if (response['dealType'] === Fa['purchase']) {
-      priceInfo = {'sellingPrice': response['sellingPrice'],}
-    } else if (response['dealType'] === Fa['purchase']) {
-      priceInfo = {
-        'basePrice': response['basePrice'],
-        'rentPrice': response['rentPrice'],
-      }
-    }
-
-    return {
-      'priceInfo': priceInfo,
-      'dealType': response['dealType'],
-      'propertyType': response['propertyType'],
-      'phoneNumber': response['phoneNumber'],
-      'area': response['area'],
-      'district': response['address'],
-      'description': response['description'],
-      'imageUrl': response['imageUrl'],
-    }
-  })
 }
