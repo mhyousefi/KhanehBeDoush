@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import SearchBoxItem from './SearchBoxItem'
-import { searchHouses } from '../../../api/HouseApis'
 
 
 export default class SearchBox extends Component {

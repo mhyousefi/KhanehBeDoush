@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Layout from 'src/components/general/Layout/Layout'
 import SearchBox from 'src/components/general/SearchBox/SearchBox'
-import { searchHouses } from 'src/api/HouseApis'
+import { searchHousesAPI } from 'src/api/HouseApis'
 import Fa from 'src/constants/Fa'
 import 'src/styles/PageContainers.css'
 import 'src/styles/SearchResultsPage/SearchBox.css'
@@ -16,7 +16,7 @@ export default class SearchResultsPage extends Component {
    }
 
   _searchForHouses = (maxPrice, minArea, propertyType, dealType) => {
-    searchHouses(maxPrice, minArea, propertyType, dealType).then((response) => {
+    searchHousesAPI(maxPrice, minArea, propertyType, dealType).then((response) => {
       console.log("RESPONSE: ")
       console.log(response)
       this.setState({houses: response})

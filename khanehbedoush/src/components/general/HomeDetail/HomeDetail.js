@@ -10,6 +10,7 @@ export default class HomeDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      hasReceivedHouses: false,
       phoneNumVisible: this.props.hasPaid
     }
   }
@@ -27,13 +28,25 @@ export default class HomeDetail extends Component {
     }
   }
 
+  componentWillReceiveProps() {
+    if (this.props.house) {
+      this.setState({hasReceivedHouses: true})
+    }
+  }
+
   render () {
     const { house } = this.props
+    const { hasReceivedHouses } = this.state
+
+    if (!hasReceivedHouses) {
+      return <h1>Loading</h1>
+    }
+
     return (
       <div className="homeDetailContainer">
         <HomeDetailInfo house={house} phoneNumVisible={this.state.phoneNumVisible}/>
         <div className="homeDetailLeft">
-          <img className="homeDetailPhoto curvedCorner" src={house['image']} alt={house['phoneNumber']}/>
+          <img className="homeDetailPhoto curvedCorner" src={house['imageUrl']} alt={house['phoneNumber']}/>
           {(this.state.phoneNumVisible === false) &&
             <input
               className="phoneNumStatus curvedCorner handCursor"

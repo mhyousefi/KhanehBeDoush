@@ -13,8 +13,9 @@ import java.io.PrintWriter;
 
 @WebServlet("/getHomeById")
 public class GetHomeById extends HttpServlet{
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setCharacterEncoding("UTF-8");
+        response.addHeader("Accept-Language", "en-ca,en,fa");
         JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
         JSONObject jsonResponse = new JSONObject();
         String houseID = requestInJson.get("houseId").toString();
@@ -36,6 +37,8 @@ public class GetHomeById extends HttpServlet{
                 jsonResponse.put("address", house.getAddress());
                 jsonResponse.put("description", house.getDescription());
                 jsonResponse.put("phoneNumber", house.getPhone());
+                jsonResponse.put("dealType", house.getDealType());
+                jsonResponse.put("propertyType", house.getBuildingType());
             }
             out.print(jsonResponse);
             out.flush();

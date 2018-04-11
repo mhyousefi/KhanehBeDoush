@@ -16,7 +16,7 @@ export default class HomeDetailInfo extends Component {
       rows.push(<HomeDetailInfoRow rightText={Fa["rent"]} leftText={toPersian(priceInfo["rentPrice"]) + " " + Fa["Touman"]}/>)
       rows.push(<div className="separatingLine"/>)
     } else {
-      rows.push(<HomeDetailInfoRow rightText={Fa["price"]} leftText={toPersian(priceInfo["sellPrice"]) + " " + Fa["Touman"]}/>)
+      rows.push(<HomeDetailInfoRow rightText={Fa["price"]} leftText={toPersian(priceInfo["sellingPrice"]) + " " + Fa["Touman"]}/>)
       rows.push(<div className="separatingLine"/>)
     }
     return rows;
