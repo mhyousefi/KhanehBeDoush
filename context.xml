@@ -1,0 +1,7 @@
+<Context>
+    <Resource name="jdbc/sqlite"
+    type="javax.sql.DataSource"
+    driverClassName="org.sqlite.JDBC"
+    url="jdbc:sqlite:khanehBeDooshDb.db"
+    />
+</Context>
