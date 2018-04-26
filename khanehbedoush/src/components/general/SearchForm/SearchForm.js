@@ -25,9 +25,9 @@ export default class SearchForm extends Component {
     };
   }
 
-  _findDealType = (input) => {
+  _createDealType = (input) => {
     if (input === '') {
-      return '!'
+      return 'none'
     }
 
     if (input === Fa['purchase']) {
@@ -39,13 +39,23 @@ export default class SearchForm extends Component {
     }
   }
 
+  _createPropertyType = (input) => {
+    if (input === Fa["apartment"]) {
+      return 'apartment'
+    } else if (input === Fa["villa"]) {
+      return 'villa'
+    } else {
+      return 'none'
+    }
+  }
+
   _createUrl = (maxPrice, minArea, propertyType, dealType) => {
     // let persianDealType = (dealType === 'rental') ? Fa["rent"] : Fa["buy"]
     return  '/SearchResults' +
-            '/' + (maxPrice || '!') +
-            '/' + (minArea || '!') +
-            '/' + (propertyType || '!') +
-            '/' + (this._findDealType(dealType))
+            '/' + (maxPrice || 'none') +
+            '/' + (minArea || 'none') +
+            '/' + (this._createPropertyType(propertyType) || 'none') +
+            '/' + (this._createDealType(dealType))
   }
 
   _createFormStyle = () => {

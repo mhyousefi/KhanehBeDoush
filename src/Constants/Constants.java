@@ -13,9 +13,9 @@ public class Constants {
         constants = new HashMap<String, String>();
 
         constants.put("API_KEY", "c3932910-1011-11e8-87b4-496f79ef1988");
-        constants.put("BANK_POST_URL", "http://acm.ut.ac.ir/ieBank/pay");
+        constants.put("BANK_POST_URL", "http://139.59.151.5:6664/bank/pay");
         constants.put("USERNAME", "bHomayoun");
-        constants.put("ACM_SERVER_URL", "http://acm.ut.ac.ir/khaneBeDoosh/house");
+        constants.put("ACM_SERVER_URL", "http://139.59.151.5:6664/khaneBeDoosh/v2/house");
         constants.put("NO_PIC_URL", "/Images/no-pic.jpg");
         constants.put("ACM_SALE_SYMBOL", "0");
         constants.put("ACM_RENTAL_SYMBOL", "1");

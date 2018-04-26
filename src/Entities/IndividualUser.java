@@ -7,12 +7,25 @@ import Constants.PersianContent;
 import java.util.HashMap;
 
 public class IndividualUser extends User {
-    private String phone, username, password;
+    private String phone;
+    private String username;
+    private String password;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
     private Float balance;
     private HashMap<String, Boolean> housesWithVisiblePhoneNumbers;
 
-    public IndividualUser(String name, String phone, Float balance, String username, String password) {
+    public IndividualUser(String id, String name, String phone, Float balance, String username, String password) {
         super(name);
+        this.id = id;
         this.phone = phone;
         this.balance = balance;
         this.username = username;
@@ -20,6 +33,8 @@ public class IndividualUser extends User {
 
         housesWithVisiblePhoneNumbers = new HashMap<String, Boolean>();
     }
+
+    public void setBalance(Float balance){ this.balance = balance; }
 
     public String getPhone() {
         return phone;
@@ -43,15 +58,8 @@ public class IndividualUser extends User {
     }
 
     public boolean hasPaidToSeePhoneNumber (String houseId) {
-        return housesWithVisiblePhoneNumbers.containsKey(houseId);
+        // TODO: dataBase things
+        return false;
     }
 
-    public String getPhoneNumberStatus (String houseId) {
-        String phoneNumber = "";
-        if (hasPaidToSeePhoneNumber(houseId)) {
-            phoneNumber = Database.getSearchedHouse(houseId).getPhone();
-            return PersianContent.createPhoneNumberMessage(phoneNumber);
-        }
-        return PersianContent.getPhrase("PAY_FOR_PHONE_NUMBER_BTN");
-    }
 }

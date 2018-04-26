@@ -22,10 +22,10 @@ export default class SearchResultsPage extends Component {
 
   componentDidMount () {
     let {maxPrice, minArea, propertyType, dealType} = this.props.match.params
-    maxPrice = maxPrice === '!' ? '' : maxPrice
-    minArea = minArea === '!' ? '' : minArea
-    propertyType = propertyType === '!' ? '' : propertyType
-    dealType = dealType === '!' ? '' : dealType
+    maxPrice = maxPrice === 'none' ? '' : maxPrice
+    minArea = minArea === 'none' ? '' : minArea
+    propertyType = propertyType === 'none' ? '' : propertyType
+    dealType = dealType === 'none' ? '' : dealType
     this._searchForHouses(maxPrice, minArea, propertyType, dealType)
     console.log(this.state.houses)
   }

@@ -42,6 +42,7 @@ export const messages = {
   'invalid search params': 'ورودی های جستجو معتبر نیستند.',
   'loading': 'در حال بارگزاری، لطفا شکیبا باشید',
   'no results found': 'هیچ موردی پیدا نشد!',
+  'non-existing house': 'اطلاعات خانه مورد نظر حذف شده اند!'
 }
 
 export const testHouses = [

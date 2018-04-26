@@ -17,9 +17,6 @@ export default class HomeDetailPage extends Component {
 
   _getHouseFromServer = (houseId) => {
     getHouseWithIdAPI(houseId).then((response) => {
-      console.log("response: ")
-      console.log(response)
-
       let priceInfo = {}
       if (response['dealType'] === Fa['purchase']) {
         priceInfo = {'sellingPrice': response['sellingPrice'],}
@@ -34,20 +31,20 @@ export default class HomeDetailPage extends Component {
         searchResult: {
           'priceInfo': priceInfo,
           'dealType': response['dealType'],
-          'propertyType': response['propertyType'],
-          'phoneNumber': response['phoneNumber'],
+          'propertyType': response['buildingType'],
+          'phoneNumber': response['phone'],
           'area': response['area'],
           'district': response['address'],
           'description': response['description'],
-          'imageUrl': response['imageUrl'],
-        },
+          'imageUrl': response['imageURL'],
+        }
       })
     })
   }
 
   _getPaymentStatus = (houseId) => {
     hasPaidForPhoneNumAPI(houseId).then((response) => {
-      console.log('STATUS ===> ' + response)
+      console.log('HAS PAID FOR PHONE NUMBER ===> ' + response)
       if (response === true) {
         this.setState({hasPaidForPhoneNum: true})
       }

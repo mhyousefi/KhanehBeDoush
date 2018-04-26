@@ -22,11 +22,15 @@ export default class HomeDetail extends Component {
         alert(messages['insufficient credit'])
       } else {
         payForPhoneNumAPI(houseId).then((response) => {
-          if (response === false) {
-            alert(messages["server error"])
+          if (response['exists'] === false) {
+            alert(messages['non-existing house'])
           } else {
-            this.setState({phoneNumVisible: true})
-            onCreditChange("-" + config["home price"])
+            if (response['status'] === false) {
+              alert(messages["insufficient credit"])
+            } else {
+              this.setState({phoneNumVisible: true})
+              onCreditChange("-" + config["home price"])
+            }
           }
         })
       }

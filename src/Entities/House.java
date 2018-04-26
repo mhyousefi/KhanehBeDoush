@@ -2,9 +2,79 @@ package Entities;
 
 import Constants.PersianContent;
 
+import java.util.ArrayList;
+
 public class House {
-    private String id, area, buildingType, imageURL, dealType, basePrice,
-            rentPrice, sellingPrice, phone, description, expireTime, address;
+    private String id;
+    private String area;
+    private String buildingType;
+    private String imageURL;
+    private String dealType;
+    private String basePrice;
+    private String rentPrice;
+    private String sellingPrice;
+    private String expireTime;
+    private String isFromACMServer;
+    private String isForSale;
+
+    public String getIsForSale() {
+        return isForSale;
+    }
+
+    public void setIsForSale(String isForSale) {
+        this.isForSale = isForSale;
+    }
+
+    public String getIsFromACMServer() {
+        return isFromACMServer;
+    }
+
+    public void setIsFromACMServer(String isFromACMServer) {
+        this.isFromACMServer = isFromACMServer;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public void setBuildingType(String buildingType) {
+        this.buildingType = buildingType;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public void setDealType(String dealType) {
+        this.dealType = dealType;
+    }
+
+    public void setBasePrice(String basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public void setRentPrice(String rentPrice) {
+        this.rentPrice = rentPrice;
+    }
+
+    public void setSellingPrice(String sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
+
+
+    public void setExpireTime(String expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public static void setHouseCount(Integer houseCount) {
+        House.houseCount = houseCount;
+    }
+
+    private String address;
 
     private static Integer houseCount;
 
@@ -12,8 +82,22 @@ public class House {
         houseCount = 0;
     }
 
+    public House(){
+        this.area = "";
+        this.buildingType = "";
+        this.imageURL = "";
+        this.dealType = "";
+        this.basePrice = "";
+        this.rentPrice = "";
+        this.sellingPrice = "";
+        this.expireTime = "";
+        this.address = "";
+        this.id = "";
+        this.isFromACMServer = "0";
+    }
+
     public House(String area, String buildingType, String imageURL, String dealType, String basePrice, String rentPrice,
-                 String sellingPrice, String phone, String description, String expireTime, String address, String _id) {
+                 String sellingPrice, String address, String _id) {
         this.area = area;
         this.buildingType = buildingType;
         this.imageURL = imageURL;
@@ -21,14 +105,12 @@ public class House {
         this.basePrice = basePrice;
         this.rentPrice = rentPrice;
         this.sellingPrice = sellingPrice;
-        this.phone = phone;
-        this.description = description;
-        this.expireTime = expireTime;
         this.address = address;
 
         this.id = (_id.equals("")) ? houseCount.toString() : _id;
         houseCount += 1;
     }
+
 
     public String getId() {
         return id;
@@ -62,14 +144,6 @@ public class House {
         return sellingPrice;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public String getExpireTime() {
         return expireTime;
     }
@@ -86,11 +160,11 @@ public class House {
         return dealType.equals(PersianContent.getPhrase("RENTAL"));
     }
 
-    public boolean isForSale() {
+    private boolean isForSale() {
         return dealType.equals(PersianContent.getPhrase("SALE"));
     }
 
-    public boolean meetsSearchCriteria(String searchedMinArea, String searchedMaxPrice, String searchedDealType, String searchedPropertyType) {
+    boolean meetsSearchCriteria(String searchedMinArea, String searchedMaxPrice, String searchedDealType, String searchedPropertyType) {
         if (!searchedDealType.equals("")) { // deal type was specified
             if (!dealType.equals(searchedDealType))
                 return false;

@@ -6,8 +6,8 @@ import Entities.House;
 import org.json.JSONObject;
 
 public class HouseFactory {
-    public static House createHouseForAcmInput(String area, String buildingType, String pictureURL, String dealType, String expireTime,
-                                               JSONObject priceInfo, String phoneNumber, String description, String address, String id) throws IllegalArgumentException {
+    public static House createHouseForAcmInput(String area, String buildingType, String pictureURL, String dealType,
+                                               JSONObject priceInfo, String address, String id) throws IllegalArgumentException {
         String basePrice, rentPrice, sellingPrice;
         completePriceInfoObj(priceInfo);
         sellingPrice = priceInfo.get("sellPrice").toString();
@@ -23,12 +23,12 @@ public class HouseFactory {
         else
             dealType = PersianContent.getPhrase("SALE");
 
-        return new House(area, buildingType, pictureURL, dealType, basePrice, rentPrice, sellingPrice, phoneNumber,
-                description, expireTime, address, id);
+        return new House(area, buildingType, pictureURL, dealType, basePrice, rentPrice, sellingPrice,
+                address, id);
     }
 
-    public static House createHouseForUserInput(String area, String buildingType, String pictureURL, String dealType, String expireTime,
-                                               String price, String phoneNumber, String description, String address, String id) throws IllegalArgumentException {
+    public static House createHouseForUserInput(String area, String buildingType, String pictureURL, String dealType,
+                                               String price, String address, String id) throws IllegalArgumentException {
         String basePrice = "0", rentPrice = "0", sellingPrice = "0";
         if (dealTypeIsValid(dealType)) {
             if (houseIsForRent(dealType)) {
@@ -44,8 +44,8 @@ public class HouseFactory {
         if (!dealTypeIsValid(dealType) || !pricesAreValid(basePrice, rentPrice, sellingPrice))
             throw new IllegalArgumentException();
 
-        return new House(area, buildingType, pictureURL, dealType, basePrice, rentPrice, sellingPrice, phoneNumber,
-                description, expireTime, address, id);
+        return new House(area, buildingType, pictureURL, dealType, basePrice, rentPrice, sellingPrice,
+                address, id);
     }
 
     private static boolean pricesAreValid (String basePrice, String rentPrice, String sellingPrice) {

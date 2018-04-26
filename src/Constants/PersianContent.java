@@ -36,6 +36,9 @@ public class PersianContent {
         phrases.put("RENTAL", "اجاره");
         phrases.put("SALE", "خرید");
 
+        phrases.put("APARTMENT", "آپارتمان");
+        phrases.put("VILLA", "ویلایی");
+
         // searchResults page
         phrases.put("SELLING_PRICE", "قیمت فروش");
         phrases.put("BASE_PRICE", "قیمت پایه");
