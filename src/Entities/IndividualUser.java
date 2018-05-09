@@ -10,6 +10,7 @@ public class IndividualUser extends User {
     private String phone;
     private String username;
     private String password;
+    private boolean isAdmin;
 
     public String getId() {
         return id;
@@ -23,7 +24,7 @@ public class IndividualUser extends User {
     private Float balance;
     private HashMap<String, Boolean> housesWithVisiblePhoneNumbers;
 
-    public IndividualUser(String id, String name, String phone, Float balance, String username, String password) {
+    public IndividualUser(String id, String name, String phone, Float balance, String username, String password, boolean isAdmin) {
         super(name);
         this.id = id;
         this.phone = phone;

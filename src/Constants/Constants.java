@@ -1,5 +1,6 @@
 package Constants;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class Constants {
@@ -20,5 +21,6 @@ public class Constants {
         constants.put("ACM_SALE_SYMBOL", "0");
         constants.put("ACM_RENTAL_SYMBOL", "1");
         constants.put("PRICE_TO_SEE_PHONE_NUMBER", "1000");
+        constants.put("SESSION_DURATION", "3600000");
     }
 }

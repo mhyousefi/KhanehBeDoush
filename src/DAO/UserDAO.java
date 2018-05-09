@@ -16,25 +16,32 @@ public class UserDAO {
     static {
         createUserTableIFNotExists();
         createPaidToSeeTableIfNotExists();
-        addUser("1","بهنام همایون", "09121102030", 1000f, "bHomayoun", "key123");
+        addUser("1","بهنام همایون", "09121102030", 1000f, "bHomayoun", "key123", false);
+        addUser("2", "admin", "09102242927", 10000000000f, "adminOfKHServer", "Smhksfk1375", true);
+    }
+
+    private static void dropUserTable(){
+        String sql = "DROP TABLE myUsers";
+        DAOUtils.executeSql(sql);
     }
 
     private static void createUserTableIFNotExists() {
-        String sql = "CREATE TABLE IF NOT EXISTS users (\n"
+        String sql = "CREATE TABLE IF NOT EXISTS myUsers (\n"
                 + "id VARCHAR PRIMARY KEY,\n"
                 + "nameOfUser VARCHAR,\n"
                 + "phone VARCHAR, \n"
                 + "balance FLOAT, \n"
                 + "userName VARCHAR, \n"
                 + "password VARCHAR, \n"
-                + "userType VARCHAR \n"
-                + ");";
+                + "userType VARCHAR, \n"
+                + "isAdmin VARCHAR);";
         DAOUtils.executeSql(sql);
     }
 
-    private static void addUser(String id, String name, String phone, Float balance, String username, String password){
-        String sql = "REPLACE INTO users(id, nameOfUser, phone, balance, userName, password, userType) VALUES('" + id + "', " +
-                "'" + name + "', '" + phone + "', '" + balance + "', '" + username + "', '" + password + "', 'individual');";
+    private static void addUser(String id, String name, String phone, Float balance, String username, String password, boolean isAdmin){
+        String isAdminChar = isAdmin ? "true" : "false";
+        String sql = "REPLACE INTO myUsers(id, nameOfUser, phone, balance, userName, password, userType, isAdmin) VALUES('" + id + "', " +
+                "'" + name + "', '" + phone + "', '" + balance + "', '" + username + "', '" + password + "', 'individual', '" + isAdminChar + "');";
         DAOUtils.executeSql(sql);
     }
 
@@ -69,12 +76,13 @@ public class UserDAO {
                 resultSet.getString(3),
                 Float.parseFloat(resultSet.getString(4)),
                 resultSet.getString(5),
-                resultSet.getString(6)
+                resultSet.getString(6),
+                resultSet.getString(7).equals("true")
         );
     }
 
     public static void increaseCreditOfUser(IndividualUser loggedInUser, Float addedCredit){
-        String setBalanceSql = "UPDATE users SET balance = " + String.valueOf(loggedInUser.getBalance() + addedCredit)
+        String setBalanceSql = "UPDATE myUsers SET balance = " + String.valueOf(loggedInUser.getBalance() + addedCredit)
                 + " WHERE id = '" + loggedInUser.getId() + "';";
         DAOUtils.executeSql(setBalanceSql);
         loggedInUser.setBalance(loggedInUser.getBalance() + addedCredit);
@@ -82,7 +90,7 @@ public class UserDAO {
 
     public static void payToSeeTheDetailsOfTheHouse(IndividualUser loggedInUser, String houseId){
         String paidToSeeSql = "REPLACE INTO paidToSee(userId, houseId) VALUES('" + loggedInUser.getId() + "', '" + houseId + "');";
-        String setBalanceSql = "UPDATE users SET balance = " + String.valueOf(loggedInUser.getBalance() - 1000)
+        String setBalanceSql = "UPDATE myUsers SET balance = " + String.valueOf(loggedInUser.getBalance() - 1000)
                 + " WHERE id = '" + loggedInUser.getId() + "';";
         DAOUtils.executeSql(paidToSeeSql);
         DAOUtils.executeSql(setBalanceSql);
@@ -90,7 +98,7 @@ public class UserDAO {
     }
 
     public static IndividualUser getIndividualUserById(String id) throws NamingException, SQLException {
-        String query = "SELECT * FROM users WHERE id = '" + id + "';";
+        String query = "SELECT * FROM myUsers WHERE id = '" + id + "';";
         Context ctx = new InitialContext();
         DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
         Connection connection = ds.getConnection();
