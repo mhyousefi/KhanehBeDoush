@@ -1,13 +1,14 @@
 package Utilities;
 
+import Constants.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import Constants.Constants;
 
 
 public class TokenUtilities {
@@ -15,7 +16,7 @@ public class TokenUtilities {
         try {
             JwtBuilder jwtBuilder = Jwts.builder().claim("id", userId);
             jwtBuilder.claim("iss", "IE_Server");
-            long time = new Date().getTime() + Long.parseLong(Constants.getConstant("SESSION_DURATION")); //TODO: what exactly is iat????
+            Long time = new Date().getTime() + Long.parseLong(Constants.getConstant("SESSION_DURATION")); //TODO: what exactly is iat????
             jwtBuilder.claim("iat", time);
             return jwtBuilder.signWith(SignatureAlgorithm.HS256, HeaderUtilities.getJWTKey()).compact();
         } catch (Exception e){

@@ -24,15 +24,16 @@ public class Houses extends HttpServlet {
             IndividualUser loggedInUser = (IndividualUser) request.getAttribute("user");
             responseForNormalUser(loggedInUser, response);
             JSONObject requestInJson = (JSONObject) request.getAttribute("requestInJson");
-            responseForAdmin(loggedInUser, response, new int[]{requestInJson.getInt("lowerRange"), requestInJson.getInt("upperRange")});
+            responseForAdmin(requestInJson, loggedInUser, response);
         }catch (Exception e){
             DAOUtils.sendResponse(response, new JSONObject().put("serverError", e.getMessage()));
         }
     }
 
-    private static void responseForAdmin(IndividualUser loggedInUser, HttpServletResponse response, int[] ranges) throws SQLException, NamingException {
+    private static void responseForAdmin(JSONObject requestInJson, IndividualUser loggedInUser, HttpServletResponse response) throws SQLException, NamingException {
         if(!loggedInUser.isAdmin())
             return;
+        int[] ranges = new int[]{requestInJson.getInt("lowerRange"), requestInJson.getInt("upperRange")};
         if(!rangesAreValid(ranges)){
             DAOUtils.sendResponse(response, new JSONObject().put("invalidRanges", true));
             return;
