@@ -19,21 +19,17 @@ import java.sql.SQLException;
 public class HasPaidForPhoneNum extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HeaderUtilities.setHttpServletResponseHeader(response);
-        JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
+        JSONObject requestInJson = (JSONObject)request.getAttribute("requestInJson");
         String houseId = requestInJson.get("houseId").toString();
-        JSONObject jsonResponse = new JSONObject();
-        try {
-            IndividualUser loggedInUser = UserDAO.getIndividualUserById("1");
-            if(loggedInUser != null) {
-                if (UserDAO.userHasPaidToSeePhoneNumber(loggedInUser.getId(), houseId)) {
-                    jsonResponse.put("result", "true");
-                } else {
-                    jsonResponse.put("result", "false");
-                }
-                DAOUtils.sendResponse(response, jsonResponse);
+        JSONObject jsonResponse = new JSONObject().put("authenticated", "true");
+        IndividualUser loggedInUser = (IndividualUser) request.getAttribute("user");
+        if(loggedInUser != null) {
+            if (UserDAO.userHasPaidToSeePhoneNumber(loggedInUser.getId(), houseId)) {
+                jsonResponse.put("result", "true");
+            } else {
+                jsonResponse.put("result", "false");
             }
-        } catch (NamingException | SQLException e) {
-            e.printStackTrace();
+            DAOUtils.sendResponse(response, jsonResponse);
         }
     }
 }
