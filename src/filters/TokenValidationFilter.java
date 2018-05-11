@@ -5,6 +5,7 @@ import Entities.IndividualUser;
 import Utilities.HeaderUtilities;
 import Utilities.JSONFunctions;
 import org.json.JSONObject;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ public class TokenValidationFilter implements Filter {
                         servletRequest.setAttribute("requestInJson", requestInJson);
                         filterChain.doFilter(servletRequest, servletResponse);
                     } catch (Exception e) {
-                        DAOUtils.sendResponse(response, new JSONObject().put("serverError", true));
+                        DAOUtils.sendResponse(response, new JSONObject().put("serverError", e.getMessage()));
                     }
                 }
             }
