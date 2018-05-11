@@ -6,10 +6,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserDAO {
 
@@ -51,6 +50,48 @@ public class UserDAO {
                 + "houseId VARCHAR \n"
                 + ");";
         DAOUtils.executeSql(sql);
+    }
+
+
+    public static HashMap<String, Array> getListOfHousesForAdmin(int[]ranges) throws NamingException, SQLException {
+        String query = "SELECT x.id, y.houseId FROM myUsers, paidToSee LIMIT 10 WHERE (x.id = y.userId OR x.id NOT IN(SELECT userId FROM paidToSee)) AND x.id < " + ranges[1] + " AND x.id > " +  ranges[0] + ";";
+        Context ctx = new InitialContext();
+        DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
+        Connection connection = ds.getConnection();
+        Statement statement = connection.createStatement();
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            HashMap<String, Array> hashMap = new HashMap<>();
+            while (resultSet.next()){
+                hashMap.put(resultSet.getString(1), resultSet.getArray(2));
+            }
+            connection.close();
+            return hashMap;
+        } catch (Exception e) {
+            HashMap<String, Array> hashMap = new HashMap<>();
+            hashMap.put(e.getMessage(), null);
+            return hashMap;
+        }
+    }
+
+    public static ArrayList<String> getListOfHousesForNormalUser(String userId) throws NamingException, SQLException {
+        String query = "SELECT houseId FROM paidToSee WHERE id = '" + userId + "';";
+        Context ctx = new InitialContext();
+        DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
+        Connection connection = ds.getConnection();
+        Statement statement = connection.createStatement();
+        ArrayList<String> results = new ArrayList<>();
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                results.add(resultSet.getString("houseId"));
+            }
+            connection.close();
+            return results;
+        } catch (Exception e) {
+            results.add("serverError");
+            return results;
+        }
     }
 
     public static boolean userHasPaidToSeePhoneNumber(String userId, String houseId){
@@ -111,6 +152,5 @@ public class UserDAO {
         } catch (Exception e) {
             return null;
         }
-
     }
 }

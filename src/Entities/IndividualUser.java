@@ -1,15 +1,25 @@
 package Entities;
 
 
-import Constants.Constants;
-import Constants.PersianContent;
-
 import java.util.HashMap;
 
 public class IndividualUser extends User {
     private String phone;
     private String username;
     private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
     private boolean isAdmin;
 
     public String getId() {
@@ -31,8 +41,8 @@ public class IndividualUser extends User {
         this.balance = balance;
         this.username = username;
         this.password = password;
-
-        housesWithVisiblePhoneNumbers = new HashMap<String, Boolean>();
+        this.isAdmin = isAdmin;
+        housesWithVisiblePhoneNumbers = new HashMap<>();
     }
 
     public void setBalance(Float balance){ this.balance = balance; }
@@ -51,16 +61,6 @@ public class IndividualUser extends User {
 
     public boolean hasEnoughBalance (String value) {
         return balance >= Float.parseFloat(value);
-    }
-
-    public void payToSeePhoneNumber (String houseId) {
-        balance -= Float.parseFloat(Constants.getConstant("PRICE_TO_SEE_PHONE_NUMBER"));
-        housesWithVisiblePhoneNumbers.put(houseId, true);
-    }
-
-    public boolean hasPaidToSeePhoneNumber (String houseId) {
-        // TODO: dataBase things
-        return false;
     }
 
 }

@@ -14,7 +14,8 @@ import java.io.IOException;
 
 import static Utilities.TokenUtilities.getUserIdIfTokenIsValid;
 
-@WebFilter(filterName = "filters.TokenValidationFilter", urlPatterns = {"/increaseCredit", "/hasPaidForPhoneNum", "/getHomeById", "/currentCredit"})
+@WebFilter(filterName = "filters.TokenValidationFilter", urlPatterns = {"/increaseCredit", "/hasPaidForPhoneNum",
+        "/getHomeById", "/currentCredit", "/houses"})
 public class TokenValidationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
