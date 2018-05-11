@@ -39,6 +39,7 @@ public class TokenValidationFilter implements Filter {
                     try {
                         IndividualUser user = DAO.UserDAO.getIndividualUserById(idOfUser);
                         servletRequest.setAttribute("user", user);
+                        DAOUtils.sendResponse(response, new JSONObject().put("msg", user.isAdmin()));
                         servletRequest.setAttribute("requestInJson", requestInJson);
                         filterChain.doFilter(servletRequest, servletResponse);
                     } catch (Exception e) {

@@ -1,27 +1,25 @@
 package Controllers;
 
+import Constants.Constants;
 import DAO.DAOUtils;
 import DAO.UserDAO;
 import Entities.IndividualUser;
-
 import Utilities.HeaderUtilities;
-import Utilities.JSONFunctions;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-
-import java.io.*;
-import java.sql.SQLException;
-import java.util.HashMap;
-import javax.naming.NamingException;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
-import Constants.Constants;
 import org.json.JSONObject;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
 
 /*
 *
@@ -52,7 +50,7 @@ public class IncreaseCreditFormAction extends HttpServlet {
             }
             DAOUtils.sendResponse(response, jsonResponse);
         }catch (Exception e){
-            DAOUtils.sendResponse(response, new JSONObject().put("serverError", true));
+            DAOUtils.sendResponse(response, new JSONObject().put("serverError", e.getMessage()));
         }
     }
 

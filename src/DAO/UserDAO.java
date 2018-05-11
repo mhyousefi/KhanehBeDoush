@@ -15,8 +15,8 @@ public class UserDAO {
     static {
         createUserTableIFNotExists();
         createPaidToSeeTableIfNotExists();
-        addUser("1","بهنام همایون", "09121102030", 1000f, "bHomayoun", "key123", false);
-        addUser("2", "admin", "09102242927", 10000000000f, "adminOfKHServer", "Smhksfk1375", true);
+        addUser("1","بهنام همایون", "09121102030", 1000f, "bHomayoun", "key123", "individual", false);
+        addUser("2", "admin", "09102242927", 10000000000f, "adminOfKHServer", "Smhksfk1375", "individual", true);
     }
 
     private static void dropUserTable(){
@@ -37,7 +37,7 @@ public class UserDAO {
         DAOUtils.executeSql(sql);
     }
 
-    private static void addUser(String id, String name, String phone, Float balance, String username, String password, boolean isAdmin){
+    private static void addUser(String id, String name, String phone, Float balance, String username, String password, String userType, boolean isAdmin){
         String isAdminChar = isAdmin ? "true" : "false";
         String sql = "REPLACE INTO myUsers(id, nameOfUser, phone, balance, userName, password, userType, isAdmin) VALUES('" + id + "', " +
                 "'" + name + "', '" + phone + "', '" + balance + "', '" + username + "', '" + password + "', 'individual', '" + isAdminChar + "');";
@@ -112,12 +112,12 @@ public class UserDAO {
     private static IndividualUser extractIndividualUserDataFromResultSet(ResultSet resultSet) throws SQLException {
         //id VARCHAR PRIMARY KEY,\n"
         return new IndividualUser(
+                resultSet.getString(1),
                 resultSet.getString(2),
                 resultSet.getString(3),
-                resultSet.getString(4),
-                Float.parseFloat(resultSet.getString(5)),
+                Float.parseFloat(resultSet.getString(4)),
+                resultSet.getString(5),
                 resultSet.getString(6),
-                resultSet.getString(7),
                 resultSet.getString(8).equals("true")
         );
     }
