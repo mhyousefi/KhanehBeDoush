@@ -1,6 +1,5 @@
 package Constants;
 
-import java.util.Date;
 import java.util.HashMap;
 
 public class Constants {
@@ -11,7 +10,7 @@ public class Constants {
     }
 
     static {
-        constants = new HashMap<String, String>();
+        constants = new HashMap<>();
 
         constants.put("API_KEY", "c3932910-1011-11e8-87b4-496f79ef1988");
         constants.put("BANK_POST_URL", "http://139.59.151.5:6664/bank/pay");
