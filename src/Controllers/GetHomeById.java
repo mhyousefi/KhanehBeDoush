@@ -15,16 +15,21 @@ import java.io.IOException;
 @WebServlet("/getHomeById")
 public class GetHomeById extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HeaderUtilities.setHttpServletResponseHeader(response);
-        JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
-        String houseID = requestInJson.get("houseId").toString();
-        JSONObject jsonResponse = DAOUtils.queryToAcmServer(houseID);
-        if(!jsonResponse.has("data")){
-            DAOUtils.sendResponse(response, new JSONObject().put("noResult", ""));
-        }else {
-            JSONObject data = jsonResponse.getJSONObject("data");
-            JSONObject jsonToSend = specifyPriceDetails(data);
-            DAOUtils.sendResponse(response, jsonToSend);
+        try {
+            HeaderUtilities.setHttpServletResponseHeader(response);
+            JSONObject requestInJson = (JSONObject) request.getAttribute("requestInJson");
+            String houseID = requestInJson.get("houseId").toString();
+            JSONObject jsonResponse = DAOUtils.queryToAcmServer(houseID);
+            if(!jsonResponse.has("data")){
+                JSONObject jsonToSend = new JSONObject().put("authenticated", "true");
+                jsonToSend.put("noResult", "");
+                DAOUtils.sendResponse(response, jsonToSend);
+            }else {
+                JSONObject data = jsonResponse.getJSONObject("data");
+                DAOUtils.sendResponse(response, specifyPriceDetails(data));
+            }
+        }catch (Exception e){
+            DAOUtils.sendResponse(response, new JSONObject().put("serverError", true));
         }
     }
 
@@ -40,6 +45,7 @@ public class GetHomeById extends HttpServlet{
             jsonResponse.put("rentPrice", rentPrice);
         }
         jsonResponse.remove("price");
+        jsonResponse.put("authenticated", "true");
         return jsonResponse;
     }
 }
