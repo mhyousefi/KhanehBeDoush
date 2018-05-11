@@ -5,38 +5,32 @@ import DAO.DAOUtils;
 import DAO.UserDAO;
 import Entities.IndividualUser;
 import Utilities.HeaderUtilities;
-import Utilities.JSONFunctions;
 import org.json.JSONObject;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/showHousePhoneNumber")
 public class ShowHousePhoneNumberAction extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HeaderUtilities.setHttpServletResponseHeader(response);
-        JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
-        String houseId = requestInJson.get("houseId").toString();
-        JSONObject resultOfQueryToACMServer = DAOUtils.queryToAcmServer(houseId);
-        if(!resultOfQueryToACMServer.has("data")){
-            JSONObject responseToClient = new JSONObject();
-            responseToClient.put("exists", false);
-            DAOUtils.sendResponse(response, responseToClient);
-        }else{
-            try {
-                IndividualUser loggedInUser = UserDAO.getIndividualUserById("1");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            HeaderUtilities.setHttpServletResponseHeader(response);
+            JSONObject requestInJson = (JSONObject)request.getAttribute("requestInJson");
+            String houseId = requestInJson.get("houseId").toString();
+            JSONObject resultOfQueryToACMServer = DAOUtils.queryToAcmServer(houseId);
+            if(!resultOfQueryToACMServer.has("data")){
+                JSONObject responseToClient = new JSONObject().put("authenticated", "true");
+                responseToClient.put("exists", false);
+                DAOUtils.sendResponse(response, responseToClient);
+            }else{
+                IndividualUser loggedInUser = (IndividualUser) request.getAttribute("user");
                 JSONObject responseToClient = checkUserPermissionToSeeTheDetails(houseId, loggedInUser);
                 DAOUtils.sendResponse(response, responseToClient);
-            } catch (NamingException | SQLException e) {
-                String msg = e.getLocalizedMessage();
-                DAOUtils.sendResponse(response, new JSONObject().put("Exception", msg));
-                e.printStackTrace();
             }
+        }catch (Exception e){
+            DAOUtils.sendResponse(response, new JSONObject().put("serverError", true));
         }
-
     }
 
     private static JSONObject paidToSeeAnswer(Float balanceOfUser){
