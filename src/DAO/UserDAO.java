@@ -75,7 +75,7 @@ public class UserDAO {
     }
 
     public static ArrayList<String> getListOfHousesForNormalUser(String userId) throws NamingException, SQLException {
-        String query = "SELECT houseId FROM paidToSee WHERE id = '" + userId + "';";
+        String query = "SELECT houseId FROM paidToSee WHERE userId = '" + userId + "';";
         Context ctx = new InitialContext();
         DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
         Connection connection = ds.getConnection();
