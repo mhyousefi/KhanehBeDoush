@@ -67,10 +67,20 @@ public class UserDAO {
         return query;
     }
 
+    private static String createQueryForUsersIds(int[] ranges){
+        String query = "SELECT id FROM myUsers WHERE ";
+        for(int i = ranges[0]; i <= ranges[1]; i++){
+            query += "id = '" + String.valueOf(i) + "' OR ";
+        }
+        query = query.substring(0, query.length() - 4);
+        query += ";";
+        return query;
+    }
+
     private static HashMap<String, String> addHouseIdsToResult(ResultSet resultSet) throws SQLException {
         HashMap<String, String> results = new HashMap<>();
         while (resultSet.next()){
-            results.put(resultSet.getString(1), null);
+            results.put(resultSet.getString(1), "");
         }
         return results;
     }
@@ -78,10 +88,11 @@ public class UserDAO {
     private static HashMap<String, String> addIdsToResults(ResultSet resultSet, HashMap<String, String> hashMap) throws SQLException {
         HashMap<String, String> results = new HashMap<>();
         results.putAll(hashMap);
-        String temp = "";
+        String temp;
         while (resultSet.next()){
             if(results.containsKey(resultSet.getString(1))){
                 temp = results.get(resultSet.getString(1));
+                results.remove(resultSet.getString(1));
                 results.put(resultSet.getString(1), temp + ", " + resultSet.getString(2));
             }
         }
@@ -89,18 +100,18 @@ public class UserDAO {
     }
 
     public static HashMap<String, String> getListOfHousesForAdmin(int[]ranges) throws NamingException, SQLException {
-        String query = "SELECT id FROM myUsers WHERE id > " + String.valueOf(ranges[0]) + " AND id < " + String.valueOf(ranges[1]) + ";";
+        String query = createQueryForUsersIds(ranges);
         Context ctx = new InitialContext();
         DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
         Connection connection = ds.getConnection();
         Statement statement = connection.createStatement();
-        HashMap<String, String> results;
         try {
             ResultSet resultSet = statement.executeQuery(query);
-            results = addHouseIdsToResult(resultSet);
+            HashMap<String, String> results = addHouseIdsToResult(resultSet);
             query = createQueryForPaidToSeeTable(results);
             ResultSet paidHouses = statement.executeQuery(query);
             results = addIdsToResults(paidHouses, results);
+            results.put("query", query);
             connection.close();
             return results;
         } catch (Exception e) {
