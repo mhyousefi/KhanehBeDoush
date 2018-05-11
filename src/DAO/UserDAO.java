@@ -89,7 +89,7 @@ public class UserDAO {
             connection.close();
             return results;
         } catch (Exception e) {
-            results.add("serverError");
+            results.add(e.getMessage());
             return results;
         }
     }

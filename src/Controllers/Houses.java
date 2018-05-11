@@ -50,6 +50,8 @@ public class Houses extends HttpServlet {
         if(loggedInUser.isAdmin())
             return;
         ArrayList<String> results = getListOfHousesForNormalUser(loggedInUser.getId());
-        DAOUtils.sendResponse(response, new JSONObject().put("results", results));
+        JSONObject responseInJson = new JSONObject().put("results", results);
+        responseInJson.put("authenticated", true);
+        DAOUtils.sendResponse(response, responseInJson);
     }
 }
