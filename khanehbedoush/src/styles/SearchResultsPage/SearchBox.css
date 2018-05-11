@@ -1,0 +1,186 @@
+.searchResultsUpperSentence‌ {
+    margin: 1.5% 0;
+    text-align: center;
+    font-family: Shabnam;
+    font-size: 23px;
+    font-weight: 100;
+    color: grey;
+    z-index: 1500;
+}
+
+.searchBoxContainer {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    background-color: #FFFFFF;
+
+    align-items: center;
+}
+
+.searchBoxRow {
+    display: flex;
+    flex-direction: row-reverse;
+
+    width: 100%;
+    height: 500px;
+    margin: 2% 0;
+
+    align-items: center;
+    justify-content: space-around;
+}
+
+.searchBox {
+    display: flex;
+    flex-direction: column;
+
+    width: 46%;
+    height: 100%;
+    margin: 4% 4%;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.searchBoxImg {
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+
+    width: 100%;
+    height: 60%;
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    background: no-repeat center;
+    background-size: cover;
+}
+
+.searchBoxTagCommon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin: 2% 0 0 2%;
+
+    font-family: Shabnam;
+    font-size: 17px;
+    font-weight: 100;
+    color: azure;
+}
+
+.searchBoxSaleTagCostum {
+    width: 17%;
+    height: 10%;
+    background-color: #673AB7;
+}
+
+.searchBoxRentTagCostum {
+    width: 22%;
+    height: 10%;
+    background-color: #EF5350;
+}
+
+.searchBoxSaleIconColor {
+    color: #673AB7;
+}
+
+.searchBoxRentIconColor {
+    color: #EF5350;
+}
+
+.searchBoxLower {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 40%;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.searchBoxAreaLocationRow {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: auto;
+}
+
+.searchBoxAreaTxt {
+    flex: 1;
+    text-align: start;
+    margin: 0 5%;
+}
+
+.searchBoxLocation {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.searchBoxLocationTxt {
+    text-align: end;
+    margin: 0 5% 0 10%;
+}
+
+.searchBoxLocationIcon {
+    font-size: 24px;
+}
+
+.searchBoxPriceRow {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: auto;
+}
+
+.searchBoxSalePrice {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    text-align: start;
+    margin: 0 5%;
+}
+
+.searchBoxBasePrice {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    text-align: start;
+    margin: 0 5%;
+}
+
+.searchBoxRentPrice {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex: 1;
+    margin: 0 5%;
+}
+
+.searchBoxTouman {
+    margin-right: 6px;
+    color: grey;
+    flex: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    .searchBoxRow {
+        flex-direction: column;
+        height: 1000px;
+    }
+
+    .searchBox {
+        width: 85%;
+    }
+}
