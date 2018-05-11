@@ -39,7 +39,7 @@ public class IncreaseCreditFormAction extends HttpServlet {
         HttpPost post = createHttpPost();
         JSONObject jsonResponse = new JSONObject().put("authenticated", "true");
         IndividualUser loggedInUser = (IndividualUser) request.getAttribute("user");
-        String creditIncrementValue = request.getAttribute("credit").toString();
+        String creditIncrementValue = ((JSONObject)request.getAttribute("requestInJson")).get("credit").toString();
         JSONObject requestParams = createRequestParams(loggedInUser.getPhone(), creditIncrementValue);
         post.setEntity(new StringEntity(requestParams.toString(), "UTF-8"));
         HttpResponse bankResponse = client.execute(post);
