@@ -35,31 +35,22 @@ public class IncreaseCreditFormAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HeaderUtilities.setHttpServletResponseHeader(response);
-        JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
         HttpClient client = HttpClientBuilder.create().build();
         HttpPost post = createHttpPost();
-        JSONObject jsonResponse = new JSONObject();
-        try {
-            IndividualUser loggedInUser = UserDAO.getIndividualUserById("1");
-            String creditIncrementValue = requestInJson.get("credit").toString();
-            JSONObject requestParams = createRequestParams(loggedInUser.getPhone(), creditIncrementValue);
-            post.setEntity(new StringEntity(requestParams.toString(), "UTF8"));
-            HttpResponse bankResponse = client.execute(post);
-            String responseTxt = EntityUtils.toString(bankResponse.getEntity());
-            if (DAOUtils.responseIsSuccessful(responseTxt)) {
-                UserDAO.increaseCreditOfUser(loggedInUser, Float.parseFloat(creditIncrementValue));
-                jsonResponse.put("response", "true");
-            }
-            else {
-                jsonResponse.put("response", "false");
-            }
-
-        } catch (NamingException | SQLException e) {
-            jsonResponse.put("Exception", e.getMessage());
-            e.printStackTrace();
+        JSONObject jsonResponse = new JSONObject().put("authenticated", "true");
+        IndividualUser loggedInUser = (IndividualUser) request.getAttribute("user");
+        String creditIncrementValue = request.getAttribute("credit").toString();
+        JSONObject requestParams = createRequestParams(loggedInUser.getPhone(), creditIncrementValue);
+        post.setEntity(new StringEntity(requestParams.toString(), "UTF-8"));
+        HttpResponse bankResponse = client.execute(post);
+        String responseTxt = EntityUtils.toString(bankResponse.getEntity());
+        if (DAOUtils.responseIsSuccessful(responseTxt)) {
+            UserDAO.increaseCreditOfUser(loggedInUser, Float.parseFloat(creditIncrementValue));
+            jsonResponse.put("response", "true");
+        } else {
+            jsonResponse.put("response", "false");
         }
         DAOUtils.sendResponse(response, jsonResponse);
-
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -67,7 +58,7 @@ public class IncreaseCreditFormAction extends HttpServlet {
     }
 
     private  JSONObject createRequestParams (String userId, String creditIncrementValue) {
-        HashMap<String, String> jsonValues = new HashMap<String, String>();
+        HashMap<String, String> jsonValues = new HashMap<>();
         jsonValues.put("userId", userId);
         jsonValues.put("value", creditIncrementValue);
         return new JSONObject(jsonValues);
