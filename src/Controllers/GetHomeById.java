@@ -2,7 +2,6 @@ package Controllers;
 
 import DAO.DAOUtils;
 import Utilities.HeaderUtilities;
-import Utilities.JSONFunctions;
 import org.json.JSONObject;
 
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +28,7 @@ public class GetHomeById extends HttpServlet{
                 DAOUtils.sendResponse(response, specifyPriceDetails(data));
             }
         }catch (Exception e){
-            DAOUtils.sendResponse(response, new JSONObject().put("serverError", true));
+            DAOUtils.sendResponse(response, new JSONObject().put("serverError", e.getMessage()));
         }
     }
 
