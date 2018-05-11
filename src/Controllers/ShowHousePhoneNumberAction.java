@@ -26,6 +26,7 @@ public class ShowHousePhoneNumberAction extends HttpServlet {
             }else{
                 IndividualUser loggedInUser = (IndividualUser) request.getAttribute("user");
                 JSONObject responseToClient = checkUserPermissionToSeeTheDetails(houseId, loggedInUser);
+                responseToClient.put("authenticated", "true");
                 DAOUtils.sendResponse(response, responseToClient);
             }
         }catch (Exception e){
