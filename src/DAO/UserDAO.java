@@ -110,15 +110,15 @@ public class UserDAO {
     }
 
     private static IndividualUser extractIndividualUserDataFromResultSet(ResultSet resultSet) throws SQLException {
-        // id, name, phone, balance, username, password
+        //id VARCHAR PRIMARY KEY,\n"
         return new IndividualUser(
-                resultSet.getString(1),
                 resultSet.getString(2),
                 resultSet.getString(3),
-                Float.parseFloat(resultSet.getString(4)),
-                resultSet.getString(5),
+                resultSet.getString(4),
+                Float.parseFloat(resultSet.getString(5)),
                 resultSet.getString(6),
-                resultSet.getString(7).equals("true")
+                resultSet.getString(7),
+                resultSet.getString(8).equals("true")
         );
     }
 

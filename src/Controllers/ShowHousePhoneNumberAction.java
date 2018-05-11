@@ -6,9 +6,12 @@ import DAO.UserDAO;
 import Entities.IndividualUser;
 import Utilities.HeaderUtilities;
 import org.json.JSONObject;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/showHousePhoneNumber")
@@ -30,7 +33,7 @@ public class ShowHousePhoneNumberAction extends HttpServlet {
                 DAOUtils.sendResponse(response, responseToClient);
             }
         }catch (Exception e){
-            DAOUtils.sendResponse(response, new JSONObject().put("serverError", true));
+            DAOUtils.sendResponse(response, new JSONObject().put("serverError", e.getMessage()));
         }
     }
 
