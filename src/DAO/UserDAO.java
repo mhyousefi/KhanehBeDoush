@@ -6,9 +6,13 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class UserDAO {
 
@@ -52,23 +56,55 @@ public class UserDAO {
         DAOUtils.executeSql(sql);
     }
 
+    private static String createQueryForPaidToSeeTable(HashMap<String, String> resultSet) throws SQLException {
+        String query = "SELECT * FROM paidToSee GROUP By userId WHERE ";
+        Set<String> ids = resultSet.keySet();
+        for(String s : ids){
+            query += "userId = " + s + " OR ";
+        }
+        query = query.substring(0, query.length() - 4);
+        query += ";";
+        return query;
+    }
 
-    public static HashMap<String, Array> getListOfHousesForAdmin(int[]ranges) throws NamingException, SQLException {
-        String query = "SELECT x.id, y.houseId FROM myUsers, paidToSee LIMIT 10 WHERE (x.id = y.userId OR x.id NOT IN(SELECT userId FROM paidToSee)) AND x.id < " + ranges[1] + " AND x.id > " +  ranges[0] + ";";
+    private static HashMap<String, String> addHouseIdsToResult(ResultSet resultSet) throws SQLException {
+        HashMap<String, String> results = new HashMap<>();
+        while (resultSet.next()){
+            results.put(resultSet.getString(1), null);
+        }
+        return results;
+    }
+
+    private static HashMap<String, String> addIdsToResults(ResultSet resultSet, HashMap<String, String> hashMap) throws SQLException {
+        HashMap<String, String> results = new HashMap<>();
+        results.putAll(hashMap);
+        String temp = "";
+        while (resultSet.next()){
+            if(results.containsKey(resultSet.getString(1))){
+                temp = results.get(resultSet.getString(1));
+                results.put(resultSet.getString(1), temp + ", " + resultSet.getString(2));
+            }
+        }
+        return results;
+    }
+
+    public static HashMap<String, String> getListOfHousesForAdmin(int[]ranges) throws NamingException, SQLException {
+        String query = "SELECT id FROM myUsers WHERE id > " + String.valueOf(ranges[0]) + " AND id < " + String.valueOf(ranges[1]) + ";";
         Context ctx = new InitialContext();
         DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
         Connection connection = ds.getConnection();
         Statement statement = connection.createStatement();
+        HashMap<String, String> results;
         try {
             ResultSet resultSet = statement.executeQuery(query);
-            HashMap<String, Array> hashMap = new HashMap<>();
-            while (resultSet.next()){
-                hashMap.put(resultSet.getString(1), resultSet.getArray(2));
-            }
+            results = addHouseIdsToResult(resultSet);
+            query = createQueryForPaidToSeeTable(results);
+            ResultSet paidHouses = statement.executeQuery(query);
+            results = addIdsToResults(paidHouses, results);
             connection.close();
-            return hashMap;
+            return results;
         } catch (Exception e) {
-            HashMap<String, Array> hashMap = new HashMap<>();
+            HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put(e.getMessage(), null);
             return hashMap;
         }
