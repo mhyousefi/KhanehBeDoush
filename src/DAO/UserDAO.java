@@ -57,10 +57,10 @@ public class UserDAO {
     }
 
     private static String createQueryForPaidToSeeTable(HashMap<String, String> resultSet) throws SQLException {
-        String query = "SELECT * FROM paidToSee GROUP By userId WHERE ";
+        String query = "SELECT * FROM paidToSee WHERE ";
         Set<String> ids = resultSet.keySet();
         for(String s : ids){
-            query += "userId = " + s + " OR ";
+            query += "userId = '" + s + "' OR ";
         }
         query = query.substring(0, query.length() - 4);
         query += ";";
@@ -111,7 +111,6 @@ public class UserDAO {
             query = createQueryForPaidToSeeTable(results);
             ResultSet paidHouses = statement.executeQuery(query);
             results = addIdsToResults(paidHouses, results);
-            results.put("query", query);
             connection.close();
             return results;
         } catch (Exception e) {
