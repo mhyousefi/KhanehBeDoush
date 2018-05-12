@@ -193,12 +193,39 @@ public class HouseDAO {
         DAOUtils.executeSql(finalSql);
     }
 
+    private static boolean searchParametersAreValidAndSafe(String minArea, String maxPrice, String dealType, String propertyType){
+        if(!minArea.equals(""))
+            if(!validateNumber(minArea))
+                return false;
+        if(!maxPrice.equals(""))
+            if(!validateNumber(maxPrice))
+                return false;
+        if(!dealType.equals(""))
+            if(!(dealType.equals(PersianContent.getPhrase("RENTAL")) || dealType.equals(PersianContent.getPhrase("SALE"))))
+                return false;
+        if(!propertyType.equals(""))
+            if(!(propertyType.equals(PersianContent.getPhrase("APARTMENT")) || propertyType.equals(PersianContent.getPhrase("VILLA"))))
+                return false;
+        return true;
+    }
+
+    private static boolean validateNumber(String toValidate){
+        try {
+            Float.parseFloat(toValidate);
+            return true;
+        }catch (NumberFormatException nfe){
+            return false;
+        }
+    }
+
     public static ArrayList<House> searchHouses(String minArea, String maxPrice, String dealType, String propertyType){
         try {
             if(!checkIfHousesAreNotExpired()){
                 updateDataBase();
             }
-            return searchDataBaseForHouses(minArea, maxPrice, dealType, propertyType);
+            if(searchParametersAreValidAndSafe(minArea, maxPrice, dealType, propertyType))
+                return searchDataBaseForHouses(minArea, maxPrice, dealType, propertyType);
+            return null;
         } catch (SQLException | IOException | NamingException e) {
             return null;
         }
