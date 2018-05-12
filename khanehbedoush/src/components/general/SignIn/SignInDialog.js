@@ -28,8 +28,10 @@ export default class SignInModal extends Component {
   }
 
   _onButtonClick = () => {
-    //TODO: call a login API
-    this.props.onDialogClose()
+    const { onLogin, onDialogClose } = this.props
+
+    // onLogin(user)
+    onDialogClose()
   }
 
   render () {
