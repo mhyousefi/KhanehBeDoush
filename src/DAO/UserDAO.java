@@ -6,10 +6,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -140,12 +137,13 @@ public class UserDAO {
         }
     }
 
-    public static boolean userHasPaidToSeePhoneNumber(String userId, String houseId){
-        String query = "SELECT * FROM paidToSee WHERE userId = '" + userId + "' AND houseId = '" + houseId + "';";
+    public static boolean userHasPaidToSeePhoneNumber(String userId, String houseId){//<-----------------------------------------------------
         try {
             Connection connection = DAOUtils.connect();
-            Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery(query);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM paidToSee WHERE userId=? AND houseId=?;");
+            statement.setString(1, userId);
+            statement.setString(2, houseId);
+            ResultSet resultSet = statement.executeQuery();
             boolean resultFound = resultSet.next();
             connection.close();
             return resultFound;
@@ -156,7 +154,6 @@ public class UserDAO {
     }
 
     private static IndividualUser extractIndividualUserDataFromResultSet(ResultSet resultSet) throws SQLException {
-        //id VARCHAR PRIMARY KEY,\n"
         return new IndividualUser(
                 resultSet.getString(1),
                 resultSet.getString(2),
@@ -184,14 +181,32 @@ public class UserDAO {
         loggedInUser.setBalance(loggedInUser.getBalance() - 1000);
     }
 
-    public static IndividualUser getIndividualUserById(String id) throws NamingException, SQLException {
-        String query = "SELECT * FROM myUsers WHERE id = '" + id + "';";
+    public static String findUser(String username, String password, String phoneNumber) throws NamingException, SQLException {
         Context ctx = new InitialContext();
         DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
         Connection connection = ds.getConnection();
-        Statement statement = connection.createStatement();
+        PreparedStatement statement = connection.prepareStatement("SELECT id FROM myUsers WHERE userName =? AND password=? AND phone=?;");
+        statement.setString(1, username);
+        statement.setString(2, password);
+        statement.setString(3, phoneNumber);
         try {
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = statement.executeQuery();
+            if(!resultSet.next())
+                return "invalidUsernameAndPassword";
+            return resultSet.getString(1);
+        }catch (Exception e){
+            return "error  " + e.getMessage();
+        }
+    }
+
+    public static IndividualUser getIndividualUserById(String id) throws NamingException, SQLException {
+        try {
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
+            Connection connection = ds.getConnection();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM myUsers WHERE id=?;");
+            stmt.setString(1, id);
+            ResultSet resultSet = stmt.executeQuery();
             IndividualUser individualUser = extractIndividualUserDataFromResultSet(resultSet);
             connection.close();
             return individualUser;
