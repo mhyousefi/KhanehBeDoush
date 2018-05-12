@@ -15,6 +15,7 @@ module.exports = {
   'meters square': 'متر مربع',
   'area': 'متراژ',
   '20000': '۲۰۰۰۰',
+  'phone number': 'شماره تلفن',
 
   //Page Titles
   'home page': 'خانه',

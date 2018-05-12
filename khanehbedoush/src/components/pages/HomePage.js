@@ -44,5 +44,3 @@ export default class HomePage extends Component {
     )
   }
 }
-
-// const SimpleModalWrapped = (HomePage)

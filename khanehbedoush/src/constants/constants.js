@@ -9,4 +9,5 @@ export const apiUrls = {
   'getHouseById': 'http://localhost:8080/getHomeById',
   'searchHouse': 'http://localhost:8080/searchResults',
   'hasPaidForPhoneNum': 'http://localhost:8080/hasPaidForPhoneNum',
+  'signIn': 'http://localhost:8080/login'
 }
