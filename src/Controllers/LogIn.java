@@ -35,7 +35,8 @@ public class LogIn extends HttpServlet {
             }
             DAOUtils.sendResponse(response, new JSONObject().put("token", generatedToken));
         }catch (Exception e){
-            DAOUtils.sendResponse(response, new JSONObject().put("severError", e.getMessage()));
+            response.setStatus(504);
+            DAOUtils.sendResponse(response, null);
         }
     }
 
