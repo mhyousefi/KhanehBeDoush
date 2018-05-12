@@ -53,7 +53,7 @@ export default class HomeDetailPage extends Component {
   }
 
   _getPaymentStatus = (houseId) => {
-    hasPaidForPhoneNumAPI(houseId).then((response) => {
+    hasPaidForPhoneNumAPI(houseId, this.props.user.token).then((response) => {
       console.log('HAS PAID FOR PHONE NUMBER ===> ' + response)
       if (response === true) {
         this.setState({hasPaidForPhoneNum: true})

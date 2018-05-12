@@ -11,7 +11,7 @@ export default class SearchResultsPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      houses: null,
+      houses: [],
       modalOpen: false,
     }
   }
@@ -26,6 +26,8 @@ export default class SearchResultsPage extends Component {
 
   _searchForHouses = (maxPrice, minArea, propertyType, dealType) => {
     searchHousesAPI(maxPrice, minArea, propertyType, dealType).then((response) => {
+      console.log('response')
+      console.log(response)
       this.setState({houses: response})
     })
   }
@@ -37,7 +39,6 @@ export default class SearchResultsPage extends Component {
     propertyType = propertyType === 'none' ? '' : propertyType
     dealType = dealType === 'none' ? '' : dealType
     this._searchForHouses(maxPrice, minArea, propertyType, dealType)
-    console.log(this.state.houses)
   }
 
   render () {
@@ -47,7 +48,7 @@ export default class SearchResultsPage extends Component {
       <Layout
         isHomePage={false}
         pageTitle={Fa['search results page']}
-        credit={user.credit}
+        user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
       >

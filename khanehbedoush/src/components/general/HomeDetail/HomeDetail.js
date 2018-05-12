@@ -23,7 +23,7 @@ export default class HomeDetail extends Component {
       if (parseInt(user.credit) < 1000) {
         alert(messages['insufficient credit'])
       } else {
-        payForPhoneNumAPI(houseId).then((response) => {
+        payForPhoneNumAPI(houseId, user.token).then((response) => {
           if (response['exists'] === false) {
             alert(messages['non-existing house'])
           } else {

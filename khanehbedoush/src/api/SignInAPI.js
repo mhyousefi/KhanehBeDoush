@@ -3,7 +3,7 @@ import { apiUrls } from 'src/constants/constants'
 
 export const SignInAPI = async (username, password, phoneNumber) => {
   return fetch(apiUrls['signIn'], {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -13,15 +13,13 @@ export const SignInAPI = async (username, password, phoneNumber) => {
       'phoneNumber': phoneNumber,
     }),
   })
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(function (data, response) {
-      if (response.status === 400) {
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response.json()
+      } else if (response.status === 400) {
         return 'wrong input'
-      } else if (response === 504) {
+      } else if (response.status === 504) {
         return 'server error'
-      } else {
-        return data
       }
     }).catch(function (error) {
       console.log("Fetch error ==> " + error.message)

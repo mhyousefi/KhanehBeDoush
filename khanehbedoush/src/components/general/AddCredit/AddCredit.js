@@ -21,14 +21,14 @@ export default class AddCredit extends Component {
 
   _handleButtonClick = (event) => {
     const {typedAmount} = this.state
-    const {onCreditChange} = this.props
+    const {onCreditChange, user} = this.props
 
     event.preventDefault()
 
     if (typedAmount === '' || isNaN(typedAmount) || parseInt(typedAmount) <= 0) {
       alert(messages["invalid credit input"])
     } else {
-      changeCreditAPI(typedAmount).then(function(response) {
+      changeCreditAPI(typedAmount, user.token).then(function(response) {
         if (response === true) {
           onCreditChange(typedAmount)
         } else {
@@ -40,7 +40,7 @@ export default class AddCredit extends Component {
   }
 
   render() {
-    const {credit} = this.props
+    const {user} = this.props
     return (
       <div className="addCreditContainer rtl">
         <div className="currentCreditBox">
@@ -48,7 +48,7 @@ export default class AddCredit extends Component {
             {Fa['current credit']}
           </div>
           <div className="addCreditNumberTxt blackTxt">
-            {credit} {Fa["NBSP"]}
+            {user.credit} {Fa["NBSP"]}
           </div>
           <div className="addCreditTxt greyTxt">
             {Fa['Touman']}

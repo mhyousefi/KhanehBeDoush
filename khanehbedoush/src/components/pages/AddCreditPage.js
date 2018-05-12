@@ -37,7 +37,7 @@ export default class AddCreditPage extends Component {
           onLogin={onLogin}
         />
         <AddCredit
-          credit={user.credit}
+          user={user}
           onCreditChange={onCreditChange}
         />
       </Layout>

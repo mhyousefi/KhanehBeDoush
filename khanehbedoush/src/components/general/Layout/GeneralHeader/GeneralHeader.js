@@ -9,7 +9,7 @@ export default class GeneralHeader extends Component {
     const { pageTitle, user, onLoginModalOpen } = this.props
     return (
       <header className="addCreditHeaderContainer defaultHeaderHeight rtl">
-        <HeaderUpperRow credit={user.credit} onLoginModalOpen={onLoginModalOpen}/>
+        <HeaderUpperRow user={user} onLoginModalOpen={onLoginModalOpen}/>
         <HeaderImageBar pageTitle={pageTitle}/>
       </header>
     )

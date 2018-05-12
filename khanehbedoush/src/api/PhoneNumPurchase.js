@@ -1,11 +1,12 @@
 import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from '../constants/constants'
 
-export const payForPhoneNumAPI = (houseId) => {
+export const payForPhoneNumAPI = (houseId, token) => {
   return fetch(apiUrls['payForPhone'], {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': token,
     },
     body: JSON.stringify({
       houseId: houseId,
@@ -21,11 +22,12 @@ export const payForPhoneNumAPI = (houseId) => {
   })
 }
 
-export const hasPaidForPhoneNumAPI = (houseId) => {
+export const hasPaidForPhoneNumAPI = (houseId, token) => {
   return fetch(apiUrls['hasPaidForPhoneNum'], {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': token,
     },
     body: JSON.stringify({
       houseId: houseId,
