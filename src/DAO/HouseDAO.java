@@ -47,15 +47,18 @@ public class HouseDAO {
 
     private static void createHouseTableIFNotExists() {
         String sql = "CREATE TABLE houses (\n"
+
                 + "id VARCHAR PRIMARY KEY,\n"
                 + "area INT,\n"
                 + "buildingType VARCHAR, \n"
                 + "imageURL VARCHAR, \n"
                 + "dealType VARCHAR, \n"
+
                 + "basePrice INT, \n"
                 + "rentPrice INT, \n"
                 + "sellingPrice INT, \n"
                 + "expireTime DOUBLE, \n"
+
                 + "address VARCHAR, \n"
                 + "isFromACMServer CHARACTER"
                 + ");";
@@ -66,13 +69,18 @@ public class HouseDAO {
         String sql = "REPLACE INTO houses(id, area, buildingType, imageURL, dealType, basePrice, " +
                 "rentPrice, sellingPrice, expireTime, address, isFromACMServer) VALUES(";
         Connection conn = DAOUtils.connect();
-        for(int i = 0; i < values.size() - 1; i++){
-            sql = sql + "?" + ", ";
-        }
-        sql = sql + "?);";
+        sql += "'" + values.get(0) + "', ";
+        sql += values.get(1) + ", ";
+        sql += "'" + values.get(2) + "', ";
+        sql += "'" + values.get(3) + "', ";
+        sql += "'" + values.get(4) + "', ";
+        sql += values.get(5) + ", ";
+        sql += values.get(6) + ", ";
+        sql += values.get(7) + ", ";
+        sql += values.get(8) + ", ";
+        sql += "'" + values.get(9) + "', ";
+        sql += "'" + values.get(10) + "'); ";
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
-        for(int i = 1; i <= values.size(); i++)
-            preparedStatement.setString(i, values.get(i - 1));
         preparedStatement.executeUpdate();
     }
 

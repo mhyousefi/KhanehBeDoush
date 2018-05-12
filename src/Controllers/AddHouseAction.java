@@ -39,10 +39,10 @@ public class AddHouseAction extends HttpServlet {
             HeaderUtilities.setHttpServletResponseHeader(response);
             JSONObject requestInJson = (JSONObject) request.getAttribute("requestInJson");
             ArrayList<String> values = validateAndAddValues(requestInJson);
-            DAOUtils.sendResponse(response, new JSONObject().put("values", values));
+            DAOUtils.sendResponse(response, new JSONObject().put("values", values.size()));
             if(values != null) {
                 insertNewHouse(values);
-                DAOUtils.sendResponse(response, new JSONObject().put("values", values));
+                DAOUtils.sendResponse(response, new JSONObject().put("status", true));
             } else {
                 JSONObject responseInJson = new JSONObject().put("invalidInput", true);
                 responseInJson.put("serverError", false);
@@ -51,6 +51,7 @@ public class AddHouseAction extends HttpServlet {
         }catch (Exception e){
             JSONObject responseInJson = new JSONObject().put("invalidInput", false);
             responseInJson.put("serverError", true);
+            responseInJson.put("msg", e.getLocalizedMessage());
             DAOUtils.sendResponse(response, responseInJson);
         }
     }
@@ -85,10 +86,9 @@ public class AddHouseAction extends HttpServlet {
         values.add(house.getImageURL());
         values.add(house.getDealType());
         values.add(house.getBasePrice());
-        values.add(house.getBasePrice());
         values.add(house.getRentPrice());
         values.add(house.getSellingPrice());
-        values.add("");
+        values.add("999999999");
         values.add(house.getAddress());
         values.add(house.getIsFromACMServer());
         return values;
@@ -101,9 +101,9 @@ public class AddHouseAction extends HttpServlet {
         String area = requestInJson.get("area").toString();
         String buildingType = requestInJson.get("buildingType").toString();
         String dealType = requestInJson.get("dealType").toString();
-        String rentPrice = dealType.equals("rental") ? requestInJson.getString("rentPrice") : "";
-        String basePrice = dealType.equals("rental") ? requestInJson.getString("basePrice") : "";
-        String sellingPrice = dealType.equals("sale") ? requestInJson.getString("sellingPrice") : "";
+        String rentPrice = dealType.equals("rental") ? requestInJson.getString("rentPrice") : "0";
+        String basePrice = dealType.equals("rental") ? requestInJson.getString("basePrice") : "0";
+        String sellingPrice = dealType.equals("sale") ? requestInJson.getString("sellingPrice") : "0";
         String address = requestInJson.get("address").toString();
         House house = createHouseForUserInput(area, buildingType, noPicURL, dealType,
                 sellingPrice, rentPrice, basePrice, address);
