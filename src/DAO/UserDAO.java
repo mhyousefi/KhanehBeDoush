@@ -184,6 +184,23 @@ public class UserDAO {
         loggedInUser.setBalance(loggedInUser.getBalance() - 1000);
     }
 
+    public static String findUser(String username, String password, String phoneNumber) throws NamingException, SQLException {
+        String query = "SELECT id FROM myUsers WHERE userName = '" + username + "' AND password = '" + password + "' AND phone = '" + phoneNumber
+                + "';";
+        Context ctx = new InitialContext();
+        DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
+        Connection connection = ds.getConnection();
+        Statement statement = connection.createStatement();
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            if(!resultSet.next())
+                return "invalidUsernameAndPassword";
+            return resultSet.getString(1);
+        }catch (Exception e){
+            return "error  " + e.getMessage();
+        }
+    }
+
     public static IndividualUser getIndividualUserById(String id) throws NamingException, SQLException {
         String query = "SELECT * FROM myUsers WHERE id = '" + id + "';";
         Context ctx = new InitialContext();
