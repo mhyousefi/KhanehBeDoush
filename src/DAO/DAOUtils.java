@@ -39,8 +39,6 @@ public class DAOUtils {
         }catch (Exception ignored){}
     }
 
-    // localhost:8080/showHousePhoneNumber
-
     static String executeSql(String sql){
         try{
             Context ctx = new InitialContext();

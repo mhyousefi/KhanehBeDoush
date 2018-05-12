@@ -20,7 +20,7 @@ public class GetHomeById extends HttpServlet{
             String houseID = requestInJson.get("houseId").toString();
             JSONObject jsonResponse = DAOUtils.queryToAcmServer(houseID);
             if(!jsonResponse.has("data")){
-                JSONObject jsonToSend = new JSONObject().put("authenticated", "true");
+                JSONObject jsonToSend = new JSONObject();
                 jsonToSend.put("noResult", "");
                 DAOUtils.sendResponse(response, jsonToSend);
             }else {
@@ -28,7 +28,8 @@ public class GetHomeById extends HttpServlet{
                 DAOUtils.sendResponse(response, specifyPriceDetails(data));
             }
         }catch (Exception e){
-            DAOUtils.sendResponse(response, new JSONObject().put("serverError", e.getMessage()));
+            response.setStatus(500);
+            DAOUtils.sendResponse(response, null);
         }
     }
 

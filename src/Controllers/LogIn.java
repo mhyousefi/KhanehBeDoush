@@ -26,14 +26,16 @@ public class LogIn extends HttpServlet {
             String generatedToken = generateTokenIfUserNameAndPasswordAreTrue(requestInJson.getString("username"),
                     requestInJson.getString("password"), requestInJson.getString("phoneNumber"));
             if(generatedToken.equals("invalidUsernameAndPassword")) {
-                DAOUtils.sendResponse(response, new JSONObject().put("invalidUsernameAndPassword", true));
+                response.setStatus(400);
+                DAOUtils.sendResponse(response, null);
                 return;
             }
-            if(generatedToken.equals("error")) {
-                DAOUtils.sendResponse(response, new JSONObject().put("severError", true));
-                return;
+            if(!generatedToken.equals("error")) {
+                DAOUtils.sendResponse(response, new JSONObject().put("token", generatedToken));
+            }else {
+                response.setStatus(504);
+                DAOUtils.sendResponse(response, null);
             }
-            DAOUtils.sendResponse(response, new JSONObject().put("token", generatedToken));
         }catch (Exception e){
             response.setStatus(504);
             DAOUtils.sendResponse(response, null);

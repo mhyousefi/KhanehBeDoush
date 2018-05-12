@@ -50,7 +50,8 @@ public class IncreaseCreditFormAction extends HttpServlet {
             }
             DAOUtils.sendResponse(response, jsonResponse);
         }catch (Exception e){
-            DAOUtils.sendResponse(response, new JSONObject().put("serverError", e.getMessage()));
+            response.setStatus(500);
+            DAOUtils.sendResponse(response, null);
         }
     }
 

@@ -26,7 +26,8 @@ public class Houses extends HttpServlet {
             JSONObject requestInJson = (JSONObject) request.getAttribute("requestInJson");
             responseForAdmin(requestInJson, loggedInUser, response);
         }catch (Exception e){
-            DAOUtils.sendResponse(response, new JSONObject().put("serverError", e.getMessage()));
+            response.setStatus(500);
+            DAOUtils.sendResponse(response, null);
         }
     }
 
@@ -35,11 +36,11 @@ public class Houses extends HttpServlet {
             return;
         int[] ranges = new int[]{requestInJson.getInt("lowerRange"), requestInJson.getInt("upperRange")};
         if(!rangesAreValid(ranges)){
-            DAOUtils.sendResponse(response, new JSONObject().put("invalidRanges", true));
+            response.setStatus(400);
+            DAOUtils.sendResponse(response, null);
             return;
         }
         JSONObject responseInJson = new JSONObject().put("results", getListOfHousesForAdmin(ranges));
-        responseInJson.put("authenticated", true);
         DAOUtils.sendResponse(response, responseInJson);
     }
 
@@ -52,7 +53,6 @@ public class Houses extends HttpServlet {
             return;
         ArrayList<String> results = getListOfHousesForNormalUser(loggedInUser.getId());
         JSONObject responseInJson = new JSONObject().put("results", results);
-        responseInJson.put("authenticated", true);
         DAOUtils.sendResponse(response, responseInJson);
     }
 }

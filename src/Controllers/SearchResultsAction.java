@@ -7,6 +7,7 @@ import Entities.House;
 import Utilities.HeaderUtilities;
 import Utilities.JSONFunctions;
 import org.json.JSONObject;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,19 +42,16 @@ public class SearchResultsAction extends HttpServlet {
             String propertyTypeTempValue = requestInJson.get("propertyType").toString();
             String propertyType = propertyTypeTempValue.equals("apartment") ? PersianContent.getPhrase("APARTMENT") :
                                     propertyTypeTempValue.equals("villa")  ? PersianContent.getPhrase("VILLA") : propertyTypeTempValue;
-            try {
-                ArrayList<House> searchResults;
-                searchResults = HouseDAO.searchHouses(minArea, maxPrice, dealType, propertyType);
-                JSONObject jsonResponse = new JSONObject();
-                jsonResponse.put("results", searchResults);
-                jsonResponse.put("dealType", dealType);
-                response.setContentType("application/json");
-                DAOUtils.sendResponse(response, jsonResponse);
-            }catch (Exception ignored){
+            ArrayList<House> searchResults;
+            searchResults = HouseDAO.searchHouses(minArea, maxPrice, dealType, propertyType);
+            JSONObject jsonResponse = new JSONObject();
+            jsonResponse.put("results", searchResults);
+            response.setContentType("application/json");
+            DAOUtils.sendResponse(response, jsonResponse);
 
-            }
         } catch (IOException e) {
-            e.printStackTrace();
+            response.setStatus(500);
+            DAOUtils.sendResponse(response, null);
         }
     }
 
