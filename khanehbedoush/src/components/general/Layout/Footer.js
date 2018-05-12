@@ -1,11 +1,11 @@
 import React from 'react'
 import {Component} from 'react'
-import Fa from '../../../constants/Fa'
-import '../../../styles/Footer/Footer.css'
+import Fa from 'src/constants/Fa'
+import 'src/styles/Footer/Footer.css'
 
-import InstagramLogo from '../../../assets/images/icons/200px-Instagram_logo_2016.svg.png'
-import TelegramLogo from '../../../assets/images/icons/200px-Telegram_logo.svg.png'
-import TwitterLogo from '../../../assets/images/icons/Twitter_bird_logo_2012.svg.png'
+import InstagramLogo from 'src/assets/images/icons/200px-Instagram_logo_2016.svg.png'
+import TelegramLogo from 'src/assets/images/icons/200px-Telegram_logo.svg.png'
+import TwitterLogo from 'src/assets/images/icons/Twitter_bird_logo_2012.svg.png'
 
 export default class Footer extends Component {
   render() {

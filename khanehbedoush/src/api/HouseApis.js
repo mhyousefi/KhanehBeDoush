@@ -1,5 +1,5 @@
 import { apiUrls } from 'src/constants/constants'
-import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
+import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 
 export const searchHousesAPI = async (maxPrice, minArea, propertyType, dealType) => {
   return fetch(apiUrls['searchHouse'], {

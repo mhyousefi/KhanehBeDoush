@@ -37,6 +37,15 @@ option:first-child {
     border-radius: 8px;
 }
 
+.text-right{
+    text-align: right;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
 .text {
     font-family: Shabnam;
     text-align: center;

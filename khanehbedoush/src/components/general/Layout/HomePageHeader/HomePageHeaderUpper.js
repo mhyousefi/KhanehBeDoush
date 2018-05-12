@@ -7,6 +7,7 @@ import 'src/styles/HomePage/HomePageResponsive.css'
 
 export default class HomePageHeaderUpper extends Component {
   render () {
+    const { user, onCreditChange, onLogin, onLoginModalOpen } = this.props
     return (
       <div className="homePageHeaderUpper">
         <div className="headerProfileArea">
@@ -16,7 +17,13 @@ export default class HomePageHeaderUpper extends Component {
               {Fa["profile area"]}
             </div>
           </div>
-          <ProfileAreaDropDown isHomePage={true} credit={this.props.credit}/>
+          <ProfileAreaDropDown
+            isHomePage={true}
+            user={user}
+            onCreditChange={onCreditChange}
+            onLoginModalOpen={onLoginModalOpen}
+            onLogin={onLogin}
+          />
         </div>
       </div>
     )

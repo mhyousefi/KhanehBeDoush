@@ -57,4 +57,11 @@ module.exports = {
   'owner phone number': 'شماره مالک/مشاور',
   'description': 'توضیحات',
   'address': 'آدرس',
+
+  //SignIn
+  'sign in text': 'لطفا نام کاربری و گذرنامه خود را وارد کنید',
+  'sign in title': 'ورود به حساب کاربری',
+  'sign in': 'ورود',
+  'username': 'شناسه کاربری',
+  'password': 'رمز عبور',
 }

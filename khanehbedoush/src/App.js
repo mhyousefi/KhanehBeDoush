@@ -10,28 +10,36 @@ export default class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      customerCredit: '0',
+      user: null
     }
   }
 
-  componentWillMount() {
-    currentCreditAPI().then((response) => {
-      this.setState({customerCredit: response})
-    })
-  }
+  // componentWillMount() {
+    // currentCreditAPI().then((response) => {
+    //   this.setState({customerCredit: response})
+    // })
+  // }
 
   _handleCreditChange = (amount) => {
+    const { user } = this.state
     if (!isNaN(amount)) {
-      const newCredit = parseInt(this.state.customerCredit) + parseInt(amount)
-      this.setState({customerCredit: newCredit})
+      const newCredit = parseInt(user['credit']) + parseInt(amount)
+      let newUser = user
+      newUser['credit'] = newCredit
+      this.setState({user: newUser})
     }
+  }
+
+  _handleLogin = (loggedInUser) => {
+    this.setState({user: loggedInUser})
   }
 
   _renderHomePage = () => {
     return (
       <HomePage
-        credit={this.state.customerCredit}
+        user={this.state.user}
         onCreditChange={this._handleCreditChange}
+        onLogin={this._handleLogin}
       />
     )
   }
@@ -39,8 +47,9 @@ export default class App extends Component {
   _renderAddCreditPage = () => {
     return (
       <AddCreditPage
-        credit={this.state.customerCredit}
+        user={this.state.user}
         onCreditChange={this._handleCreditChange}
+        onLogin={this._handleLogin}
       />
     )
   }
@@ -49,8 +58,9 @@ export default class App extends Component {
     return (
       <SearchResultsPage
         match={props.match}
-        credit={this.state.customerCredit}
+        user={this.state.user}
         onCreditChange={this._handleCreditChange}
+        onLogin={this._handleLogin}
       />
     )
   }
@@ -59,8 +69,9 @@ export default class App extends Component {
     return (
       <HomeDetailPage
         match={props.match}
-        credit={this.state.customerCredit}
+        user={this.state.user}
         onCreditChange={this._handleCreditChange}
+        onLogin={this._handleLogin}
       />
     )
   }
@@ -72,18 +83,18 @@ export default class App extends Component {
           exact path="/"
           render={this._renderHomePage}
         />
-        <Route
-          exact path='/AddCredit'
-          render={this._renderAddCreditPage}
-        />
-        <Route
-          exact path='/SearchResults/:maxPrice/:minArea/:propertyType/:dealType'
-          render={this._renderSearchResultsPage}
-        />
-        <Route
-          exact path='/HomeDetail/:houseId'
-          render={this._renderHomeDetailPage}
-        />
+        {/*<Route*/}
+          {/*exact path='/AddCredit'*/}
+          {/*render={this._renderAddCreditPage}*/}
+        {/*/>*/}
+        {/*<Route*/}
+          {/*exact path='/SearchResults/:maxPrice/:minArea/:propertyType/:dealType'*/}
+          {/*render={this._renderSearchResultsPage}*/}
+        {/*/>*/}
+        {/*<Route*/}
+          {/*exact path='/HomeDetail/:houseId'*/}
+          {/*render={this._renderHomeDetailPage}*/}
+        {/*/>*/}
       </Switch>
     )
   }

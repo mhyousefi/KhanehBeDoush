@@ -1,4 +1,4 @@
-import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
+import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from '../constants/constants'
 
 export const payForPhoneNumAPI = (houseId) => {

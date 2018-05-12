@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Paper, MuiThemeProvider } from 'material-ui'
-import { toPersian } from 'src/Utilities/formats'
+import { toPersian } from 'src/utilities/formats'
 import Fa from 'src/constants/Fa'
 import HomeDetailInfoRow from './HomeDetailInfoRow'
 import HomeTag from './HomeTag'

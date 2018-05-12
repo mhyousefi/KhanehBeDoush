@@ -4,7 +4,7 @@ import Fa from 'src/constants/Fa'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import 'src/styles/General.css'
 import 'src/styles/text.css'
-import { toPersian } from '../../../Utilities/formats'
+import { toPersian } from 'src/utilities/formats'
 
 
 export default class SearchBoxItem extends Component {

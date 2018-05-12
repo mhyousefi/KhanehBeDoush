@@ -12,6 +12,7 @@ import HomePageHeaderPic4 from 'src/assets/images/Banner/michal-kubalczyk-260909
 
 export default class HomePageHeader extends Component {
   render () {
+    const { user, onCreditChange, onLogin, onLoginModalOpen } = this.props
     return (
       <header className="homePageHeaderContainer">
         <div id="cf3">
@@ -20,7 +21,12 @@ export default class HomePageHeader extends Component {
           <img className="second" src={HomePageHeaderPic3}/>
           <img className="third" src={HomePageHeaderPic4}/>
 
-          <HomePageHeaderUpper credit={this.props.credit}/>
+          <HomePageHeaderUpper
+            user={user}
+            onCreditChange={onCreditChange}
+            onLoginModalOpen={onLoginModalOpen}
+            onLogin={onLogin}
+          />
           <HomePageHeaderMiddle/>
           <HomePageHeaderLower/>
         </div>

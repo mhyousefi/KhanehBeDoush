@@ -11,11 +11,12 @@ export default class ProfileAreaDropDown extends Component {
   }
 
   _handleButtonClick = () => {
-    this.setState({ redirectToAddCredit: true });
+    this.props.onLoginModalOpen()
+    // this.setState({ redirectToAddCredit: true });
   }
 
   render() {
-    const { credit } = this.props
+    const { credit, handleSignInModalOpen } = this.props
 
     if (this.state.redirectToAddCredit) {
       return <Redirect to='/AddCredit'/>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { searchParamsAreValid } from 'src/Utilities/formats'
+import { searchParamsAreValid, toEnglish } from 'src/utilities/formats'
 import { messages } from 'src/constants/FaTexts'
 import SearchFormUpper from './SearchFormUpper'
 import SearchFormLower from './SearchFormLower'
@@ -8,9 +8,7 @@ import 'src/styles/HomePage/HomePageHeader.css'
 import 'src/styles/HomePage/HomePageResponsive.css'
 import 'src/styles/SearchForm/SearchForm.css'
 import 'src/styles/SearchForm/SearchFormMediaQuery.css'
-import { toEnglish } from 'src/Utilities/formats'
 import Fa from 'src/constants/Fa'
-
 
 
 export default class SearchForm extends Component {
