@@ -31,7 +31,7 @@ export default class ProfileAreaDropDown extends Component {
       return (
         <div className="profileAreaDropDownContent curvedCorner" id={this.props.isHomePage ? "homePageProfileArea" : ""}>
           {messages["not logged in"]}
-          <Button onClick={this._handleSignInBtnClick}>
+          <Button color="secondary" onClick={this._handleSignInBtnClick}>
             {Fa["sign into account"]}
           </Button>
         </div>
@@ -48,9 +48,9 @@ export default class ProfileAreaDropDown extends Component {
           <div className="text">{user.credit + " " + Fa['Touman']}</div>
         </div>
         <div className="userInfoCardLowerRow">
-          <button className="userInfoCardBtn text curvedCorner" onClick={this._handleAddCreditButtonClick}>
+          <Button color="primary" className="userInfoCardBtn text curvedCorner" onClick={this._handleAddCreditButtonClick}>
             {Fa['increase credit']}
-          </button>
+          </Button>
         </div>
       </div>
     )

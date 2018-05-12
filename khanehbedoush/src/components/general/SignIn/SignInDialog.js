@@ -65,7 +65,6 @@ export default class SignInModal extends Component {
               label={Fa['password']}
               onChange={this._onPasswordChange}
             />
-
           </div>
         </DialogContent>
         <DialogActions>

@@ -32,11 +32,11 @@ export default class HomePage extends Component {
         user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
-        onLogin={onLogin}
       >
         <SignInDialog
           open={modalOpen}
           onDialogClose={this.handleModalClose}
+          onLogin={onLogin}
         />
         <HomePageAdBox/>
         <HomePageInfo/>
