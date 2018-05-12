@@ -6,10 +6,10 @@ import 'src/styles/General.css'
 
 export default class GeneralHeader extends Component {
   render() {
-    const { pageTitle, credit } = this.props
+    const { pageTitle, user, onLoginModalOpen } = this.props
     return (
       <header className="addCreditHeaderContainer defaultHeaderHeight rtl">
-        <HeaderUpperRow credit={credit}/>
+        <HeaderUpperRow credit={user.credit} onLoginModalOpen={onLoginModalOpen}/>
         <HeaderImageBar pageTitle={pageTitle}/>
       </header>
     )

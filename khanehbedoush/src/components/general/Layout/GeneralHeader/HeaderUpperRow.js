@@ -9,6 +9,7 @@ import ProfileArea from './ProfileArea'
 
 export default class HeaderUpperRow extends Component {
   render () {
+    const { onLoginModalOpen, credit } = this.props
     return (
       <div className="headerUpperRowContainer">
         <div className="headerUpperRow">
@@ -16,7 +17,7 @@ export default class HeaderUpperRow extends Component {
           <Link to='/' className="headerPageTitleTxt noUnderLine">
             {Fa['KhanehBeDoush']}
           </Link>
-          <ProfileArea credit={this.props.credit}/>
+          <ProfileArea credit={credit} onLoginModalOpen={onLoginModalOpen}/>
         </div>
       </div>
     )

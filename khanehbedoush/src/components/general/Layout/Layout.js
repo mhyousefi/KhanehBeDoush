@@ -10,7 +10,7 @@ import 'src/styles/PageContainers.css'
 
 export default class Layout extends Component {
   _chooseHeader = (pageTitle) => {
-    const { isHomePage, user, onCreditChange, onLogin, onLoginModalOpen } = this.props
+    const { isHomePage, user, onLoginModalOpen } = this.props
     if (isHomePage) {
       return (
         <HomePageHeader
@@ -22,6 +22,8 @@ export default class Layout extends Component {
       return (
         <GeneralHeader
           pageTitle={pageTitle}
+          user={user}
+          onLoginModalOpen={onLoginModalOpen}
         />
       )
     }

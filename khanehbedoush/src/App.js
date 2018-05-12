@@ -10,15 +10,12 @@ export default class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: null
+      user: {
+        name: 'محمد حسین یوسفی',
+        credit: '6900',
+      }
     }
   }
-
-  // componentWillMount() {
-    // currentCreditAPI().then((response) => {
-    //   this.setState({customerCredit: response})
-    // })
-  // }
 
   _handleCreditChange = (amount) => {
     const { user } = this.state
@@ -83,18 +80,18 @@ export default class App extends Component {
           exact path="/"
           render={this._renderHomePage}
         />
-        {/*<Route*/}
-          {/*exact path='/AddCredit'*/}
-          {/*render={this._renderAddCreditPage}*/}
-        {/*/>*/}
-        {/*<Route*/}
-          {/*exact path='/SearchResults/:maxPrice/:minArea/:propertyType/:dealType'*/}
-          {/*render={this._renderSearchResultsPage}*/}
-        {/*/>*/}
-        {/*<Route*/}
-          {/*exact path='/HomeDetail/:houseId'*/}
-          {/*render={this._renderHomeDetailPage}*/}
-        {/*/>*/}
+        <Route
+          exact path='/AddCredit'
+          render={this._renderAddCreditPage}
+        />
+        <Route
+          exact path='/SearchResults/:maxPrice/:minArea/:propertyType/:dealType'
+          render={this._renderSearchResultsPage}
+        />
+        <Route
+          exact path='/HomeDetail/:houseId'
+          render={this._renderHomeDetailPage}
+        />
       </Switch>
     )
   }

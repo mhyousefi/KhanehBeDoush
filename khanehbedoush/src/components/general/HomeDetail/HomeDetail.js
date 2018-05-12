@@ -16,9 +16,11 @@ export default class HomeDetail extends Component {
   }
 
   _handleButtonClick = () => {
-    const {hasPaid, onCreditChange, houseId, credit} = this.props
-    if (!hasPaid) {
-      if (parseInt(credit) < 1000) {
+    const { hasPaid, onCreditChange, houseId, user, onLoginModalOpen } = this.props
+    if (!user) {
+      onLoginModalOpen()
+    } else if (!hasPaid) {
+      if (parseInt(user.credit) < 1000) {
         alert(messages['insufficient credit'])
       } else {
         payForPhoneNumAPI(houseId).then((response) => {

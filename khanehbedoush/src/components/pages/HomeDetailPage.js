@@ -4,6 +4,7 @@ import { hasPaidForPhoneNumAPI } from 'src/api/PhoneNumPurchase'
 import HomeDetail from 'src/components/general/HomeDetail/HomeDetail'
 import Layout from 'src/components/general/Layout/Layout'
 import Fa from 'src/constants/Fa'
+import SignInDialog from '../general/SignIn/SignInDialog'
 
 
 export default class HomeDetailPage extends Component {
@@ -11,8 +12,17 @@ export default class HomeDetailPage extends Component {
     super(props)
     this.state = {
       searchResult: null,
-      hasPaidForPhoneNum: false
+      hasPaidForPhoneNum: false,
+      modalOpen: false,
     }
+  }
+
+  handleModalClose = () => {
+    this.setState({ modalOpen: false });
+  }
+
+  handleModalOpen = () => {
+    this.setState({ modalOpen: true });
   }
 
   _getHouseFromServer = (houseId) => {
@@ -58,23 +68,30 @@ export default class HomeDetailPage extends Component {
   }
 
   render () {
-    const {houseId} = this.props.match.params
-    const {credit, onCreditChange} = this.props
-    const {searchResult, hasPaidForPhoneNum} = this.state
+    const { houseId } = this.props.match.params
+    const { user, onCreditChange, onLogin } = this.props
+    const { searchResult, hasPaidForPhoneNum, modalOpen } = this.state
 
     return (
       <Layout
         isHomePage={false}
         pageTitle={Fa['home detail page']}
-        credit={credit}
+        credit={user.credit}
         onCreditChange={onCreditChange}
+        onLoginModalOpen={this.handleModalOpen}
       >
+        <SignInDialog
+          open={modalOpen}
+          onDialogClose={this.handleModalClose}
+          onLogin={onLogin}
+        />
         <HomeDetail
           house={searchResult}
           hasPaid={hasPaidForPhoneNum}
           houseId={houseId}
-          credit={credit}
+          user={user}
           onCreditChange={onCreditChange}
+          onLoginModalOpen={this.handleModalOpen}
         />
       </Layout>
     )
