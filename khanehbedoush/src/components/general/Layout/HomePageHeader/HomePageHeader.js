@@ -23,9 +23,7 @@ export default class HomePageHeader extends Component {
 
           <HomePageHeaderUpper
             user={user}
-            onCreditChange={onCreditChange}
             onLoginModalOpen={onLoginModalOpen}
-            onLogin={onLogin}
           />
           <HomePageHeaderMiddle/>
           <HomePageHeaderLower/>

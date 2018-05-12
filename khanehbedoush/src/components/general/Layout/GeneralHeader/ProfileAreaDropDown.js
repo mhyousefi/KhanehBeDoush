@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import Fa from 'src/constants/Fa'
+import { messages } from 'src/constants/FaTexts'
 import 'src/styles/Header/Header.css'
 import 'src/styles/UserInfoCard/UserInfoCard.css'
+import { Button } from 'material-ui'
 
 
 export default class ProfileAreaDropDown extends Component {
@@ -10,29 +12,43 @@ export default class ProfileAreaDropDown extends Component {
     redirectToAddCredit: false
   }
 
-  _handleButtonClick = () => {
+  _handleAddCreditButtonClick = () => {
+    this.setState({ redirectToAddCredit: true });
+  }
+
+  _handleSignInBtnClick = () => {
     this.props.onLoginModalOpen()
-    // this.setState({ redirectToAddCredit: true });
   }
 
   render() {
-    const { credit, handleSignInModalOpen } = this.props
+    const { user } = this.props
 
     if (this.state.redirectToAddCredit) {
       return <Redirect to='/AddCredit'/>
     }
 
+    if (!user) {
+      return (
+        <div className="profileAreaDropDownContent curvedCorner" id={this.props.isHomePage ? "homePageProfileArea" : ""}>
+          {messages["not logged in"]}
+          <Button onClick={this._handleSignInBtnClick}>
+            {Fa["sign into account"]}
+          </Button>
+        </div>
+      )
+    }
+
     return (
       <div className="profileAreaDropDownContent curvedCorner" id={this.props.isHomePage ? "homePageProfileArea" : ""}>
         <div className="text userInfoCardUpperRow userInfoCardCommonRowProps">
-          {Fa['Behnam Homayoun']}
+          {user.name}
         </div>
         <div className="userInfoCardMiddleRow userInfoCardCommonRowProps">
           <div className="text">{Fa['credit']}</div>
-          <div className="text">{credit + " " + Fa['Touman']}</div>
+          <div className="text">{user.credit + " " + Fa['Touman']}</div>
         </div>
         <div className="userInfoCardLowerRow">
-          <button className="userInfoCardBtn text curvedCorner" onClick={this._handleButtonClick}>
+          <button className="userInfoCardBtn text curvedCorner" onClick={this._handleAddCreditButtonClick}>
             {Fa['increase credit']}
           </button>
         </div>

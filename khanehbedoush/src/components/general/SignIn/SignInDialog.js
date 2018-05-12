@@ -1,8 +1,8 @@
-import { FormControl, Input, InputLabel, TextField } from 'material-ui'
+import React, { Component } from 'react'
+import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
 import Dialog, { DialogActions, DialogContent, DialogContentText, DialogTitle, } from 'material-ui/Dialog'
 import Slide from 'material-ui/transitions/Slide'
-import React, { Component } from 'react'
 import Fa from 'src/constants/Fa'
 import 'src/styles/General.css'
 
@@ -43,7 +43,7 @@ export default class SignInModal extends Component {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
         className="rtl"
-        fullWidth={true}
+        fullWidth
       >
         <DialogTitle id="alert-dialog-slide-title">
           {Fa['sign in title']}

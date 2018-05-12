@@ -62,6 +62,7 @@ module.exports = {
   'sign in text': 'لطفا نام کاربری و گذرنامه خود را وارد کنید',
   'sign in title': 'ورود به حساب کاربری',
   'sign in': 'ورود',
+  'sign into account': 'ورود به حساب کاربری',
   'username': 'شناسه کاربری',
   'password': 'رمز عبور',
 }

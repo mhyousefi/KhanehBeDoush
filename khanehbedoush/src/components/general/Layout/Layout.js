@@ -15,9 +15,7 @@ export default class Layout extends Component {
       return (
         <HomePageHeader
           user={user}
-          onCreditChange={onCreditChange}
           onLoginModalOpen={onLoginModalOpen}
-          onLogin={onLogin}
         />
       )
     } else {

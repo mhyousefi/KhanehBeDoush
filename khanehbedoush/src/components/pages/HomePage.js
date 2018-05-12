@@ -10,7 +10,7 @@ export default class HomePage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      modalOpen: true
+      modalOpen: false
     }
   }
 

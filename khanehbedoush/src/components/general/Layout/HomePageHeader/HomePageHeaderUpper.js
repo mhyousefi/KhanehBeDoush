@@ -20,9 +20,7 @@ export default class HomePageHeaderUpper extends Component {
           <ProfileAreaDropDown
             isHomePage={true}
             user={user}
-            onCreditChange={onCreditChange}
             onLoginModalOpen={onLoginModalOpen}
-            onLogin={onLogin}
           />
         </div>
       </div>
