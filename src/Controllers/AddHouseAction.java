@@ -1,18 +1,21 @@
 package Controllers;
 
-import Constants.PersianContent;
+import DAO.DAOUtils;
 import Entities.House;
 import Utilities.HeaderUtilities;
-import Utilities.HouseFactory;
-import Utilities.JSONFunctions;
 import org.json.JSONObject;
 
+import javax.naming.NamingException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import static DAO.HouseDAO.insertNewHouse;
+import static Utilities.HouseFactory.createHouseForUserInput;
 
 
 /*
@@ -20,11 +23,10 @@ import java.io.PrintWriter;
 *
 * {
 	"area" : "100",
-	"buildingType" : "آپارتمان",
+	"buildingType" : "apartment",
 	"dealType" : "sale",
-	"price" : "100000000",
+	"sellingPrice" : "100000000",
 	"phoneNumber" : "09102242927",
-	"description" : "a classical house",
 	"address" : "somewhere in tehran"
 }
 *
@@ -33,27 +35,78 @@ import java.io.PrintWriter;
 @WebServlet("/addHouse")
 public class AddHouseAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HeaderUtilities.setHttpServletResponseHeader(response);
-        PrintWriter out = response.getWriter();
-        JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
+        try {
+            HeaderUtilities.setHttpServletResponseHeader(response);
+            JSONObject requestInJson = (JSONObject) request.getAttribute("requestInJson");
+            ArrayList<String> values = validateAndAddValues(requestInJson);
+            DAOUtils.sendResponse(response, new JSONObject().put("values", values));
+            if(values != null) {
+                insertNewHouse(values);
+                DAOUtils.sendResponse(response, new JSONObject().put("values", values));
+            } else {
+                JSONObject responseInJson = new JSONObject().put("invalidInput", true);
+                responseInJson.put("serverError", false);
+                DAOUtils.sendResponse(response, responseInJson);
+            }
+        }catch (Exception e){
+            JSONObject responseInJson = new JSONObject().put("invalidInput", false);
+            responseInJson.put("serverError", true);
+            DAOUtils.sendResponse(response, responseInJson);
+        }
+    }
+
+    private static boolean hasAllValues(JSONObject requestInJson){
+        if(!requestInJson.has("area"))
+            return false;
+        if (!requestInJson.has("buildingType"))
+            return false;
+        if (!requestInJson.has("dealType"))
+            return false;
+        return requestInJson.has("address");
+    }
+
+    private static boolean valuesAreValid(JSONObject requestInJson){
+        if(!hasAllValues(requestInJson))
+            return false;
+        if(!(requestInJson.get("dealType").toString().equals("sale") || requestInJson.get("dealType").toString().equals("rental")))
+            return false;
+        if(requestInJson.get("dealType").toString().equals("sale") && !requestInJson.has("sellingPrice"))
+            return false;
+        if(requestInJson.get("dealType").toString().equals("rental") && (!requestInJson.has("rentPrice") || !requestInJson.has("basePrice")))
+            return false;
+        return requestInJson.get("buildingType").toString().equals("apartment") || requestInJson.get("buildingType").toString().equals("villa");
+    }
+
+    private static ArrayList<String> addValues(House house){
+        ArrayList<String> values = new ArrayList<>();
+        values.add(house.getId());
+        values.add(house.getArea());
+        values.add(house.getBuildingType());
+        values.add(house.getImageURL());
+        values.add(house.getDealType());
+        values.add(house.getBasePrice());
+        values.add(house.getBasePrice());
+        values.add(house.getRentPrice());
+        values.add(house.getSellingPrice());
+        values.add("");
+        values.add(house.getAddress());
+        values.add(house.getIsFromACMServer());
+        return values;
+    }
+
+    private static ArrayList<String> validateAndAddValues(JSONObject requestInJson) throws SQLException, NamingException {
+        if(!valuesAreValid(requestInJson))
+            return null;
+        String noPicURL = "/images/no-pic.jpg";
         String area = requestInJson.get("area").toString();
         String buildingType = requestInJson.get("buildingType").toString();
-        String noPicURL = "/images/no-pic.jpg";
         String dealType = requestInJson.get("dealType").toString();
-        if(dealType.equals("sale")){
-            dealType = PersianContent.getPhrase("SALE");
-        }else if(dealType.equals("rental")){
-            dealType = PersianContent.getPhrase("RENTAL");
-        }
-        String price = requestInJson.get("price").toString();
+        String rentPrice = dealType.equals("rental") ? requestInJson.getString("rentPrice") : "";
+        String basePrice = dealType.equals("rental") ? requestInJson.getString("basePrice") : "";
+        String sellingPrice = dealType.equals("sale") ? requestInJson.getString("sellingPrice") : "";
         String address = requestInJson.get("address").toString();
-        String id = "";
-        JSONObject jsonResponse = new JSONObject();
-        House newHouse = HouseFactory.createHouseForUserInput(area, buildingType, noPicURL, dealType,
-                price, address, id);
-        //Database.addHouse(newHouse);
-        jsonResponse.put("response", "true");
-        out.print(jsonResponse);
-        out.flush();
+        House house = createHouseForUserInput(area, buildingType, noPicURL, dealType,
+                sellingPrice, rentPrice, basePrice, address);
+        return addValues(house);
     }
 }

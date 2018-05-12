@@ -5,6 +5,12 @@ import Constants.PersianContent;
 import Entities.House;
 import org.json.JSONObject;
 
+import javax.naming.NamingException;
+import java.sql.SQLException;
+import java.util.Random;
+
+import static DAO.HouseDAO.numOfHousesInTable;
+
 public class HouseFactory {
     public static House createHouseForAcmInput(String area, String buildingType, String pictureURL, String dealType,
                                                JSONObject priceInfo, String address, String id) throws IllegalArgumentException {
@@ -28,24 +34,11 @@ public class HouseFactory {
     }
 
     public static House createHouseForUserInput(String area, String buildingType, String pictureURL, String dealType,
-                                               String price, String address, String id) throws IllegalArgumentException {
-        String basePrice = "0", rentPrice = "0", sellingPrice = "0";
-        if (dealTypeIsValid(dealType)) {
-            if (houseIsForRent(dealType)) {
-                rentPrice = price;
-                dealType = PersianContent.getPhrase("RENTAL");
-            }
-            else {
-                sellingPrice = price;
-                dealType = PersianContent.getPhrase("SALE");
-            }
-        }
-
-        if (!dealTypeIsValid(dealType) || !pricesAreValid(basePrice, rentPrice, sellingPrice))
-            throw new IllegalArgumentException();
+                                               String sellingPrice, String rentPrice, String basePrice, String address)
+            throws IllegalArgumentException, SQLException, NamingException {
 
         return new House(area, buildingType, pictureURL, dealType, basePrice, rentPrice, sellingPrice,
-                address, id);
+                address, String.valueOf(numOfHousesInTable() + 1 + new Random(712546342).nextInt()));
     }
 
     private static boolean pricesAreValid (String basePrice, String rentPrice, String sellingPrice) {

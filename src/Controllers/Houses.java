@@ -26,8 +26,9 @@ public class Houses extends HttpServlet {
             JSONObject requestInJson = (JSONObject) request.getAttribute("requestInJson");
             responseForAdmin(requestInJson, loggedInUser, response);
         }catch (Exception e){
-            response.setStatus(500);
-            DAOUtils.sendResponse(response, null);
+            JSONObject responseInJson = new JSONObject().put("invalidInput", false);
+            responseInJson.put("serverError", true);
+            DAOUtils.sendResponse(response, responseInJson);
         }
     }
 
