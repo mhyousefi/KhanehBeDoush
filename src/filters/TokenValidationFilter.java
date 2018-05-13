@@ -29,24 +29,35 @@ public class TokenValidationFilter implements Filter {
             HttpServletRequest request = (HttpServletRequest) servletRequest;
             HttpServletResponse response = (HttpServletResponse) servletResponse;
             HeaderUtilities.setHttpServletResponseHeader(response);
-            String token = request.getHeader(HttpHeaders.AUTHORIZATION);
-            String idOfUser = getUserIdIfTokenIsValid(token);
-            if (idOfUser.equals("invalidToken")) {
-                response.setStatus(403);
-                DAOUtils.sendResponse(response, null);
-            } else {
-                try {
-                    JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
-                    IndividualUser user = DAO.UserDAO.getIndividualUserById(idOfUser);
-                    servletRequest.setAttribute("user", user);
-                    servletRequest.setAttribute("requestInJson", requestInJson);
-                    filterChain.doFilter(servletRequest, servletResponse);
-                } catch (Exception e) {
-                    DAOUtils.sendResponse(response, new JSONObject().put("serverError", true));
+            String method = request.getMethod(), idOfUser;
+            JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
+            if(!method.equals("OPTIONS")){
+                String token = request.getHeader(HttpHeaders.AUTHORIZATION);
+                idOfUser = getUserIdIfTokenIsValid(token);
+                if (idOfUser.equals("invalidToken")) {
+                    response.setStatus(403);
+                    DAOUtils.sendResponse(response, null);
+                } else {
+                    tasksWhenTokenIsValid(servletRequest, servletResponse, filterChain, response, idOfUser, requestInJson);
                 }
+            }else {
+                idOfUser = requestInJson.get("id").toString();
+                tasksWhenTokenIsValid(servletRequest, servletResponse, filterChain, response, idOfUser, requestInJson);
             }
         }catch (Exception e){
             DAOUtils.sendResponse((HttpServletResponse) servletResponse, new JSONObject().put("serverError", true));
+        }
+    }
+
+    private void tasksWhenTokenIsValid(ServletRequest servletRequest, ServletResponse servletResponse,
+                                       FilterChain filterChain, HttpServletResponse response, String id, JSONObject requestInJson) {
+        try {
+            IndividualUser user = DAO.UserDAO.getIndividualUserById(id);
+            servletRequest.setAttribute("user", user);
+            servletRequest.setAttribute("requestInJson", requestInJson);
+            filterChain.doFilter(servletRequest, servletResponse);
+        } catch (Exception e) {
+            DAOUtils.sendResponse(response, new JSONObject().put("serverError", true));
         }
     }
 

@@ -52,6 +52,7 @@ public class LogIn extends HttpServlet {
         JSONObject jsonResponse = new JSONObject().put("token", generatedStringArray[0]);
         jsonResponse.put("name", loggedInUser.getName());
         jsonResponse.put("credit", loggedInUser.getBalance());
+        jsonResponse.put("id", loggedInUser.getId());
         return jsonResponse;
     }
 
