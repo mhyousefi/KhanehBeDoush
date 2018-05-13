@@ -1,3 +1,4 @@
+import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from 'src/constants/constants'
 
 export const LoginAPI = async (username, password, phoneNumber) => {
@@ -12,13 +13,17 @@ export const LoginAPI = async (username, password, phoneNumber) => {
       'phoneNumber': phoneNumber,
     }),
   })
-    .then((response) => {
-      if (response.status >= 200 && response.status < 300) {
-        return response.json()
-      } else if (response.status === 400) {
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(function(data) {
+      console.log("ENTERED MOSTARAH!")
+      console.log(data)
+      if (data['invalidInput'] && data['invalidInput'] === true) {
         return 'wrong input'
-      } else if (response.status === 504) {
+      } else if (data['serverError'] && data['serverError'] === true) {
         return 'server error'
+      } else {
+        return data
       }
     }).catch(function (error) {
       console.log("Fetch error ==> " + error.message)
