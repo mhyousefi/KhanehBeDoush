@@ -13,16 +13,16 @@ export default class HomeDetailPage extends Component {
     this.state = {
       searchResult: null,
       hasPaidForPhoneNum: false,
-      modalOpen: false,
+      loginDialogOpen: false,
     }
   }
 
   handleModalClose = () => {
-    this.setState({ modalOpen: false });
+    this.setState({ loginDialogOpen: false });
   }
 
   handleModalOpen = () => {
-    this.setState({ modalOpen: true });
+    this.setState({ loginDialogOpen: true });
   }
 
   _getHouseFromServer = (houseId) => {
@@ -70,7 +70,7 @@ export default class HomeDetailPage extends Component {
   render () {
     const { houseId } = this.props.match.params
     const { user, onCreditChange, onLogin } = this.props
-    const { searchResult, hasPaidForPhoneNum, modalOpen } = this.state
+    const { searchResult, hasPaidForPhoneNum, loginDialogOpen } = this.state
 
     return (
       <Layout
@@ -81,7 +81,7 @@ export default class HomeDetailPage extends Component {
         onLoginModalOpen={this.handleModalOpen}
       >
         <LoginDialog
-          open={modalOpen}
+          open={loginDialogOpen}
           onDialogClose={this.handleModalClose}
           onLogin={onLogin}
         />

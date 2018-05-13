@@ -22,6 +22,7 @@ module.exports = {
   'add credit page': 'افزایش اعتبار',
   'search results page': 'نتایج جستجو',
   'home detail page': 'مشخصات کامل ملک',
+  'add home page': 'اضافه کردن خانه',
 
 
   //header
