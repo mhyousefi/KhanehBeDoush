@@ -22,7 +22,15 @@ export const AddHomeAPI = (house, token) => {
     .then(checkStatus)
     .then(parseJSON)
     .then(function (data) {
-      return data
+      if (data['invalidInput'] && data['invalidInput'] === true) {
+        return 'wrong input'
+      } else if (data['serverError'] && data['serverError'] === true) {
+        return 'server error'
+      } else if (!data.status || data.status === false) {
+        return 'server error'
+      } else {
+        return true
+      }
     }).catch(function (error) {
       console.log('Fetch error ==> ' + error.message)
       return false
