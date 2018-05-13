@@ -40,25 +40,20 @@ export default class LoginDialog extends Component {
   }
 
   _onButtonClick = () => {
-    console.log('ENTERED _onButtonClick')
     const { onLogin, onDialogClose } = this.props
     const { username, password, phoneNumber } = this.state
     LoginAPI(username, password, phoneNumber).then((response) => {
-      console.log("ENTERED THEN!")
       if (response === 'wrong input') {
         alert(messages['wrong sign in inputs'])
       } else if (response === 'server error') {
         alert(messages['server error'])
       } else {
-        console.log('ENTERED else')
         if (this._responseIsValid(response)) {
           const user = {
             name: response['name'],
             credit: response['credit'],
             token: response['token'],
           }
-          console.log('user ====>')
-          console.log(user)
           onLogin(user)
           onDialogClose()
         }

@@ -16,8 +16,6 @@ export const LoginAPI = async (username, password, phoneNumber) => {
     .then(checkStatus)
     .then(parseJSON)
     .then(function(data) {
-      console.log("ENTERED MOSTARAH!")
-      console.log(data)
       if (data['invalidInput'] && data['invalidInput'] === true) {
         return 'wrong input'
       } else if (data['serverError'] && data['serverError'] === true) {
