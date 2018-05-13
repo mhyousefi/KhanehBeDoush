@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Layout from 'src/components/general/Layout/Layout'
+import LoginDialog from 'src/components/general/Login/LoginDialog'
+
 import Fa from 'src/constants/Fa'
-import LoginDialog from '../general/Login/LoginDialog'
+import DealTypeTabs from '../general/AddHome/DealTypeTabs'
 
 
 export default class AddHomePage extends Component {
@@ -36,6 +38,8 @@ export default class AddHomePage extends Component {
           onDialogClose={this.handleModalClose}
           onLogin={onLogin}
         />
+        <br/><br/>
+        <DealTypeTabs user={user}/>
       </Layout>
     )
   }

@@ -70,3 +70,38 @@ export const searchParamsAreValid = (maxPrice, minArea, propertyType, dealType) 
 
   return true
 }
+
+// let newHouse = {
+//   dealType: dealType,
+//   buildingType: buildingType,
+//   area: area,
+//   phoneNumber: phoneNumber,
+//   address: address,
+//   basePrice: basePrice,
+//   rentPrice: rentPrice,
+//   sellingPrice: sellingPrice
+// }
+
+export const validateHouseParams = (house) => {
+  const { dealType , buildingType, area, phoneNumber , address, basePrice, rentPrice, sellingPrice } = house
+  if (dealType === '' || buildingType === '' === '' || area === '' || phoneNumber === '' ||
+      address === '') {
+    return false
+  }
+
+  if (!isNumber(area) || !isNumber(phoneNumber)) {
+    return false
+  }
+
+  if (dealType === 'rental') {
+    if (!isNumber(basePrice) || !isNumber(rentPrice)) {
+      return false
+    }
+  } else if (dealType === 'sale') {
+    if (!isNumber(sellingPrice)) {
+      return false
+    }
+  }
+
+
+}

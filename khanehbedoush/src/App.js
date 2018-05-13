@@ -25,7 +25,9 @@ export default class App extends Component {
   }
 
   _handleLogin = (loggedInUser) => {
+    console.log("entered _handleLogin")
     this.setState({user: loggedInUser})
+    console.log(this.state.user)
   }
 
   _renderHomePage = () => {

@@ -44,7 +44,8 @@ export const messages = {
   'no results found': 'هیچ موردی پیدا نشد!',
   'non-existing house': 'اطلاعات خانه مورد نظر حذف شده اند!',
   'not logged in': 'شما وارد حساب کاربری خود نشده اید.',
-  'wrong sign in inputs': 'اطلاعات وارد شده صحیح نمی باشند!',
+  'wrong inputs': 'اطلاعات وارد شده صحیح نمی باشند!',
+  'home added': 'خانه جدید اضافه شد.'
 }
 
 

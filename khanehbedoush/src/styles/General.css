@@ -14,6 +14,24 @@ option:first-child {
     color: #999999;
 }
 
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexOne {
+    flex: 1;
+}
+
+.flexTwo {
+    flex: 2;
+}
+
 .noUnderLine{
     text-decoration: none;
 }
@@ -73,10 +91,27 @@ option:first-child {
     min-height: 100vh;
 }
 
+.fullWidth {
+    width: 70%;
+}
+
+.width80perc {
+    width: 80%;
+}
+
 .HeaderBottomMargin{
     margin-top: 250px;
 }
 
 .handCursor{
     cursor: pointer;
+}
+
+.spaceAround {
+    justify-content: space-around;
+}
+
+.btnMedium {
+    width: 130px;
+    height: 60px;
 }

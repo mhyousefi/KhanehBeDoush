@@ -43,8 +43,13 @@ export default class LoginDialog extends Component {
     const { onLogin, onDialogClose } = this.props
     const { username, password, phoneNumber } = this.state
     LoginAPI(username, password, phoneNumber).then((response) => {
+      console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYY')
+      console.log(response)
+
+
+
       if (response === 'wrong input') {
-        alert(messages['wrong sign in inputs'])
+        alert(messages['wrong inputs'])
       } else if (response === 'server error') {
         alert(messages['server error'])
       } else {
@@ -53,6 +58,7 @@ export default class LoginDialog extends Component {
             name: response['name'],
             credit: response['credit'],
             token: response['token'],
+            id: response['id']
           }
           onLogin(user)
           onDialogClose()
@@ -74,7 +80,6 @@ export default class LoginDialog extends Component {
         className="rtl"
         fullWidth
       >
-        <br/><br/><br/>
         <DialogTitle id="alert-dialog-slide-title">
           {Fa['sign in title']}
         </DialogTitle>
