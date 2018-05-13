@@ -1,8 +1,7 @@
-import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from 'src/constants/constants'
 
-export const SignInAPI = async (username, password, phoneNumber) => {
-  return fetch(apiUrls['signIn'], {
+export const LoginAPI = async (username, password, phoneNumber) => {
+  return fetch(apiUrls['login'], {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

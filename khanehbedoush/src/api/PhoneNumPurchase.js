@@ -2,7 +2,7 @@ import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from '../constants/constants'
 
 export const payForPhoneNumAPI = (houseId, token) => {
-  return fetch(apiUrls['payForPhone'], {
+  return fetch(apiUrls['addHome'], {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

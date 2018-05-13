@@ -5,10 +5,11 @@ import Dialog, { DialogActions, DialogContent, DialogContentText, DialogTitle, }
 import Slide from 'material-ui/transitions/Slide'
 import Fa from 'src/constants/Fa'
 import 'src/styles/General.css'
-import { SignInAPI } from 'src/api/SignInAPI'
+import { LoginAPI } from 'src/api/SignInAPI'
 import { messages } from 'src/constants/FaTexts'
 
-export default class SignInModal extends Component {
+
+export default class LoginDialog extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -42,7 +43,7 @@ export default class SignInModal extends Component {
     console.log('ENTERED _onButtonClick')
     const { onLogin, onDialogClose } = this.props
     const { username, password, phoneNumber } = this.state
-    SignInAPI(username, password, phoneNumber).then((response) => {
+    LoginAPI(username, password, phoneNumber).then((response) => {
       if (response === 'wrong input') {
         alert(messages['wrong sign in inputs'])
       } else if (response === 'server error') {
@@ -77,6 +78,7 @@ export default class SignInModal extends Component {
         className="rtl"
         fullWidth
       >
+        <br/><br/><br/>
         <DialogTitle id="alert-dialog-slide-title">
           {Fa['sign in title']}
         </DialogTitle>
@@ -106,7 +108,7 @@ export default class SignInModal extends Component {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this._onButtonClick} color="primary">
+          <Button onClick={this._onButtonClick} color="secondary">
             {Fa['sign in']}
           </Button>
         </DialogActions>

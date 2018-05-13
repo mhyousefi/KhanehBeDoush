@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Layout from 'src/components/general/Layout/Layout'
 import Fa from 'src/constants/Fa'
 import AddCredit from 'src/components/general/AddCredit/AddCredit'
-import SignInDialog from '../general/SignIn/SignInDialog'
+import LoginDialog from '../general/Login/LoginDialog'
 
 
 export default class AddCreditPage extends Component {
@@ -31,7 +31,7 @@ export default class AddCreditPage extends Component {
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
       >
-        <SignInDialog
+        <LoginDialog
           open={this.state.modalOpen}
           onDialogClose={this.handleModalClose}
           onLogin={onLogin}

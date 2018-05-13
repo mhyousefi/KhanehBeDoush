@@ -16,7 +16,7 @@ export default class ProfileAreaDropDown extends Component {
     this.setState({ redirectToAddCredit: true });
   }
 
-  _handleSignInBtnClick = () => {
+  _handleLoginBtnClick = () => {
     this.props.onLoginModalOpen()
   }
 
@@ -31,7 +31,7 @@ export default class ProfileAreaDropDown extends Component {
       return (
         <div className="profileAreaDropDownContent curvedCorner" id={this.props.isHomePage ? "homePageProfileArea" : ""}>
           {messages["not logged in"]}
-          <Button color="secondary" onClick={this._handleSignInBtnClick}>
+          <Button color="secondary" onClick={this._handleLoginBtnClick}>
             {Fa["sign into account"]}
           </Button>
         </div>

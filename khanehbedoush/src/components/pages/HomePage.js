@@ -3,7 +3,7 @@ import Layout from 'src/components/general/Layout/Layout'
 import HomePageAdBox from 'src/components/general/HomePage/HomePageAdBox'
 import HomePageInfo from 'src/components/general/HomePage/HomePageInfo'
 import Fa from 'src/constants/Fa'
-import SignInDialog from 'src/components/general/SignIn/SignInDialog'
+import LoginDialog from 'src/components/general/Login/LoginDialog'
 
 
 export default class HomePage extends Component {
@@ -33,7 +33,7 @@ export default class HomePage extends Component {
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
       >
-        <SignInDialog
+        <LoginDialog
           open={modalOpen}
           onDialogClose={this.handleModalClose}
           onLogin={onLogin}

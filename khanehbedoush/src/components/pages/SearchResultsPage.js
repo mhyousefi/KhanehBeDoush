@@ -5,7 +5,7 @@ import SearchBox from 'src/components/general/SearchBox/SearchBox'
 import Fa from 'src/constants/Fa'
 import 'src/styles/PageContainers.css'
 import 'src/styles/SearchResultsPage/SearchBox.css'
-import SignInDialog from 'src/components/general/SignIn/SignInDialog'
+import LoginDialog from 'src/components/general/Login/LoginDialog'
 
 export default class SearchResultsPage extends Component {
   constructor (props) {
@@ -52,7 +52,7 @@ export default class SearchResultsPage extends Component {
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
       >
-        <SignInDialog
+        <LoginDialog
           open={modalOpen}
           onDialogClose={this.handleModalClose}
           onLogin={onLogin}

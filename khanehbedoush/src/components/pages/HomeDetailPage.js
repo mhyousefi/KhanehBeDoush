@@ -4,7 +4,7 @@ import { hasPaidForPhoneNumAPI } from 'src/api/PhoneNumPurchase'
 import HomeDetail from 'src/components/general/HomeDetail/HomeDetail'
 import Layout from 'src/components/general/Layout/Layout'
 import Fa from 'src/constants/Fa'
-import SignInDialog from '../general/SignIn/SignInDialog'
+import LoginDialog from '../general/Login/LoginDialog'
 
 
 export default class HomeDetailPage extends Component {
@@ -80,7 +80,7 @@ export default class HomeDetailPage extends Component {
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
       >
-        <SignInDialog
+        <LoginDialog
           open={modalOpen}
           onDialogClose={this.handleModalClose}
           onLogin={onLogin}

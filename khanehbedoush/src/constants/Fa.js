@@ -59,7 +59,7 @@ module.exports = {
   'description': 'توضیحات',
   'address': 'آدرس',
 
-  //SignIn
+  //Login
   'sign in text': 'لطفا نام کاربری و گذرنامه خود را وارد کنید',
   'sign in title': 'ورود به حساب کاربری',
   'sign in': 'ورود',

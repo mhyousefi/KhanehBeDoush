@@ -7,7 +7,7 @@ import 'src/styles/HomePage/HomePageResponsive.css'
 
 export default class HomePageHeaderUpper extends Component {
   render () {
-    const { user, onCreditChange, onLogin, onLoginModalOpen } = this.props
+    const { user, onLoginModalOpen } = this.props
     return (
       <div className="homePageHeaderUpper">
         <div className="headerProfileArea">
