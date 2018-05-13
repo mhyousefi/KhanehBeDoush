@@ -1,6 +1,7 @@
 package Controllers;
 
 import DAO.DAOUtils;
+import Entities.IndividualUser;
 import Utilities.HeaderUtilities;
 import Utilities.JSONFunctions;
 import org.json.JSONObject;
@@ -15,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import static DAO.UserDAO.findUser;
+import static DAO.UserDAO.getIndividualUserById;
 import static Utilities.TokenUtilities.createTokenForUser;
 
 @WebServlet("/login")
@@ -23,31 +25,42 @@ public class LogIn extends HttpServlet {
         try {
             HeaderUtilities.setHttpServletResponseHeader(response);
             JSONObject requestInJson = JSONFunctions.createJSONObjectFromRequest(request);
-            String generatedToken = generateTokenIfUserNameAndPasswordAreTrue(requestInJson.getString("username"),
+            String[] generatedResult = generateTokenIfUserNameAndPasswordAreTrue(requestInJson.getString("username"),
                     requestInJson.getString("password"), requestInJson.getString("phoneNumber"));
-            if(generatedToken.equals("invalidUsernameAndPassword")) {
-                response.setStatus(400);
-                DAOUtils.sendResponse(response, null);
+            if(generatedResult[0].equals("invalidUsernameAndPassword")) {
+                JSONObject responseInJson = new JSONObject().put("invalidInput", true);
+                responseInJson.put("serverError", false);
+                DAOUtils.sendResponse(response, responseInJson);
                 return;
             }
-            if(!generatedToken.equals("error")) {
-                DAOUtils.sendResponse(response, new JSONObject().put("token", generatedToken));
+            if(!generatedResult[0].equals("error")) {
+                DAOUtils.sendResponse(response, createJsonResponse(generatedResult));
             }else {
-                response.setStatus(504);
-                DAOUtils.sendResponse(response, null);
+                JSONObject responseInJson = new JSONObject().put("invalidInput", false);
+                responseInJson.put("serverError", true);
+                DAOUtils.sendResponse(response, responseInJson);
             }
         }catch (Exception e){
-            response.setStatus(504);
-            DAOUtils.sendResponse(response, null);
+            JSONObject responseInJson = new JSONObject().put("invalidInput", false);
+            responseInJson.put("serverError", true);
+            DAOUtils.sendResponse(response, responseInJson);
         }
     }
 
-    private static String generateTokenIfUserNameAndPasswordAreTrue(String username, String password, String phoneNumber) throws InvalidKeyException, NoSuchAlgorithmException, SQLException, NamingException {
+    private static JSONObject createJsonResponse(String[] generatedStringArray) throws SQLException, NamingException {
+        IndividualUser loggedInUser = getIndividualUserById(generatedStringArray[1]);
+        JSONObject jsonResponse = new JSONObject().put("token", generatedStringArray[0]);
+        jsonResponse.put("name", loggedInUser.getName());
+        jsonResponse.put("credit", loggedInUser.getBalance());
+        return jsonResponse;
+    }
+
+    private static String[] generateTokenIfUserNameAndPasswordAreTrue(String username, String password, String phoneNumber) throws InvalidKeyException, NoSuchAlgorithmException, SQLException, NamingException {
         String userId;
         if((userId = findUser(username, password, phoneNumber)).equals("invalidUsernameAndPassword"))
-            return "invalidUsernameAndPassword";
+            return new String[]{"invalidUsernameAndPassword", ""};
         if(userId.contains("error"))
-            return userId;
-        return createTokenForUser(userId);
+            return new String[]{"error", ""};
+        return new String[]{createTokenForUser(userId), userId};
     }
 }

@@ -50,8 +50,9 @@ public class SearchResultsAction extends HttpServlet {
             DAOUtils.sendResponse(response, jsonResponse);
 
         } catch (IOException e) {
-            response.setStatus(500);
-            DAOUtils.sendResponse(response, null);
+            JSONObject responseInJson = new JSONObject().put("invalidInput", false);
+            responseInJson.put("serverError", true);
+            DAOUtils.sendResponse(response, responseInJson);
         }
     }
 

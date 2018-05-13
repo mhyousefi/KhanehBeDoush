@@ -17,7 +17,7 @@ public class UserDAO {
         createUserTableIFNotExists();
         createPaidToSeeTableIfNotExists();
         addUser("1","بهنام همایون", "09121102030", 1000f, "bHomayoun", "key123", "individual", false);
-        addUser("2", "admin", "09102242927", 10000000000f, "adminOfKHServer", "Smhksfk1375", "individual", true);
+        addUser("2", "admin", "0", 10000000000f, "adminOfKHServer", "Smhksfk1375", "individual", true);
     }
 
     private static void dropUserTable(){

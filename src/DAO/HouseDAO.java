@@ -47,15 +47,18 @@ public class HouseDAO {
 
     private static void createHouseTableIFNotExists() {
         String sql = "CREATE TABLE houses (\n"
+
                 + "id VARCHAR PRIMARY KEY,\n"
                 + "area INT,\n"
                 + "buildingType VARCHAR, \n"
                 + "imageURL VARCHAR, \n"
                 + "dealType VARCHAR, \n"
+
                 + "basePrice INT, \n"
                 + "rentPrice INT, \n"
                 + "sellingPrice INT, \n"
                 + "expireTime DOUBLE, \n"
+
                 + "address VARCHAR, \n"
                 + "isFromACMServer CHARACTER"
                 + ");";
@@ -65,13 +68,32 @@ public class HouseDAO {
     public static void insertNewHouse(ArrayList<String> values) throws SQLException {
         String sql = "REPLACE INTO houses(id, area, buildingType, imageURL, dealType, basePrice, " +
                 "rentPrice, sellingPrice, expireTime, address, isFromACMServer) VALUES(";
-        for(int i = 0; i < values.size() - 1; i++){
-            sql = sql + "'" + values.get(i) + "'" + ", ";
-        }
-        sql = sql + "'" + values.get(values.size() - 1) + "');";
         Connection conn = DAOUtils.connect();
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.executeUpdate();
+        sql += "'" + values.get(0) + "', ";
+        sql += values.get(1) + ", ";
+        sql += "'" + values.get(2) + "', ";
+        sql += "'" + values.get(3) + "', ";
+        sql += "'" + values.get(4) + "', ";
+        sql += values.get(5) + ", ";
+        sql += values.get(6) + ", ";
+        sql += values.get(7) + ", ";
+        sql += values.get(8) + ", ";
+        sql += "'" + values.get(9) + "', ";
+        sql += "'" + values.get(10) + "'); ";
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+        preparedStatement.executeUpdate();
+    }
+
+    public static int numOfHousesInTable() throws NamingException, SQLException {
+        String query = "SELECT count(*) FROM " + houseTableName + ";";
+        Context ctx = new InitialContext();
+        DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
+        Connection connection = ds.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        int result = resultSet.getInt(1);
+        connection.close();
+        return result;
     }
 
     private static String addANDtoQuery(int initialLengthOfQuery, int sqlLength){

@@ -29,8 +29,9 @@ public class HasPaidForPhoneNum extends HttpServlet {
                 DAOUtils.sendResponse(response, jsonResponse);
             }
         }catch (Exception e){
-            response.setStatus(500);
-            DAOUtils.sendResponse(response, null);
+            JSONObject responseInJson = new JSONObject().put("invalidInput", false);
+            responseInJson.put("serverError", true);
+            DAOUtils.sendResponse(response, responseInJson);
         }
     }
 }

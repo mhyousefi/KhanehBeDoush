@@ -2,8 +2,6 @@ package Entities;
 
 import Constants.PersianContent;
 
-import java.util.ArrayList;
-
 public class House {
     private String id;
     private String area;
@@ -82,6 +80,9 @@ public class House {
         houseCount = 0;
     }
 
+
+
+
     public House(){
         this.area = "";
         this.buildingType = "";
@@ -96,6 +97,9 @@ public class House {
         this.isFromACMServer = "0";
     }
 
+    /*id, area, buildingType, imageURL, dealType, basePrice, " +
+                "rentPrice, sellingPrice, expireTime, address, isFromACMServer*/
+
     public House(String area, String buildingType, String imageURL, String dealType, String basePrice, String rentPrice,
                  String sellingPrice, String address, String _id) {
         this.area = area;
@@ -106,9 +110,8 @@ public class House {
         this.rentPrice = rentPrice;
         this.sellingPrice = sellingPrice;
         this.address = address;
-
-        this.id = (_id.equals("")) ? houseCount.toString() : _id;
-        houseCount += 1;
+        this.id = _id;
+        this.isFromACMServer = "0";
     }
 
 
