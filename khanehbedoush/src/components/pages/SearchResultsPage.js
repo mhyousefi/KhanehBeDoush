@@ -11,7 +11,7 @@ export default class SearchResultsPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      houses: [],
+      houses: null,
       modalOpen: false,
     }
   }

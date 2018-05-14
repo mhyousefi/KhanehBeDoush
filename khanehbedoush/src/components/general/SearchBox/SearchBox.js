@@ -59,7 +59,7 @@ export default class SearchBox extends Component {
         <MuiThemeProvider>
           <h2>{messages['loading']}</h2>
           <br/>
-          <CircularProgress size={100} thickness={7} style={{ color: 'purple' }} />
+          <CircularProgress size={100} thickness={5} style={{ color: 'purple' }} />
         </MuiThemeProvider>
       )
     }
