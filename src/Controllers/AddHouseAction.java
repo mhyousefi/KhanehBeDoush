@@ -1,5 +1,6 @@
 package Controllers;
 
+import Constants.PersianContent;
 import DAO.DAOUtils;
 import Entities.House;
 import Utilities.HeaderUtilities;
@@ -41,7 +42,8 @@ public class AddHouseAction extends HttpServlet {
             ArrayList<String> values = validateAndAddValues(requestInJson);
             if(values != null) {
                 insertNewHouse(values);
-                DAOUtils.sendResponse(response, new JSONObject().put("status", true));
+                JSONObject jsonResponse = new JSONObject().put("id", values.get(0));
+                DAOUtils.sendResponse(response, jsonResponse.put("status", true));
             } else {
                 JSONObject responseInJson = new JSONObject().put("invalidInput", true);
                 responseInJson.put("serverError", false);
@@ -98,11 +100,12 @@ public class AddHouseAction extends HttpServlet {
             return null;
         String noPicURL = "/images/no-pic.jpg";
         String area = requestInJson.get("area").toString();
-        String buildingType = requestInJson.get("buildingType").toString();
-        String dealType = requestInJson.get("dealType").toString();
-        String rentPrice = dealType.equals("rental") ? requestInJson.getString("rentPrice") : "0";
-        String basePrice = dealType.equals("rental") ? requestInJson.getString("basePrice") : "0";
-        String sellingPrice = dealType.equals("sale") ? requestInJson.getString("sellingPrice") : "0";
+        String buildingType = requestInJson.get("buildingType").toString().equals("apartment") ? PersianContent.getPhrase("APARTMENT") :
+                                PersianContent.getPhrase("VILLA") ;
+        String dealType = requestInJson.get("dealType").toString().equals("rental") ? PersianContent.getPhrase("RENTAL") : PersianContent.getPhrase("SALE");
+        String rentPrice = requestInJson.get("dealType").equals("rental") ? requestInJson.getString("rentPrice") : "0";
+        String basePrice = requestInJson.get("dealType").equals("rental") ? requestInJson.getString("basePrice") : "0";
+        String sellingPrice = requestInJson.get("dealType").equals("sale") ? requestInJson.getString("sellingPrice") : "0";
         String address = requestInJson.get("address").toString();
         House house = createHouseForUserInput(area, buildingType, noPicURL, dealType,
                 sellingPrice, rentPrice, basePrice, address);
