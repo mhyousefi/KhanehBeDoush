@@ -9,7 +9,7 @@ import 'src/styles/General.css'
 import BuildingTypeSelect from './BuildingTypeSelect'
 import GeneralInfoSelect from './GeneralInfoSelect'
 import PriceInfoSelect from './PriceInfoSelect'
-import { toEnglish, validateHouseParams } from '../../../utilities/formats'
+import { toEnglish, validateHouseParams } from 'src/utilities/formats'
 
 function TabContainer (props) {
   return (

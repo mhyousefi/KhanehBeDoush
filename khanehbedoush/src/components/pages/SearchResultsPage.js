@@ -26,8 +26,6 @@ export default class SearchResultsPage extends Component {
 
   _searchForHouses = (maxPrice, minArea, propertyType, dealType) => {
     searchHousesAPI(maxPrice, minArea, propertyType, dealType).then((response) => {
-      console.log('response')
-      console.log(response)
       this.setState({houses: response})
     })
   }
@@ -44,6 +42,10 @@ export default class SearchResultsPage extends Component {
   render () {
     const { user, onCreditChange, onLogin } = this.props
     const { houses, modalOpen } = this.state
+
+    console.log("YOYOYYOOYOYOYOYOYO")
+    console.log(houses)
+
     return (
       <Layout
         isHomePage={false}

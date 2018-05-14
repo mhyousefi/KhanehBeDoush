@@ -45,7 +45,8 @@ export const messages = {
   'non-existing house': 'اطلاعات خانه مورد نظر حذف شده اند!',
   'not logged in': 'شما وارد حساب کاربری خود نشده اید.',
   'wrong inputs': 'اطلاعات وارد شده صحیح نمی باشند!',
-  'home added': 'خانه جدید اضافه شد.'
+  'home added': 'خانه جدید اضافه شد.',
+  'price not available': 'قیمت برای این ملک موجود نیست.',
 }
 
 

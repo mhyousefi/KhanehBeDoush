@@ -2,6 +2,7 @@ import { TextField, withStyles } from 'material-ui'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Fa from 'src/constants/Fa'
+import { isForSale } from '../../../utilities/formats'
 
 const styles = theme => ({
   container: {
@@ -34,7 +35,7 @@ class PriceInfoSelect extends React.Component {
   render () {
     const {classes, dealType} = this.props
 
-    if (dealType === 'sale') {
+    if (isForSale(dealType)) {
       return (
         <form className={classes.container} noValidate autoComplete="off">
           <TextField

@@ -6,10 +6,8 @@ module.exports = {
   //General
   'Touman': 'تومان',
   'price': 'قیمت',
-  'price not available': 'قیمت برای این ملک موجود نیست.',
   'Rahn': 'رهن',
   'rent': 'اجاره',
-  'rental': 'اجاره',
   'Rahn and rent': 'رهن و اجاره',
   'sell': 'فروش',
   'buy': 'خرید',

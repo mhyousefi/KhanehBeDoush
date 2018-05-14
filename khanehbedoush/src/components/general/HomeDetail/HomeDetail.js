@@ -43,6 +43,9 @@ export default class HomeDetail extends Component {
     const { house, hasPaid } = this.props
     let hidePurchaseBtn = (hasPaid || this.state.phoneNumVisible)
 
+    console.log("HomeDetail receives ======> ")
+    console.log(house)
+
     if (!house) {
       return (
         <MuiThemeProvider>

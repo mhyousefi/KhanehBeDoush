@@ -6,19 +6,24 @@ import HomeDetailInfoRow from './HomeDetailInfoRow'
 import HomeTag from './HomeTag'
 import 'src/styles/HomeDetail/HomeDetail.css'
 import 'src/styles/General.css'
+import { isRental, isForSale } from 'src/utilities/formats'
+import { messages } from '../../../constants/FaTexts'
 
 
 export default class HomeDetailInfo extends Component {
   _createPriceInfo = (priceInfo) => {
+    const { house } = this.props
     let rows = []
-    if (this.props.house["dealType"] === "rental") {
+    if (isRental(house["dealType"])) {
       rows.push(<HomeDetailInfoRow rightText={Fa["Rahn"]} leftText={toPersian(priceInfo["basePrice"]) + " " + Fa["Touman"]}/>)
       rows.push(<div className="separatingLine"/>)
       rows.push(<HomeDetailInfoRow rightText={Fa["rent"]} leftText={toPersian(priceInfo["rentPrice"]) + " " + Fa["Touman"]}/>)
       rows.push(<div className="separatingLine"/>)
-    } else {
+    } else if (isForSale(house["dealType"])) {
       rows.push(<HomeDetailInfoRow rightText={Fa["price"]} leftText={toPersian(priceInfo["sellingPrice"]) + " " + Fa["Touman"]}/>)
       rows.push(<div className="separatingLine"/>)
+    } else {
+      return messages['price not available']
     }
     return rows;
   }

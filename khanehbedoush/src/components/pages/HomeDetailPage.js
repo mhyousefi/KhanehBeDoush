@@ -5,6 +5,7 @@ import HomeDetail from 'src/components/general/HomeDetail/HomeDetail'
 import Layout from 'src/components/general/Layout/Layout'
 import Fa from 'src/constants/Fa'
 import LoginDialog from '../general/Login/LoginDialog'
+import { isForSale, isRental } from 'src/utilities/formats'
 
 
 export default class HomeDetailPage extends Component {
@@ -32,15 +33,23 @@ export default class HomeDetailPage extends Component {
     }
 
     getHouseWithIdAPI(houseId, user.token).then((response) => {
+      console.log("HomeDetailPage receives ======> ")
+      console.log(response)
+
       let priceInfo = {}
-      if (response['dealType'] === Fa['purchase']) {
+      if (isForSale(response['dealType'])) {
         priceInfo = {'sellingPrice': response['sellingPrice'],}
-      } else if (response['dealType'] === Fa['purchase']) {
+      } else if (isRental(response['dealType'])) {
         priceInfo = {
           'basePrice': response['basePrice'],
           'rentPrice': response['rentPrice'],
         }
       }
+      
+      console.log("response['dealType'] = ")
+      console.log(response['dealType'])
+      console.log("AFTER SUBTLE DECODING OF THIS ====> ")
+      console.log(priceInfo)
 
       this.setState({
         searchResult: {
@@ -65,7 +74,6 @@ export default class HomeDetailPage extends Component {
     }
 
     hasPaidForPhoneNumAPI(user.token, houseId).then((response) => {
-      console.log('HAS PAID FOR PHONE NUMBER ===> ' + response)
       if (response === true) {
         this.setState({hasPaidForPhoneNum: true})
       }
