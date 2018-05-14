@@ -40,8 +40,12 @@ export default class HomeDetail extends Component {
   }
 
   render () {
-    const { house, hasPaid } = this.props
+    const { house, hasPaid, user } = this.props
     let hidePurchaseBtn = (hasPaid || this.state.phoneNumVisible)
+
+    if (!user) {
+      return <div/>
+    }
 
     if (!house) {
       return (

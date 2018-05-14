@@ -6,6 +6,7 @@ import Layout from 'src/components/general/Layout/Layout'
 import Fa from 'src/constants/Fa'
 import LoginDialog from '../general/Login/LoginDialog'
 import { isForSale, isRental } from 'src/utilities/formats'
+import { messages } from '../../constants/FaTexts'
 
 
 export default class HomeDetailPage extends Component {
@@ -29,6 +30,8 @@ export default class HomeDetailPage extends Component {
   _getHouseFromServer = (houseId) => {
     const { user } = this.props
     if (!user) {
+      alert(messages['not logged in'])
+      this.handleModalOpen()
       return
     }
 
