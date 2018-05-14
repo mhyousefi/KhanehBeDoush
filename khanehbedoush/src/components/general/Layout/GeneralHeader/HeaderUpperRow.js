@@ -6,9 +6,11 @@ import 'src/styles/General.css'
 import 'src/styles/Header/Header.css'
 import 'src/styles/UserInfoCard/UserInfoCard.css'
 import ProfileArea from './ProfileArea'
+import AddHomeBtn from '../../AddHome/AddHomeBtn'
 
 export default class HeaderUpperRow extends Component {
   render () {
+    const { onLoginModalOpen, user, onLogout } = this.props
     return (
       <div className="headerUpperRowContainer">
         <div className="headerUpperRow">
@@ -16,7 +18,8 @@ export default class HeaderUpperRow extends Component {
           <Link to='/' className="headerPageTitleTxt noUnderLine">
             {Fa['KhanehBeDoush']}
           </Link>
-          <ProfileArea credit={this.props.credit}/>
+          <AddHomeBtn/>
+          <ProfileArea user={user} onLoginModalOpen={onLoginModalOpen} onLogout={onLogout} />
         </div>
       </div>
     )

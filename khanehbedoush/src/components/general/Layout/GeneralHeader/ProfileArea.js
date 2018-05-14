@@ -3,10 +3,12 @@ import ProfileAreaDropDown from './ProfileAreaDropDown'
 import Fa from 'src/constants/Fa'
 import 'src/styles/Header/Header.css'
 import 'src/styles/UserInfoCard/UserInfoCard.css'
+import Link from 'react-router-dom/es/Link'
 
 
 export default class ProfileArea extends Component {
   render() {
+    const { onLoginModalOpen, user, onLogout } = this.props
     return (
       <div className="headerProfileArea">
         <div className="profileAreaDropDown">
@@ -15,7 +17,12 @@ export default class ProfileArea extends Component {
             {Fa['profile area']}
           </div>
         </div>
-        <ProfileAreaDropDown isHomePage={false} credit={this.props.credit}/>
+        <ProfileAreaDropDown
+          isHomePage={false}
+          user={user}
+          onLoginModalOpen={onLoginModalOpen}
+          onLogout={onLogout}
+        />
       </div>
     )
   }

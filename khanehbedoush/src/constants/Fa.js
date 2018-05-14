@@ -6,21 +6,28 @@ module.exports = {
   //General
   'Touman': 'تومان',
   'price': 'قیمت',
-  'price not available': 'قیمت برای این ملک موجود نیست.',
   'Rahn': 'رهن',
   'rent': 'اجاره',
   'Rahn and rent': 'رهن و اجاره',
   'sell': 'فروش',
   'buy': 'خرید',
+  'sale': 'خرید',
   'meters square': 'متر مربع',
   'area': 'متراژ',
+  'selling price': 'قیمت خرید',
+  'rent price': 'قیمت اجاره',
+  'base price': 'قیمت پایه',
   '20000': '۲۰۰۰۰',
+  'phone number': 'شماره تلفن',
+  'send data': 'ارسال اطلاعات',
+  'sign out': 'خروج',
 
   //Page Titles
   'home page': 'خانه',
   'add credit page': 'افزایش اعتبار',
   'search results page': 'نتایج جستجو',
   'home detail page': 'مشخصات کامل ملک',
+  'add home page': 'اضافه کردن خانه',
 
 
   //header
@@ -57,4 +64,12 @@ module.exports = {
   'owner phone number': 'شماره مالک/مشاور',
   'description': 'توضیحات',
   'address': 'آدرس',
+
+  //Login
+  'sign in text': 'لطفا نام کاربری و گذرنامه خود را وارد کنید',
+  'sign in title': 'ورود به حساب کاربری',
+  'sign in': 'ورود',
+  'sign into account': 'ورود به حساب کاربری',
+  'username': 'شناسه کاربری',
+  'password': 'رمز عبور',
 }

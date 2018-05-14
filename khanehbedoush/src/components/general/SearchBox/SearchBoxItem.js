@@ -4,13 +4,14 @@ import Fa from 'src/constants/Fa'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import 'src/styles/General.css'
 import 'src/styles/text.css'
-import { toPersian } from '../../../Utilities/formats'
+import { isRental, isForSale, toPersian } from 'src/utilities/formats'
+import { messages } from '../../../constants/FaTexts'
 
 
 export default class SearchBoxItem extends Component {
   _createPriceRow = () => {
     const {dealType, basePrice, rentPrice, sellingPrice} = this.props
-    if (dealType === Fa["rent"]) {
+    if (isRental(dealType)) {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxBasePrice text">
@@ -27,7 +28,7 @@ export default class SearchBoxItem extends Component {
           </div>
         </div>
       )
-    } else if (dealType === Fa["purchase"]) {
+    } else if (isForSale(dealType)) {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxSalePrice text">
@@ -41,33 +42,40 @@ export default class SearchBoxItem extends Component {
     } else {
       return (
         <div className="searchBoxPriceRow">
-          {Fa["price not available"]}
+          {messages["price not available"]}
         </div>
       )
     }
   }
 
   _createTag = () => {
-    if (this.props.dealType === "rental") {
+    const { dealType } = this.props
+
+    if (isRental(dealType)) {
       return (
         <div className="searchBoxTagCommon searchBoxRentTagCostum curvedCorner">
           {Fa["Rahn and rent"]}
         </div>
       )
-    } else {
+    } else if (isForSale(dealType)) {
       return (
         <div className="searchBoxTagCommon searchBoxSaleTagCostum curvedCorner">
           {Fa["sell"]}
         </div>
       )
+    } else {
+      return <div/>
     }
   }
 
   _createLocationIcon = () => {
-    if (this.props.dealType === "rental") {
+    const { dealType } = this.props
+    if (isRental(dealType)) {
       return <i className="material-icons iconSize searchBoxRentIconColor">place</i>
-    } else {
+    } else if (isForSale(dealType)) {
       return <i className="material-icons iconSize searchBoxSaleIconColor">place</i>
+    } else {
+      return <div/>
     }
   }
 

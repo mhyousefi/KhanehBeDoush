@@ -42,8 +42,13 @@ export const messages = {
   'invalid search params': 'ورودی های جستجو معتبر نیستند.',
   'loading': 'در حال بارگزاری، لطفا شکیبا باشید',
   'no results found': 'هیچ موردی پیدا نشد!',
-  'non-existing house': 'اطلاعات خانه مورد نظر حذف شده اند!'
+  'non-existing house': 'اطلاعات خانه مورد نظر حذف شده اند!',
+  'not logged in': 'شما وارد حساب کاربری خود نشده اید.',
+  'wrong inputs': 'اطلاعات وارد شده صحیح نمی باشند!',
+  'home added': 'خانه جدید اضافه شد.',
+  'price not available': 'قیمت برای این ملک موجود نیست.',
 }
+
 
 export const testHouses = [
   {

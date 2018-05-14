@@ -4,11 +4,14 @@ import Fa from 'src/constants/Fa'
 import 'src/styles/Header/Header.css'
 import 'src/styles/HomePage/HomePageHeader.css'
 import 'src/styles/HomePage/HomePageResponsive.css'
+import AddHomeBtn from '../../AddHome/AddHomeBtn'
 
 export default class HomePageHeaderUpper extends Component {
   render () {
+    const { user, onLoginModalOpen, onLogout } = this.props
     return (
       <div className="homePageHeaderUpper">
+        <AddHomeBtn/>
         <div className="headerProfileArea">
           <div className="profileAreaDropDown homePageProfileArea curvedCorner">
             <i className="far fa-smile homePageSmileyFaceIcon whiteTxt"/>
@@ -16,7 +19,12 @@ export default class HomePageHeaderUpper extends Component {
               {Fa["profile area"]}
             </div>
           </div>
-          <ProfileAreaDropDown isHomePage={true} credit={this.props.credit}/>
+          <ProfileAreaDropDown
+            isHomePage={true}
+            user={user}
+            onLoginModalOpen={onLoginModalOpen}
+            onLogout={onLogout}
+          />
         </div>
       </div>
     )

@@ -1,11 +1,13 @@
-import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
+import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from '../constants/constants'
 
-export const payForPhoneNumAPI = (houseId) => {
-  return fetch(apiUrls['payForPhone'], {
+export const payForPhoneNumAPI = (token, houseId) => {
+  return fetch(apiUrls['addHome'], {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': token,
     },
     body: JSON.stringify({
       houseId: houseId,
@@ -21,11 +23,12 @@ export const payForPhoneNumAPI = (houseId) => {
   })
 }
 
-export const hasPaidForPhoneNumAPI = (houseId) => {
+export const hasPaidForPhoneNumAPI = (token, houseId) => {
   return fetch(apiUrls['hasPaidForPhoneNum'], {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': token,
     },
     body: JSON.stringify({
       houseId: houseId,

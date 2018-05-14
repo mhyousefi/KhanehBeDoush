@@ -1,11 +1,13 @@
-import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
+import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from 'src/constants/constants'
 
-export const changeCreditAPI = async (amount) => {
+export const changeCreditAPI = async (amount, token) => {
   return fetch(apiUrls['increaseCredit'], {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': token,
     },
     body: JSON.stringify({
       'credit': amount,
@@ -21,11 +23,13 @@ export const changeCreditAPI = async (amount) => {
   })
 }
 
-export const currentCreditAPI = () => {
+export const currentCreditAPI = (token) => {
   return fetch(apiUrls['currentCredit'], {
     method: 'GET',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': token,
     }
   })
     .then(checkStatus)

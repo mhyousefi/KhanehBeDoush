@@ -1,3 +1,5 @@
+import Fa from 'src/constants/Fa'
+
 const dictFa = {
   '0': '۰',
   '1': '۱',
@@ -69,4 +71,35 @@ export const searchParamsAreValid = (maxPrice, minArea, propertyType, dealType) 
   }
 
   return true
+}
+
+export const validateHouseParams = (house) => {
+  const { dealType , buildingType, area, phoneNumber , address, basePrice, rentPrice, sellingPrice } = house
+
+  if (dealType === '' || buildingType === '' === '' || area === '' || phoneNumber === '' ||
+      address === '') {
+    return false
+  }
+
+  if (!isNumber(area) || !isNumber(phoneNumber)) {
+    return false
+  }
+
+  if (isRental(dealType)) {
+    if (!isNumber(basePrice) || !isNumber(rentPrice)) {
+      return false
+    }
+  } else if (isForSale(dealType) && !isNumber(sellingPrice)) {
+      return false
+  }
+
+  return true
+}
+
+export const isRental = (dealType) => {
+  return (dealType === 'rental' || dealType === 'rent' || dealType === Fa['rent'] || dealType === '1' || dealType === 1)
+}
+
+export const isForSale = (dealType) => {
+  return (dealType === 'sale' || dealType === 'buy' || dealType === Fa['sale'] || dealType === '0' || dealType === 0)
 }

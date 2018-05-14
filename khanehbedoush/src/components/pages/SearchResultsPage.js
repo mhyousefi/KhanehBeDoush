@@ -5,13 +5,23 @@ import SearchBox from 'src/components/general/SearchBox/SearchBox'
 import Fa from 'src/constants/Fa'
 import 'src/styles/PageContainers.css'
 import 'src/styles/SearchResultsPage/SearchBox.css'
+import LoginDialog from 'src/components/general/Login/LoginDialog'
 
 export default class SearchResultsPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
       houses: null,
+      modalOpen: false,
     }
+  }
+
+  handleModalClose = () => {
+    this.setState({ modalOpen: false });
+  }
+
+  handleModalOpen = () => {
+    this.setState({ modalOpen: true });
   }
 
   _searchForHouses = (maxPrice, minArea, propertyType, dealType) => {
@@ -27,23 +37,30 @@ export default class SearchResultsPage extends Component {
     propertyType = propertyType === 'none' ? '' : propertyType
     dealType = dealType === 'none' ? '' : dealType
     this._searchForHouses(maxPrice, minArea, propertyType, dealType)
-    console.log(this.state.houses)
   }
 
   render () {
-    const {credit, onCreditChange} = this.props
+    const { user, onCreditChange, onLogin, onLogout } = this.props
+    const { houses, modalOpen } = this.state
 
     return (
       <Layout
         isHomePage={false}
         pageTitle={Fa['search results page']}
-        credit={credit}
+        user={user}
         onCreditChange={onCreditChange}
+        onLoginModalOpen={this.handleModalOpen}
+        onLogout={onLogout}
       >
+        <LoginDialog
+          open={modalOpen}
+          onDialogClose={this.handleModalClose}
+          onLogin={onLogin}
+        />
         <div className="searchResultsUpperSentence‌">
           {Fa['SearchResults upper sentence']}
         </div>
-        <SearchBox houses={this.state.houses}/>
+        <SearchBox houses={houses}/>
       </Layout>
     )
   }

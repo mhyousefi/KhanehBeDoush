@@ -73,6 +73,7 @@
 .userInfoCardLowerRow{
     justify-content: center;
     align-items: center;
+    width: 85%;
     padding-bottom: 8%;
 }
 

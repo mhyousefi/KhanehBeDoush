@@ -10,7 +10,7 @@ public class Constants {
     }
 
     static {
-        constants = new HashMap<String, String>();
+        constants = new HashMap<>();
 
         constants.put("API_KEY", "c3932910-1011-11e8-87b4-496f79ef1988");
         constants.put("BANK_POST_URL", "http://139.59.151.5:6664/bank/pay");
@@ -20,5 +20,6 @@ public class Constants {
         constants.put("ACM_SALE_SYMBOL", "0");
         constants.put("ACM_RENTAL_SYMBOL", "1");
         constants.put("PRICE_TO_SEE_PHONE_NUMBER", "1000");
+        constants.put("SESSION_DURATION", "3600000");
     }
 }

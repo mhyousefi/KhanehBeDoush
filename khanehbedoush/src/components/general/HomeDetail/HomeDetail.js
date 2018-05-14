@@ -16,12 +16,14 @@ export default class HomeDetail extends Component {
   }
 
   _handleButtonClick = () => {
-    const {hasPaid, onCreditChange, houseId, credit} = this.props
-    if (!hasPaid) {
-      if (parseInt(credit) < 1000) {
+    const { hasPaid, onCreditChange, houseId, user, onLoginModalOpen } = this.props
+    if (!user) {
+      onLoginModalOpen()
+    } else if (!hasPaid) {
+      if (parseInt(user.credit) < 1000) {
         alert(messages['insufficient credit'])
       } else {
-        payForPhoneNumAPI(houseId).then((response) => {
+        payForPhoneNumAPI(user.token, houseId).then((response) => {
           if (response['exists'] === false) {
             alert(messages['non-existing house'])
           } else {
@@ -38,8 +40,12 @@ export default class HomeDetail extends Component {
   }
 
   render () {
-    const { house, hasPaid } = this.props
+    const { house, hasPaid, user } = this.props
     let hidePurchaseBtn = (hasPaid || this.state.phoneNumVisible)
+
+    if (!user) {
+      return <div/>
+    }
 
     if (!house) {
       return (

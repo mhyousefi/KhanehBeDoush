@@ -4,6 +4,9 @@ import { hasPaidForPhoneNumAPI } from 'src/api/PhoneNumPurchase'
 import HomeDetail from 'src/components/general/HomeDetail/HomeDetail'
 import Layout from 'src/components/general/Layout/Layout'
 import Fa from 'src/constants/Fa'
+import LoginDialog from '../general/Login/LoginDialog'
+import { isForSale, isRental } from 'src/utilities/formats'
+import { messages } from '../../constants/FaTexts'
 
 
 export default class HomeDetailPage extends Component {
@@ -11,16 +14,32 @@ export default class HomeDetailPage extends Component {
     super(props)
     this.state = {
       searchResult: null,
-      hasPaidForPhoneNum: false
+      hasPaidForPhoneNum: false,
+      loginDialogOpen: false,
     }
   }
 
+  handleModalClose = () => {
+    this.setState({ loginDialogOpen: false });
+  }
+
+  handleModalOpen = () => {
+    this.setState({ loginDialogOpen: true });
+  }
+
   _getHouseFromServer = (houseId) => {
-    getHouseWithIdAPI(houseId).then((response) => {
+    const { user } = this.props
+    if (!user) {
+      alert(messages['not logged in'])
+      this.handleModalOpen()
+      return
+    }
+
+    getHouseWithIdAPI(houseId, user.token).then((response) => {
       let priceInfo = {}
-      if (response['dealType'] === Fa['purchase']) {
+      if (isForSale(response['dealType'])) {
         priceInfo = {'sellingPrice': response['sellingPrice'],}
-      } else if (response['dealType'] === Fa['purchase']) {
+      } else if (isRental(response['dealType'])) {
         priceInfo = {
           'basePrice': response['basePrice'],
           'rentPrice': response['rentPrice'],
@@ -43,8 +62,13 @@ export default class HomeDetailPage extends Component {
   }
 
   _getPaymentStatus = (houseId) => {
-    hasPaidForPhoneNumAPI(houseId).then((response) => {
-      console.log('HAS PAID FOR PHONE NUMBER ===> ' + response)
+    const { user } = this.props
+
+    if (!user) {
+      return false
+    }
+
+    hasPaidForPhoneNumAPI(user.token, houseId).then((response) => {
       if (response === true) {
         this.setState({hasPaidForPhoneNum: true})
       }
@@ -58,23 +82,31 @@ export default class HomeDetailPage extends Component {
   }
 
   render () {
-    const {houseId} = this.props.match.params
-    const {credit, onCreditChange} = this.props
-    const {searchResult, hasPaidForPhoneNum} = this.state
+    const { houseId } = this.props.match.params
+    const { user, onCreditChange, onLogin, onLogout } = this.props
+    const { searchResult, hasPaidForPhoneNum, loginDialogOpen } = this.state
 
     return (
       <Layout
         isHomePage={false}
         pageTitle={Fa['home detail page']}
-        credit={credit}
+        user={user}
         onCreditChange={onCreditChange}
+        onLoginModalOpen={this.handleModalOpen}
+        onLogout={onLogout}
       >
+        <LoginDialog
+          open={loginDialogOpen}
+          onDialogClose={this.handleModalClose}
+          onLogin={onLogin}
+        />
         <HomeDetail
           house={searchResult}
           hasPaid={hasPaidForPhoneNum}
           houseId={houseId}
-          credit={credit}
+          user={user}
           onCreditChange={onCreditChange}
+          onLoginModalOpen={this.handleModalOpen}
         />
       </Layout>
     )

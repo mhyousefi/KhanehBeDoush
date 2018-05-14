@@ -1,9 +1,10 @@
 import { apiUrls } from 'src/constants/constants'
-import { checkStatus, parseJSON } from 'src/Utilities/apiUtilities'
+import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 
 export const searchHousesAPI = async (maxPrice, minArea, propertyType, dealType) => {
   return fetch(apiUrls['searchHouse'], {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -24,11 +25,13 @@ export const searchHousesAPI = async (maxPrice, minArea, propertyType, dealType)
     })
 }
 
-export const getHouseWithIdAPI = (houseId) => {
+export const getHouseWithIdAPI = (houseId, token) => {
   return fetch(apiUrls['getHouseById'], {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': token
     },
     body: JSON.stringify({
       'houseId': houseId,
