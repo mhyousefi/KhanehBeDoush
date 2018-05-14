@@ -7,7 +7,7 @@ import 'src/styles/UserInfoCard/UserInfoCard.css'
 
 export default class ProfileArea extends Component {
   render() {
-    const { onLoginModalOpen, user } = this.props
+    const { onLoginModalOpen, user, onLogout } = this.props
     return (
       <div className="headerProfileArea">
         <div className="profileAreaDropDown">
@@ -20,6 +20,7 @@ export default class ProfileArea extends Component {
           isHomePage={false}
           user={user}
           onLoginModalOpen={onLoginModalOpen}
+          onLogout={onLogout}
         />
       </div>
     )

@@ -16,6 +16,10 @@ export default class ProfileAreaDropDown extends Component {
     this.setState({ redirectToAddCredit: true });
   }
 
+  _handleSignOutBtnClick = () => {
+    this.props.onLogout()
+  }
+
   _handleLoginBtnClick = () => {
     this.props.onLoginModalOpen()
   }
@@ -47,9 +51,12 @@ export default class ProfileAreaDropDown extends Component {
           <div className="text">{Fa['credit']}</div>
           <div className="text">{user.credit + " " + Fa['Touman']}</div>
         </div>
-        <div className="userInfoCardLowerRow">
+        <div className="userInfoCardLowerRow center">
           <Button color="primary" className="userInfoCardBtn text curvedCorner" onClick={this._handleAddCreditButtonClick}>
             {Fa['increase credit']}
+          </Button>
+          <Button color='secondary' onClick={this._handleSignOutBtnClick}>
+            {Fa['sign out']}
           </Button>
         </div>
       </div>

@@ -23,7 +23,7 @@ export default class HomePage extends Component {
   }
 
   render () {
-    const { user, onCreditChange, onLogin } = this.props
+    const { user, onCreditChange, onLogin, onLogout } = this.props
     const { modalOpen } = this.state
     return (
       <Layout
@@ -32,6 +32,7 @@ export default class HomePage extends Component {
         user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
+        onLogout={onLogout}
       >
         <LoginDialog
           open={modalOpen}

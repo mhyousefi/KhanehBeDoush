@@ -12,7 +12,7 @@ import HomePageHeaderPic4 from 'src/assets/images/Banner/michal-kubalczyk-260909
 
 export default class HomePageHeader extends Component {
   render () {
-    const { user, onCreditChange, onLogin, onLoginModalOpen } = this.props
+    const { user, onLogout, onLoginModalOpen } = this.props
     return (
       <header className="homePageHeaderContainer">
         <div id="cf3">
@@ -24,6 +24,7 @@ export default class HomePageHeader extends Component {
           <HomePageHeaderUpper
             user={user}
             onLoginModalOpen={onLoginModalOpen}
+            onLogout={onLogout}
           />
           <HomePageHeaderMiddle/>
           <HomePageHeaderLower/>

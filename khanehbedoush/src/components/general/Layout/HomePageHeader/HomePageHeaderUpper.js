@@ -7,7 +7,7 @@ import 'src/styles/HomePage/HomePageResponsive.css'
 
 export default class HomePageHeaderUpper extends Component {
   render () {
-    const { user, onLoginModalOpen } = this.props
+    const { user, onLoginModalOpen, onLogout } = this.props
     return (
       <div className="homePageHeaderUpper">
         <div className="headerProfileArea">
@@ -21,6 +21,7 @@ export default class HomePageHeaderUpper extends Component {
             isHomePage={true}
             user={user}
             onLoginModalOpen={onLoginModalOpen}
+            onLogout={onLogout}
           />
         </div>
       </div>

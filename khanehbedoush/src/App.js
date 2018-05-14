@@ -21,10 +21,6 @@ export default class App extends Component {
     }
   }
 
-  componentWillUnmount() {
-    localStorage.clear()
-  }
-
   _handleCreditChange = (amount) => {
     const { user } = this.state
     if (!isNaN(amount)) {
@@ -40,12 +36,18 @@ export default class App extends Component {
     localStorage.setItem('user', JSON.stringify(loggedInUser))
   }
 
+  _handleLogout = () => {
+    this.setState({user: null})
+    localStorage.clear()
+  }
+
   _renderHomePage = () => {
     return (
       <HomePage
         user={this.state.user}
         onCreditChange={this._handleCreditChange}
         onLogin={this._handleLogin}
+        onLogout={this._handleLogout}
       />
     )
   }
@@ -56,6 +58,7 @@ export default class App extends Component {
         user={this.state.user}
         onCreditChange={this._handleCreditChange}
         onLogin={this._handleLogin}
+        onLogout={this._handleLogout}
       />
     )
   }
@@ -67,6 +70,7 @@ export default class App extends Component {
         user={this.state.user}
         onCreditChange={this._handleCreditChange}
         onLogin={this._handleLogin}
+        onLogout={this._handleLogout}
       />
     )
   }
@@ -78,6 +82,7 @@ export default class App extends Component {
         user={this.state.user}
         onCreditChange={this._handleCreditChange}
         onLogin={this._handleLogin}
+        onLogout={this._handleLogout}
       />
     )
   }
@@ -89,6 +94,7 @@ export default class App extends Component {
         user={this.state.user}
         onCreditChange={this._handleCreditChange}
         onLogin={this._handleLogin}
+        onLogout={this._handleLogout}
       />
     )
   }

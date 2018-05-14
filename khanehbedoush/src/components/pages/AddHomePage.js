@@ -23,7 +23,7 @@ export default class AddHomePage extends Component {
   }
 
   render () {
-    const { user, onCreditChange, onLogin } = this.props
+    const { user, onCreditChange, onLogin, onLogout } = this.props
     const { loginDialogOpen } = this.state
     return (
       <Layout
@@ -32,6 +32,7 @@ export default class AddHomePage extends Component {
         user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
+        onLogout={onLogout}
       >
         <LoginDialog
           open={loginDialogOpen}

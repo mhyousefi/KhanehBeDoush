@@ -22,7 +22,7 @@ export default class AddCreditPage extends Component {
   }
 
   render () {
-    const { user, onCreditChange, onLogin } = this.props
+    const { user, onCreditChange, onLogin, onLogout } = this.props
     return (
       <Layout
         isHomePage={false}
@@ -30,6 +30,7 @@ export default class AddCreditPage extends Component {
         user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
+        onLogout={onLogout}
       >
         <LoginDialog
           open={this.state.modalOpen}

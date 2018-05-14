@@ -9,7 +9,7 @@ import ProfileArea from './ProfileArea'
 
 export default class HeaderUpperRow extends Component {
   render () {
-    const { onLoginModalOpen, user } = this.props
+    const { onLoginModalOpen, user, onLogout } = this.props
     return (
       <div className="headerUpperRowContainer">
         <div className="headerUpperRow">
@@ -17,7 +17,7 @@ export default class HeaderUpperRow extends Component {
           <Link to='/' className="headerPageTitleTxt noUnderLine">
             {Fa['KhanehBeDoush']}
           </Link>
-          <ProfileArea user={user} onLoginModalOpen={onLoginModalOpen}/>
+          <ProfileArea user={user} onLoginModalOpen={onLoginModalOpen} onLogout={onLogout} />
         </div>
       </div>
     )

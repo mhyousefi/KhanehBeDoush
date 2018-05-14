@@ -40,7 +40,7 @@ export default class SearchResultsPage extends Component {
   }
 
   render () {
-    const { user, onCreditChange, onLogin } = this.props
+    const { user, onCreditChange, onLogin, onLogout } = this.props
     const { houses, modalOpen } = this.state
 
     return (
@@ -50,6 +50,7 @@ export default class SearchResultsPage extends Component {
         user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
+        onLogout={onLogout}
       >
         <LoginDialog
           open={modalOpen}

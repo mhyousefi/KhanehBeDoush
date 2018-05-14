@@ -20,6 +20,7 @@ module.exports = {
   '20000': '۲۰۰۰۰',
   'phone number': 'شماره تلفن',
   'send data': 'ارسال اطلاعات',
+  'sign out': 'خروج',
 
   //Page Titles
   'home page': 'خانه',

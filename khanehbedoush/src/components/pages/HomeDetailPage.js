@@ -80,7 +80,7 @@ export default class HomeDetailPage extends Component {
 
   render () {
     const { houseId } = this.props.match.params
-    const { user, onCreditChange, onLogin } = this.props
+    const { user, onCreditChange, onLogin, onLogout } = this.props
     const { searchResult, hasPaidForPhoneNum, loginDialogOpen } = this.state
 
     return (
@@ -90,6 +90,7 @@ export default class HomeDetailPage extends Component {
         user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
+        onLogout={onLogout}
       >
         <LoginDialog
           open={loginDialogOpen}
