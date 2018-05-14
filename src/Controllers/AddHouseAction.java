@@ -42,8 +42,7 @@ public class AddHouseAction extends HttpServlet {
             ArrayList<String> values = validateAndAddValues(requestInJson);
             if(values != null) {
                 insertNewHouse(values);
-                JSONObject jsonResponse = new JSONObject().put("id", values.get(0));
-                DAOUtils.sendResponse(response, jsonResponse.put("status", true));
+                DAOUtils.sendResponse(response, new JSONObject().put("status", true));
             } else {
                 JSONObject responseInJson = new JSONObject().put("invalidInput", true);
                 responseInJson.put("serverError", false);
