@@ -4,6 +4,7 @@ import { apiUrls } from 'src/constants/constants'
 export const LoginAPI = async (username, password, phoneNumber) => {
   return fetch(apiUrls['login'], {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
     },

@@ -10,7 +10,7 @@ import { toPersian } from 'src/utilities/formats'
 export default class SearchBoxItem extends Component {
   _createPriceRow = () => {
     const {dealType, basePrice, rentPrice, sellingPrice} = this.props
-    if (dealType === Fa["rent"]) {
+    if (dealType === 'rental') {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxBasePrice text">
@@ -27,7 +27,7 @@ export default class SearchBoxItem extends Component {
           </div>
         </div>
       )
-    } else if (dealType === Fa["purchase"]) {
+    } else if (dealType === 'sale') {
       return (
         <div className="searchBoxPriceRow">
           <div className="searchBoxSalePrice text">

@@ -26,7 +26,12 @@ export default class HomeDetailPage extends Component {
   }
 
   _getHouseFromServer = (houseId) => {
-    getHouseWithIdAPI(houseId).then((response) => {
+    const { user } = this.props
+    if (!user) {
+      return
+    }
+
+    getHouseWithIdAPI(houseId, user.token).then((response) => {
       let priceInfo = {}
       if (response['dealType'] === Fa['purchase']) {
         priceInfo = {'sellingPrice': response['sellingPrice'],}
@@ -53,7 +58,13 @@ export default class HomeDetailPage extends Component {
   }
 
   _getPaymentStatus = (houseId) => {
-    hasPaidForPhoneNumAPI(houseId, this.props.user.token).then((response) => {
+    const { user } = this.props
+
+    if (!user) {
+      return false
+    }
+
+    hasPaidForPhoneNumAPI(user.token, houseId).then((response) => {
       console.log('HAS PAID FOR PHONE NUMBER ===> ' + response)
       if (response === true) {
         this.setState({hasPaidForPhoneNum: true})
@@ -76,7 +87,7 @@ export default class HomeDetailPage extends Component {
       <Layout
         isHomePage={false}
         pageTitle={Fa['home detail page']}
-        credit={user.credit}
+        user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
       >

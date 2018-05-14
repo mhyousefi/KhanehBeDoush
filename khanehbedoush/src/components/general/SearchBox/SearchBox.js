@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'src/styles/SearchResultsPage/SearchBox.css'
 import SearchBoxItem from './SearchBoxItem'
-import { CircularProgress, LinearProgress, MuiThemeProvider } from 'material-ui'
+import { CircularProgress, MuiThemeProvider } from 'material-ui'
 import { messages } from '../../../constants/FaTexts'
 
 export default class SearchBox extends Component {

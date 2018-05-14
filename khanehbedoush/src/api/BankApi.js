@@ -4,6 +4,7 @@ import { apiUrls } from 'src/constants/constants'
 export const changeCreditAPI = async (amount, token) => {
   return fetch(apiUrls['increaseCredit'], {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token,
@@ -25,6 +26,7 @@ export const changeCreditAPI = async (amount, token) => {
 export const currentCreditAPI = (token) => {
   return fetch(apiUrls['currentCredit'], {
     method: 'GET',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token,

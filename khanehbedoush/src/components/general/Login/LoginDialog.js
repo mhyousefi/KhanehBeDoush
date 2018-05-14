@@ -53,7 +53,6 @@ export default class LoginDialog extends Component {
             name: response['name'],
             credit: response['credit'],
             token: response['token'],
-            id: response['id']
           }
           onLogin(user)
           onDialogClose()

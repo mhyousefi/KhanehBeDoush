@@ -15,12 +15,14 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    let user = sessionStorage.getItem('user').toJSON()
-    console.log('USER FROM STORAGE: ')
-    console.log(user)
-    if (user && user['token']) {
-      this.setState({user: user})
+    if (localStorage.hasOwnProperty('user')) {
+      let receivedObj = localStorage.getItem('user')
+      this.setState({user: JSON.parse(receivedObj)})
     }
+  }
+
+  componentWillUnmount() {
+    localStorage.clear()
   }
 
   _handleCreditChange = (amount) => {
@@ -35,9 +37,7 @@ export default class App extends Component {
 
   _handleLogin = (loggedInUser) => {
     this.setState({user: loggedInUser})
-    sessionStorage.setItem('user', loggedInUser)
-    console.log('LOCAL STORAGE &&&&: ')
-    console.log(sessionStorage)
+    localStorage.setItem('user', JSON.stringify(loggedInUser))
   }
 
   _renderHomePage = () => {

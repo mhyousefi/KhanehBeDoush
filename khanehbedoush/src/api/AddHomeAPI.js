@@ -1,13 +1,14 @@
 import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from 'src/constants/constants'
 
-export const AddHomeAPI = (user, house) => {
+export const AddHomeAPI = (token, house) => {
   return fetch(apiUrls['addHome'], {
     method: 'POST',
-    headers: {
+    mode: 'cors',
+    headers: new Headers ({
       'Content-Type': 'application/json',
-      'Authorization':  user['token'],
-    },
+      'Authorization':  token,
+    }),
     body: JSON.stringify({
       area: house['area'],
       buildingType: house['buildingType'],
@@ -17,7 +18,6 @@ export const AddHomeAPI = (user, house) => {
       rentPrice: house['rentPrice'],
       phoneNumber: house['phoneNumber'],
       address: house['address'].substr(2),
-      id: user['id'],
     }),
   })
     .then(checkStatus)

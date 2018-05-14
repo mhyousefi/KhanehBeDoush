@@ -9,6 +9,7 @@ import 'src/styles/General.css'
 import BuildingTypeSelect from './BuildingTypeSelect'
 import GeneralInfoSelect from './GeneralInfoSelect'
 import PriceInfoSelect from './PriceInfoSelect'
+import { toEnglish, validateHouseParams } from '../../../utilities/formats'
 
 function TabContainer (props) {
   return (
@@ -80,21 +81,25 @@ class DealTypeTabs extends React.Component {
   }
 
   sendHouseToServer = () => {
-    const {user} = this.props
+    const { user } = this.props
+    if (!user) {
+      return
+    }
+
     const {dealType, buildingType, area, phoneNumber, address, basePrice, rentPrice, sellingPrice} = this.state
     let newHouse = {
       'dealType': dealType,
       'buildingType': buildingType,
-      'area': area,
-      'phoneNumber': phoneNumber,
+      'area': toEnglish(area),
+      'phoneNumber': toEnglish(phoneNumber),
       'address': ('//' + address),
-      'basePrice': basePrice,
-      'rentPrice': rentPrice,
-      'sellingPrice': sellingPrice,
+      'basePrice': toEnglish(basePrice),
+      'rentPrice': toEnglish(rentPrice),
+      'sellingPrice': toEnglish(sellingPrice),
     }
 
-    if (true) {
-      AddHomeAPI(user, newHouse).then((response) => {
+    if (validateHouseParams(newHouse)) {
+      AddHomeAPI(user.token, newHouse).then((response) => {
         if (response === 'wrong input') {
           alert(messages['wrong inputs'])
         } else if (response === 'server error') {
