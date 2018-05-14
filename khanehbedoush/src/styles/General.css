@@ -74,6 +74,10 @@ option:first-child {
     height: auto;
 }
 
+.btnText {
+    font-size: 26px;
+}
+
 .iconSize {
     font-size: 26px;
 }

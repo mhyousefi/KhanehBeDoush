@@ -6,6 +6,7 @@ import 'src/styles/General.css'
 import 'src/styles/Header/Header.css'
 import 'src/styles/UserInfoCard/UserInfoCard.css'
 import ProfileArea from './ProfileArea'
+import AddHomeBtn from '../../AddHome/AddHomeBtn'
 
 export default class HeaderUpperRow extends Component {
   render () {
@@ -17,6 +18,7 @@ export default class HeaderUpperRow extends Component {
           <Link to='/' className="headerPageTitleTxt noUnderLine">
             {Fa['KhanehBeDoush']}
           </Link>
+          <AddHomeBtn/>
           <ProfileArea user={user} onLoginModalOpen={onLoginModalOpen} onLogout={onLogout} />
         </div>
       </div>

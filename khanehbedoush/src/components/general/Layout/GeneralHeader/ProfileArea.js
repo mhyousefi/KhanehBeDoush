@@ -3,6 +3,7 @@ import ProfileAreaDropDown from './ProfileAreaDropDown'
 import Fa from 'src/constants/Fa'
 import 'src/styles/Header/Header.css'
 import 'src/styles/UserInfoCard/UserInfoCard.css'
+import Link from 'react-router-dom/es/Link'
 
 
 export default class ProfileArea extends Component {
