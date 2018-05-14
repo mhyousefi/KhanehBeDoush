@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static DAO.HouseDAO.suchAHouseWasAddedByUserOrNotAndIfExistsGetTheHouse;
+
 
 @WebServlet("/getHomeById")
 public class GetHomeById extends HttpServlet{
@@ -20,8 +22,7 @@ public class GetHomeById extends HttpServlet{
             String houseID = requestInJson.get("houseId").toString();
             JSONObject jsonResponse = DAOUtils.queryToAcmServer(houseID);
             if(!jsonResponse.has("data")){
-                JSONObject jsonToSend = new JSONObject();
-                jsonToSend.put("noResult", "");
+                JSONObject jsonToSend = suchAHouseWasAddedByUserOrNotAndIfExistsGetTheHouse(houseID);
                 DAOUtils.sendResponse(response, jsonToSend);
             }else {
                 JSONObject data = jsonResponse.getJSONObject("data");
@@ -33,6 +34,8 @@ public class GetHomeById extends HttpServlet{
             DAOUtils.sendResponse(response, responseInJson);
         }
     }
+
+
 
     private static JSONObject specifyPriceDetails(JSONObject jsonResponse){
         JSONObject price = jsonResponse.getJSONObject("price");

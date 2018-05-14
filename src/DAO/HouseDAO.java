@@ -65,9 +65,59 @@ public class HouseDAO {
         DAOUtils.executeSql(sql);
     }
 
+    private static boolean searchedIdIsSafe(String id){
+        try {
+            Integer.parseInt(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
+    private static JSONObject createJsonForHouse(ResultSet resultSet) throws SQLException {
+        JSONObject result = new JSONObject();
+        JSONObject price = new JSONObject();
+        if (resultSet.next()) {
+            result.put("id", resultSet.getString(1));
+            result.put("area", resultSet.getString(2));
+            result.put("buildingType", resultSet.getString(3));
+            result.put("address", resultSet.getString(10));
+            result.put("dealType", resultSet.getString(5));
+            result.put("phone", "");
+            result.put("description", "");
+            result.put("imageURL", resultSet.getString(4));
+            if(result.get("dealType").toString().equals(PersianContent.getPhrase("SALE"))){
+                price.put("sellPrice", Integer.parseInt(resultSet.getString(8)));
+            }else {
+                price.put("rentPrice", Integer.parseInt(resultSet.getString(7)));
+                price.put("basePrice", Integer.parseInt(resultSet.getString(6)));
+            }
+        }
+        return result;
+    }
+
+
+    public static JSONObject suchAHouseWasAddedByUserOrNotAndIfExistsGetTheHouse(String id) throws NamingException, SQLException {
+        if(!searchedIdIsSafe(id))
+            return new JSONObject().put("invalidInput", true).put("serverError", false);
+        String query = "SELECT * FROM " + houseTableName + " WHERE id = '" + id + "';";
+        Context ctx = new InitialContext();
+        DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sqlite");
+        Connection connection = ds.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        JSONObject result = createJsonForHouse(resultSet);
+        connection.close();
+        if(result.keySet().isEmpty())
+            result.put("noResult", "");
+        return result;
+    }
+
     public static void insertNewHouse(ArrayList<String> values) throws SQLException {
         String sql = "REPLACE INTO houses(id, area, buildingType, imageURL, dealType, basePrice, " +
                 "rentPrice, sellingPrice, expireTime, address, isFromACMServer) VALUES(";
+        values.set(9, "/*" + values.get(9) + "*/");
         Connection conn = DAOUtils.connect();
         sql += "'" + values.get(0) + "', ";
         sql += values.get(1) + ", ";
