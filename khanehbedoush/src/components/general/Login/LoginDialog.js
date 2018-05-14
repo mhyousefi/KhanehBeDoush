@@ -43,11 +43,6 @@ export default class LoginDialog extends Component {
     const { onLogin, onDialogClose } = this.props
     const { username, password, phoneNumber } = this.state
     LoginAPI(username, password, phoneNumber).then((response) => {
-      console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYY')
-      console.log(response)
-
-
-
       if (response === 'wrong input') {
         alert(messages['wrong inputs'])
       } else if (response === 'server error') {

@@ -2,11 +2,8 @@ import { checkStatus, parseJSON } from 'src/utilities/apiUtilities'
 import { apiUrls } from 'src/constants/constants'
 
 export const AddHomeAPI = (user, house) => {
-  // console.log('token: ' + user['token'])
-  // console.log('id: ' + user['id'])
   return fetch(apiUrls['addHome'], {
     method: 'POST',
-    // credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       'Authorization':  user['token'],

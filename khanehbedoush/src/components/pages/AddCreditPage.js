@@ -27,7 +27,7 @@ export default class AddCreditPage extends Component {
       <Layout
         isHomePage={false}
         pageTitle={Fa['add credit page']}
-        user
+        user={user}
         onCreditChange={onCreditChange}
         onLoginModalOpen={this.handleModalOpen}
       >

@@ -25,6 +25,11 @@ export default class AddCredit extends Component {
 
     event.preventDefault()
 
+    if (!user) {
+      alert(messages['not logged in'])
+      return
+    }
+
     if (typedAmount === '' || isNaN(typedAmount) || parseInt(typedAmount) <= 0) {
       alert(messages["invalid credit input"])
     } else {
@@ -48,10 +53,12 @@ export default class AddCredit extends Component {
             {Fa['current credit']}
           </div>
           <div className="addCreditNumberTxt blackTxt">
-            {user.credit} {Fa["NBSP"]}
+            {user && user.credit}
+            {!user && messages['not logged in']}
+            {Fa["NBSP"]}
           </div>
           <div className="addCreditTxt greyTxt">
-            {Fa['Touman']}
+            {user && Fa['Touman']}
           </div>
         </div>
         <form action="" className="addCreditBox">

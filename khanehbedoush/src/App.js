@@ -14,6 +14,15 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount() {
+    let user = sessionStorage.getItem('user').toJSON()
+    console.log('USER FROM STORAGE: ')
+    console.log(user)
+    if (user && user['token']) {
+      this.setState({user: user})
+    }
+  }
+
   _handleCreditChange = (amount) => {
     const { user } = this.state
     if (!isNaN(amount)) {
@@ -25,9 +34,10 @@ export default class App extends Component {
   }
 
   _handleLogin = (loggedInUser) => {
-    console.log("entered _handleLogin")
     this.setState({user: loggedInUser})
-    console.log(this.state.user)
+    sessionStorage.setItem('user', loggedInUser)
+    console.log('LOCAL STORAGE &&&&: ')
+    console.log(sessionStorage)
   }
 
   _renderHomePage = () => {
