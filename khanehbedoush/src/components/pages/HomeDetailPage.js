@@ -33,9 +33,6 @@ export default class HomeDetailPage extends Component {
     }
 
     getHouseWithIdAPI(houseId, user.token).then((response) => {
-      console.log("HomeDetailPage receives ======> ")
-      console.log(response)
-
       let priceInfo = {}
       if (isForSale(response['dealType'])) {
         priceInfo = {'sellingPrice': response['sellingPrice'],}
@@ -45,11 +42,6 @@ export default class HomeDetailPage extends Component {
           'rentPrice': response['rentPrice'],
         }
       }
-      
-      console.log("response['dealType'] = ")
-      console.log(response['dealType'])
-      console.log("AFTER SUBTLE DECODING OF THIS ====> ")
-      console.log(priceInfo)
 
       this.setState({
         searchResult: {

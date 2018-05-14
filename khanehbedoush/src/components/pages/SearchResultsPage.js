@@ -43,9 +43,6 @@ export default class SearchResultsPage extends Component {
     const { user, onCreditChange, onLogin } = this.props
     const { houses, modalOpen } = this.state
 
-    console.log("YOYOYYOOYOYOYOYOYO")
-    console.log(houses)
-
     return (
       <Layout
         isHomePage={false}
