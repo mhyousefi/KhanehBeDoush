@@ -1,44 +1,13 @@
-class User {
-  constructor (name, username, password) {
-    this.name = name
-    this.username = username
-    this.password = password
-  }
+import { sequelizeDb } from '../dbConfig'
 
-  getName () {
-    return this.name
-  }
+const User = sequelizeDb('user', {
+  name: sequelizeDb.STRING,
+  username: sequelizeDb.STRING,
+  password: sequelizeDb.STRING,
+})
 
-  getUsername () {
-    return this.username
-  }
-
-  getPassword () {
-    return this.password
-  }
+const addCredit = () => {
+  // do something with "User"
 }
 
-class IndividualUser extends User {
-  constructor (name, username, password, credit) {
-    super(name, username, password)
-    this.credit = credit || 0
-  }
-
-  getCredit() {
-    return this.credit
-  }
-
-  updateCredit(amount) {
-    this.credit += amount
-  }
-}
-
-class AdminUser extends User {
-  constructor (name, username, password) {
-    super(name, username, password)
-  }
-}
-
-
-module.exports.IndividualUser = IndividualUser
-module.exports.AdminUser = AdminUser
+module.exports.addCredit = addCredit

@@ -1,20 +1,20 @@
-import sequalize from 'sequalize'
+import { sequelizeDb } from '../dbConfig'
 
-const House = sequalize('house', {
-  id: sequalize.STRING,
-  dealType: sequalize.STRING,
-  area: sequalize.INTEGER,
-  buildingType: sequalize.STRING,
-  imageUrl: sequalize.STRING,
-  isFromACMServer: sequalize.BOOLEAN,
-  basePrice: sequalize.INTEGER,
-  rentPrice: sequalize.INTEGER,
-  sellingPrice: sequalize.INTEGER,
-  expireTime: sequalize.DATE,
+const House = sequelizeDb('house', {
+  id: sequelizeDb.STRING,
+  dealType: sequelizeDb.STRING,
+  area: sequelizeDb.INTEGER,
+  buildingType: sequelizeDb.STRING,
+  imageUrl: sequelizeDb.STRING,
+  isFromACMServer: sequelizeDb.BOOLEAN,
+  basePrice: sequelizeDb.INTEGER,
+  rentPrice: sequelizeDb.INTEGER,
+  sellingPrice: sequelizeDb.INTEGER,
+  expireTime: sequelizeDb.DATE,
 })
 
 
-export const addHouse = (newHouse) => {
+export const addHome = (newHouse) => {
   return House.create({
     id: newHouse['id'],
     dealType: newHouse['dealType'],
@@ -32,9 +32,13 @@ export const addHouse = (newHouse) => {
   })
 }
 
-export const getHouseById = (id) => {
+export const getHomeById = (id) => {
   return House.findById(id).then(house => {
-    if (!house) throw new Error('House not found.')
+    if (!house) throw new Error('House not found')
     return house
   })
 }
+
+
+module.exports.addHome = addHome
+module.exports.getHomeById = getHomeById
