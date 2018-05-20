@@ -2,7 +2,7 @@
 
 const Home = require('../models/home')
 const Sequelize = require('sequelize')
-const createSearchCriterion = require('../utils/dbUtils').createSearchCriterion
+const createSearchCriterion = require('../utilities/dbUtils').createSearchCriterion
 
 const addHome = async (newHouse, errCallback) => {
   try {
