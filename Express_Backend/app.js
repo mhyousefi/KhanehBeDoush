@@ -1,5 +1,9 @@
 const express = require('express')
 const createTables = require('./models/index').createTables
+const userRepo = require('./domain/userRepo')
+const homeRepo = require('./domain/homeRepo')
+const paymentHistoryRepo = require('./domain/paymentHistoryRepo')
+const logError = require('./domain/utils').logError
 
 createTables()
 

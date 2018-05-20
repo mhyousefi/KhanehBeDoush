@@ -7,7 +7,6 @@ const createSearchCriterion = require('./utils').createSearchCriterion
 const addHome = async (newHouse, errCallback) => {
   try {
     await Home.create({
-    await Home.create({
       id: newHouse.id,
       dealType: newHouse.dealType,
       area: newHouse.area,
