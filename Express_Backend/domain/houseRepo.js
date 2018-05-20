@@ -1,20 +1,10 @@
-import { sequelizeDb } from '../dbConfig'
+'use strict'
 
-const House = sequelizeDb('house', {
-  id: sequelizeDb.STRING,
-  dealType: sequelizeDb.STRING,
-  area: sequelizeDb.INTEGER,
-  buildingType: sequelizeDb.STRING,
-  imageUrl: sequelizeDb.STRING,
-  isFromACMServer: sequelizeDb.BOOLEAN,
-  basePrice: sequelizeDb.INTEGER,
-  rentPrice: sequelizeDb.INTEGER,
-  sellingPrice: sequelizeDb.INTEGER,
-  expireTime: sequelizeDb.DATE,
-})
+const House = require('../models/house')
 
+console.log(House)
 
-export const addHome = (newHouse) => {
+const addHome = async (newHouse) => {
   return House.create({
     id: newHouse['id'],
     dealType: newHouse['dealType'],
@@ -32,13 +22,12 @@ export const addHome = (newHouse) => {
   })
 }
 
-export const getHomeById = (id) => {
+const getHomeById = async (id) => {
   return House.findById(id).then(house => {
     if (!house) throw new Error('House not found')
     return house
   })
 }
-
 
 module.exports.addHome = addHome
 module.exports.getHomeById = getHomeById
