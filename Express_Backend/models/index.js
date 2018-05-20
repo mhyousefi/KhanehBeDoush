@@ -12,5 +12,6 @@ const createTables = () => {
   })
 }
 
+
 module.exports.sequelizeDb = sequelizeDb
 module.exports.createTables = createTables

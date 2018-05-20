@@ -12,5 +12,5 @@ module.exports = sequelizeDb.define('user', {
   username: Sequelize.STRING,
   password: Sequelize.STRING,
   credit: Sequelize.FLOAT,
-  userType: Sequelize.STRING
+  isAdmin: Sequelize.BOOLEAN
 })

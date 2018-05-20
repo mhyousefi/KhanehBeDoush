@@ -3,18 +3,19 @@
 const Sequelize = require('sequelize')
 const sequelizeDb = require('./index').sequelizeDb
 
-module.exports = sequelizeDb.define('house', {
+module.exports = sequelizeDb.define('homes', {
   id: {
     primaryKey: true,
     type: Sequelize.STRING
   },
   dealType: Sequelize.STRING,
-  area: Sequelize.INTEGER,
+  area: Sequelize.FLOAT,
+  address: Sequelize.STRING,
   buildingType: Sequelize.STRING,
   imageUrl: Sequelize.STRING,
   isFromACMServer: Sequelize.BOOLEAN,
-  basePrice: Sequelize.INTEGER,
-  rentPrice: Sequelize.INTEGER,
-  sellingPrice: Sequelize.INTEGER,
+  basePrice: Sequelize.FLOAT,
+  rentPrice: Sequelize.FLOAT,
+  sellingPrice: Sequelize.FLOAT,
   expireTime: Sequelize.DATE,
 })

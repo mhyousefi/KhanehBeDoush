@@ -1,38 +1,72 @@
+'use strict'
+
 const User = require('../models/user')
 
-console.log(User)
-
-const createUser = async (id, name, username, password, credit, userType) => {
-  const user = await User.create({
-    id: id,
-    name: name,
-    username: username,
-    password: password,
-    credit: credit,
-    userType: userType,
-  })
-  console.log(user);
-  return user;
+const addUser = async (newUser, errCallback) => {
+  try {
+    await User.create({
+      id: newUser.id,
+      name: newUser.name,
+      username: newUser.username,
+      password: newUser.password,
+      credit: newUser.credit,
+      isAdmin: newUser.isAdmin,
+    }).then(user => {
+      if (!user) errCallback(new Error('Could not add user'))
+      else return user
+    })
+  } catch (e) {
+    errCallback(new Error(err.message))
+  }
 }
 
-const getAllUsers = async () => {
-  return await User.findAll({});
+const getUserById = async (id, errCallback) => {
+  try {
+    return await User.findById(id).then(user => {
+      if (!user) errCallback(new Error('User was not found'))
+      else return user
+    })
+  } catch (err) {
+    errCallback(new Error(err.message))
+  }
 }
 
-const getUserById = async (id) => {
-  return await User.findById(id)
+const getAllUsers = async (errCallback) => {
+  try {
+    return await User.findAll().then(users => {
+      if (!users) errCallback(new Error('Could not fetch all users'))
+      else return users
+    })
+  } catch (err) {
+    errCallback(new Error(err.message))
+  }
 }
 
-const addCredit = async (id, amount) => {
-  const user = await User.findById(id)
-  await user.update({
-    credit: user.credit + amount
-  })
+const addCredit = async (id, amount, errorCallback) => {
+  try {
+    const user = await getUserById(id)
+    if (!user)
+    await user.update({
+      credit: user.credit + amount,
+    })
+  } catch (err) {
+    errorCallback(err.message)
+  }
 }
 
+const getCurrentCredit = async (id, errorCallback) => {
+  try {
+    const user = await getUserById(id)
+    if (!user) errorCallback(new Error('User was not found'))
+    else return user.credit
+  } catch (err) {
+    errorCallback(err.message)
+  }
+}
 
-module.exports.createUser = createUser
+module.exports.addUser = addUser
 module.exports.getAllUsers = getAllUsers
 module.exports.getUserById = getUserById
 module.exports.addCredit = addCredit
+module.exports.getCurrentCredit = getCurrentCredit
 
