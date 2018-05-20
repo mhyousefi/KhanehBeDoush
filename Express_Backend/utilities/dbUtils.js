@@ -1,11 +1,5 @@
 const op = require('sequelize').Op
 
-const logError = (err) => {
-  if (err) {
-    console.log(`The following error occurred while attempting database query: ${err.message}`)
-  }
-}
-
 const createSearchCriterion = (minArea, maxPrice, dealType, buildingType) => {
   let res = {}
   if (maxPrice) {
@@ -50,5 +44,4 @@ const createSearchCriterion = (minArea, maxPrice, dealType, buildingType) => {
   return res
 }
 
-module.exports.logError = logError
 module.exports.createSearchCriterion = createSearchCriterion
