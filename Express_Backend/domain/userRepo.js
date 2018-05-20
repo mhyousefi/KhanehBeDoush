@@ -20,7 +20,7 @@ const getAllUsers = async () => {
 }
 
 const getUserById = async (id) => {
-  return await user = User.findById(id)
+  return await User.findById(id)
 }
 
 const addCredit = async (id, amount) => {

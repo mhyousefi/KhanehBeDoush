@@ -1,10 +1,13 @@
 'use strict'
 
 const Sequelize = require('sequelize')
-const sequelizeDb = require('./index')
+const sequelizeDb = require('./index').sequelizeDb
 
-module.exports = sequelizeDb('house', {
-  id: Sequelize.STRING,
+module.exports = sequelizeDb.define('house', {
+  id: {
+    primaryKey: true,
+    type: Sequelize.STRING
+  },
   dealType: Sequelize.STRING,
   area: Sequelize.INTEGER,
   buildingType: Sequelize.STRING,
