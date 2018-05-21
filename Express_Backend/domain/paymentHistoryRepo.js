@@ -25,10 +25,10 @@ const hasPaidForPhoneNum = async (id, phoneNumber, errCallback) => {
       }
     }).then(paymentHistory => {
       if (!paymentHistory) {
-        errCallback(new Error('Payment not found'))
+        return false
       }
       else {
-        return paymentHistory
+        return true
       }
     })
   } catch (err) {
