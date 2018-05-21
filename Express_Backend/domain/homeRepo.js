@@ -1,25 +1,24 @@
 'use strict'
 
 const Home = require('../models/home')
-const Sequelize = require('sequelize')
-const createSearchCriterion = require('../utilities/dbUtils').createSearchCriterion
+const dbUtils = require('../utilities/dbUtils')
 
-const addHome = async (newHouse, errCallback) => {
+const addHome = async (newHome, errCallback) => {
   try {
     await Home.create({
-      id: newHouse.id,
-      dealType: newHouse.dealType,
-      area: newHouse.area,
-      address: newHouse.address,
-      buildingType: newHouse.buildingType,
-      imageUrl: newHouse.imageUrl,
-      isFromACMServer: newHouse.isFromACMServer,
-      basePrice: newHouse.basePrice,
-      rentPrice: newHouse.rentPrice,
-      sellingPrice: newHouse.sellingPrice,
-      expireTime: newHouse.expireTime,
+      id: newHome.id,
+      dealType: newHome.dealType,
+      area: newHome.area,
+      address: newHome.address,
+      buildingType: newHome.buildingType,
+      imageUrl: newHome.imageUrl,
+      isFromACMServer: newHome.isFromACMServer,
+      basePrice: newHome.basePrice,
+      rentPrice: newHome.rentPrice,
+      sellingPrice: newHome.sellingPrice,
+      expireTime: newHome.expireTime,
     }).then(home => {
-      if (!home) errCallback(new Error('Could not add house'))
+      if (!home) errCallback(new Error('Could not add home'))
       else return home
     })
   } catch (err) {
@@ -38,14 +37,31 @@ const getHomeById = async (id, errCallback) => {
   }
 }
 
-const searchHomes = async (minArea, maxPrice, dealType, buildingType, errCallback) => {
-  const searchCriterion = createSearchCriterion(minArea, maxPrice, dealType, buildingType)
+const searchHomes = async (searchParams, errCallback) => {
   try {
+    const searchCriterion = dbUtils.createSearchCriterion(
+      searchParams.minArea,
+      searchParams.maxPrice,
+      searchParams.dealType,
+      searchParams.buildingType
+    )
     return await Home.findAndCountAll({
       where: searchCriterion
     }).then(results => {
-      if (!results) errCallback(new Error('Unable to search for houses'))
+      if (!results) errCallback(new Error('Unable to search for homes'))
       else return results.rows
+    })
+  } catch (err) {
+    errCallback(new Error(err.message))
+  }
+}
+
+const getHomeCount = async (errCallback) => {
+  const searchCriterion = {}
+  try {
+    return await Home.findAndCountAll({where: searchCriterion}).then(results => {
+      if (!results) errCallback(new Error('Unable to search for homes'))
+      else return results.count
     })
   } catch (err) {
     errCallback(new Error(err.message))
@@ -56,3 +72,4 @@ const searchHomes = async (minArea, maxPrice, dealType, buildingType, errCallbac
 module.exports.addHome = addHome
 module.exports.getHomeById = getHomeById
 module.exports.searchHomes = searchHomes
+module.exports.getHomeCount = getHomeCount

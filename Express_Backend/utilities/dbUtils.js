@@ -4,7 +4,7 @@ const apiUtils = require('./apiUtils')
 const fetch = require('fetch')
 const addHomeToDb = require('../domain/homeRepo').addHome
 
-const ACM_GET_HOMES_URL = '139.59.151.5:6664/khaneBeDoosh/v2/house'
+const ACM_GET_HOMES_URL = 'http://139.59.151.5:6664/khaneBeDoosh/v2/house'
 
 const createSearchCriterion = (minArea, maxPrice, dealType, buildingType) => {
   let res = {}
@@ -52,6 +52,8 @@ const createSearchCriterion = (minArea, maxPrice, dealType, buildingType) => {
 
 const getHomesFromACMServer = () => {
   return fetch(ACM_GET_HOMES_URL)
+    .then(apiUtils.checkStatus)
+    .then(apiUtils.parseJSON)
     .then((data) => {
       return data
     }).catch(function (error) {
@@ -71,9 +73,9 @@ const addPriceInfo = (home, entry) => {
   }
 }
 
-const addHomesFromAcm = async () => {
+const addHomesFromAcm = () => {
   getHomesFromACMServer().then((acmData) => {
-    console.log(`RESULTS ====> ${acmData}`)
+    console.log(`RES  ****************  ULTS ====> ${acmData}`)
     if (acmData.result === 'ok' && acmData.expireTime && acmData.data) {
       acmData.data.forEach(entry => {
         const home = {
@@ -97,7 +99,7 @@ const createDatabaseTables = async () => {
   await sequelizeDb.sync().then(() => {
     console.log('Database tables are created successfully.')
   })
-  await addHomesFromAcm()
+  // addHomesFromAcm()
 }
 
 module.exports.createSearchCriterion = createSearchCriterion

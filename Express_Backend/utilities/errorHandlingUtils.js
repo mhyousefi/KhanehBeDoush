@@ -9,16 +9,16 @@ const logError = (err) => {
 const validateHome = (home) => {
   const schema = {
     id: Joi.string().required().min(1),
-    dealType: Joi.string().required().any().valid(['rent', 'sale']),
-    buildingType: Joi.string().required().any().valid(['villa', 'apartment']),
+    dealType: Joi.string().required().valid(['rent', 'sale']),
+    buildingType: Joi.string().required().valid(['villa', 'apartment']),
     address: Joi.string().required(),
     imageUrl: Joi.string().uri().required(),
-    isFromACMServer: Joi.boolean().require(),
+    isFromACMServer: Joi.boolean(),
     area: Joi.number().positive().required(),
     basePrice: Joi.number().positive().required(),
     rentPrice: Joi.number().positive().required(),
     sellingPrice: Joi.number().positive().required(),
-    expireTime: Joi.date().require(),
+    expireTime: Joi.date(),
   }
 
   return Joi.validate(home, schema)
@@ -30,7 +30,7 @@ const validateUser = (user) => {
     name: Joi.string().required().min(1),
     username: Joi.string().required().min(1),
     password: Joi.string().required().min(1),
-    isAdmin: Joi.boolean().require(),
+    isAdmin: Joi.boolean(),
     credit: Joi.number().positive().required(),
   }
 
@@ -46,7 +46,19 @@ const validatePaymentHistory = (paymentHistory) => {
   return Joi.validate(paymentHistory, schema)
 }
 
+const validateSearchParams = (searchResults) => {
+  const schema = {
+    dealType: Joi.string().valid(['rent', 'sale', null]),
+    buildingType: Joi.string().valid(['villa', 'apartment', null]),
+    minArea: Joi.number().positive(),
+    maxPrice: Joi.number().positive(),
+  }
+
+  return Joi.validate(searchResults, schema)
+}
+
 module.exports.logError = logError
 module.exports.validateHome = validateHome
 module.exports.validateUser = validateUser
 module.exports.validatePaymentHistory = validatePaymentHistory
+module.exports.validateSearchParams = validateSearchParams
