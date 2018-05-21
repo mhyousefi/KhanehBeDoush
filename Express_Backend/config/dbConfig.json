@@ -1,0 +1,29 @@
+{
+  "development": {
+    "dialect": "sqlite",
+    "host": "localhost",
+    "port": 8080,
+    "storage": "./db.development.sqlite",
+    "database": "myFantasticDB",
+    "username": "whyDoWeNeedUsername",
+    "password": "noneOfYourBusiness"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "host": "localhost",
+    "port": 8080,
+    "storage": "./db.development.sqlite",
+    "database": "myFantasticDB",
+    "username": "whyDoWeNeedUsername",
+    "password": "noneOfYourBusiness"
+  },
+  "production": {
+    "dialect": "sqlite",
+    "host": "localhost",
+    "port": 8080,
+    "storage": "./db.development.sqlite",
+    "database": "myFantasticDB",
+    "username": "whyDoWeNeedUsername",
+    "password": "noneOfYourBusiness"
+  }
+}
