@@ -45,10 +45,17 @@ const getAllUsers = async (errCallback) => {
 const addCredit = async (id, amount, errorCallback) => {
   try {
     const user = await getUserById(id)
-    if (!user)
-    await user.update({
-      credit: user.credit + amount,
-    })
+    if (!user) errCallback(new Error('user not found'))
+    await User.update(
+      { credit: user.credit + amount },
+      { where: { id: id } }
+    )
+      .then(result => {
+        return result
+      })
+      .catch(err =>
+        errCallback(err.message)
+      )
   } catch (err) {
     errorCallback(err.message)
   }

@@ -3,8 +3,18 @@ const sequelizeDb = require('../models/index')
 const apiUtils = require('./apiUtils')
 const fetch = require('fetch')
 const addHomeToDb = require('../domain/homeRepo').addHome
+const addUser = require('../domain/userRepo').addUser
+const logError = require('./errorHandlingUtils').logError
 
 const ACM_GET_HOMES_URL = 'http://139.59.151.5:6664/khaneBeDoosh/v2/house'
+const theOnlyUser = {
+  id: '1',
+  name: 'بهنام همایون',
+  username: 'beh1368',
+  password: 's3cret',
+  isAdmin: true,
+  credit: 0
+}
 
 const createSearchCriterion = (minArea, maxPrice, dealType, buildingType) => {
   let res = {}
@@ -100,6 +110,7 @@ const createDatabaseTables = async () => {
     console.log('Database tables are created successfully.')
   })
   // addHomesFromAcm()
+  await addUser(theOnlyUser, logError)
 }
 
 module.exports.createSearchCriterion = createSearchCriterion
