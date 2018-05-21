@@ -1,7 +1,7 @@
 const op = require('sequelize').Op
 const sequelizeDb = require('../models/index')
 const apiUtils = require('./apiUtils')
-const fetch = require('fetch')
+const request = require('request')
 const addHomeToDb = require('../domain/homeRepo').addHome
 const addUser = require('../domain/userRepo').addUser
 const logError = require('./errorHandlingUtils').logError
@@ -13,7 +13,7 @@ const theOnlyUser = {
   username: 'beh1368',
   password: 's3cret',
   isAdmin: true,
-  credit: 0
+  credit: 0,
 }
 
 const createSearchCriterion = (minArea, maxPrice, dealType, buildingType) => {
@@ -24,24 +24,24 @@ const createSearchCriterion = (minArea, maxPrice, dealType, buildingType) => {
         {
           [op.and]: [
             {
-              dealType: 'sale'
+              dealType: 'sale',
             },
             {
-              sellingPrice: { [op.lte]: maxPrice }
-            }
-          ]
+              sellingPrice: {[op.lte]: maxPrice},
+            },
+          ],
         },
         {
           [op.and]: [
             {
-              dealType: 'rent'
+              dealType: 'rent',
             },
             {
-              rentPrice: { [op.lte]: maxPrice }
-            }
-          ]
-        }
-      ]
+              rentPrice: {[op.lte]: maxPrice},
+            },
+          ],
+        },
+      ],
     }
   }
 
@@ -60,55 +60,59 @@ const createSearchCriterion = (minArea, maxPrice, dealType, buildingType) => {
   return res
 }
 
-const getHomesFromACMServer = () => {
-  return fetch(ACM_GET_HOMES_URL)
-    .then(apiUtils.checkStatus)
-    .then(apiUtils.parseJSON)
-    .then((data) => {
-      return data
-    }).catch(function (error) {
-      throw new Error(error.message)
-    })
-}
-
 const addPriceInfo = (home, entry) => {
   if (entry.dealType === 1) {
     home.sellingPrice = 0
-    home.rentPrice = entry.rentPrice
-    home.basePrice = entry.basePrice
+    home.rentPrice = entry.price.rentPrice
+    home.basePrice = entry.price.basePrice
   } else {
     home.rentPrice = 0
     home.basePrice = 0
-    home.sellingPrice = entry.sellingPrice
+    home.sellingPrice = entry.price.sellingPrice
   }
 }
 
-const addHomesFromAcm = () => {
-  getHomesFromACMServer().then((acmData) => {
-    if (acmData.result === 'ok' && acmData.expireTime && acmData.data) {
-      acmData.data.forEach(entry => {
-        const home = {
-          id: entry.id,
-          dealType: entry.dealType === 1 ? 'rent' : 'sale',
-          area: entry.area,
-          address: entry.address,
-          buildingType: entry.buildingType,
-          imageUrl: entry.imageUrl,
-          isFromACMServer: entry.isFromACMServer,
-          expireTime: acmData.expireTime
-        }
-        addPriceInfo(home, entry)
-        addHomeToDb(home)
-      })
-    }
-  })
+const addHomesFromAcm = async () => {
+  try {
+    await request(ACM_GET_HOMES_URL, async function (error, response, body) {
+      const acmData = JSON.parse(body)
+      console.log(acmData["expireTime"])
+      if (acmData['result'] === 'OK' && acmData['expireTime'] && acmData['data']) {
+        acmData.data.forEach(entry => {
+          const home = {
+            id: entry.id,
+            dealType: entry.dealType === 1 ? 'rent' : 'sale',
+            area: entry.area,
+            address: entry.address,
+            buildingType: entry.buildingType,
+            imageUrl: entry.imageUrl,
+            isFromACMServer: entry.isFromACMServer,
+            expireTime: acmData.expireTime,
+          }
+          addPriceInfo(home, entry)
+          console.log(`@@@## ===> ${JSON.stringify(home)}`)
+          addHomeToDb(home, logError)
+        })
+      }
+
+    })
+
+  } catch (e) {
+    throw new Error(e.message)
+  }
 }
 
 const createDatabaseTables = async () => {
   await sequelizeDb.sync().then(() => {
     console.log('Database tables are created successfully.')
   })
-  // addHomesFromAcm()
+
+  try {
+    await addHomesFromAcm()
+  } catch (e) {
+    console.log(e.message)
+  }
+
   await addUser(theOnlyUser, logError)
 }
 
