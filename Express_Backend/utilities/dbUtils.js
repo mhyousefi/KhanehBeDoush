@@ -116,5 +116,16 @@ const createDatabaseTables = async () => {
   await addUser(theOnlyUser, logError)
 }
 
+const getAcmHomeById = async (id, httpRes) => {
+  request(`${ACM_GET_HOMES_URL}/${id}`, async function (error, response, body) {
+    const acmData = JSON.parse(body)
+    if (acmData['result'] === "OK") {
+      console.log(`body ==> ${JSON.stringify(acmData['data'])}`)
+      httpRes.send(JSON.stringify(acmData['data']))
+    }
+  })
+}
+
 module.exports.createSearchCriterion = createSearchCriterion
 module.exports.createDatabaseTables = createDatabaseTables
+module.exports.getAcmHomeById = getAcmHomeById
