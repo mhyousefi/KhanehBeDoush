@@ -5,5 +5,5 @@ const sequelizeDb = require('./index')
 
 module.exports = sequelizeDb.define('paymentHistory', {
   userId: Sequelize.STRING,
-  phoneNumber: Sequelize.STRING,
+  homeId: Sequelize.STRING,
 })

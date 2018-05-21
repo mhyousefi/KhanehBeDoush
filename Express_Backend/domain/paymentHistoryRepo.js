@@ -2,13 +2,13 @@
 
 const PaymentHistory = require('../models/paymentHistory')
 
-const addPaymentHistory = async (id, phoneNumber, errCallback) => {
+const addPaymentHistory = async (userId, homeId, errCallback) => {
   try {
     return await PaymentHistory.create({
-      userId: id,
-      phoneNumber: phoneNumber,
+      userId: userId,
+      homeId: homeId,
     }).then(paymentHistory => {
-      if (!paymentHistory) errCallback(new Error('Could not add payment history'))
+      if (paymentHistory === null) errCallback(new Error('Could not add payment history'))
       else return paymentHistory
     })
   } catch (err) {
@@ -16,20 +16,15 @@ const addPaymentHistory = async (id, phoneNumber, errCallback) => {
   }
 }
 
-const hasPaidForPhoneNum = async (id, phoneNumber, errCallback) => {
+const hasPaidForPhoneNum = async (userId, homeId, errCallback) => {
   try {
     return await PaymentHistory.findOne({
       where: {
-        userId: id,
-        phoneNumber: phoneNumber,
+        userId: userId,
+        homeId: homeId,
       }
-    }).then(paymentHistory => {
-      if (!paymentHistory) {
-        return false
-      }
-      else {
-        return true
-      }
+    }).then(res => {
+      return (res && res.userId === userId && res.homeId === homeId)
     })
   } catch (err) {
     errCallback(new Error(err.message))

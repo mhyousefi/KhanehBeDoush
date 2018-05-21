@@ -85,7 +85,6 @@ const addPriceInfo = (home, entry) => {
 
 const addHomesFromAcm = () => {
   getHomesFromACMServer().then((acmData) => {
-    console.log(`RES  ****************  ULTS ====> ${acmData}`)
     if (acmData.result === 'ok' && acmData.expireTime && acmData.data) {
       acmData.data.forEach(entry => {
         const home = {

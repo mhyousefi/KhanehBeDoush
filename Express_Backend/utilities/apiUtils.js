@@ -12,5 +12,15 @@ const parseJSON = (response) => {
   return response.json()
 }
 
+const sendInvalidInputRes = (res) => {
+  res.send(JSON.stringify({'invalidInput': true, 'serverError': false}))
+}
+
+const sendServerErrorRes = (res) => {
+  res.send(JSON.stringify({'invalidInput': false, 'serverError': true}))
+}
+
 module.exports.checkStatus = checkStatus
 module.exports.parseJSON = parseJSON
+module.exports.sendInvalidInputRes = sendInvalidInputRes
+module.exports.sendServerErrorRes = sendServerErrorRes

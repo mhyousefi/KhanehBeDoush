@@ -4,10 +4,12 @@ const homeRepo = require('../domain/homeRepo')
 const validateHome = require('../utilities/errorHandlingUtils').validateHome
 const logError = require('../utilities/errorHandlingUtils').logError
 const validateSearchParams = require('../utilities/errorHandlingUtils').validateSearchParams
+const sendInvalidInputRes = require('../utilities/apiUtils').sendInvalidInputRes
+const sendServerErrorRes = require('../utilities/apiUtils').sendServerErrorRes
+
 
 router.post('/addHome', async (req, res) => {
   const homeCount = await homeRepo.getHomeCount(logError)
-  console.log(`homeCount: ${homeCount}`)
   const params = req.body
   const newHome = {
     id: homeCount.toString(),
@@ -29,10 +31,10 @@ router.post('/addHome', async (req, res) => {
       await homeRepo.addHome(newHome)
       res.send(JSON.stringify({'invalidInput': false, 'serverError': false}))
     } catch (e) {
-      res.send(JSON.stringify({'invalidInput': false, 'serverError': true}))
+      sendServerErrorRes(res)
     }
   } else {
-    res.send(JSON.stringify({'invalidInput': true, 'serverError': false}))
+    sendInvalidInputRes(res)
   }
 })
 
@@ -47,13 +49,12 @@ router.post('/getHomeById', async (req, res) => {
   try {
     home = await homeRepo.getHomeById(id)
     if (!home) {
-      res.send(JSON.stringify({'invalidInput': true, 'serverError': false}))
+      sendInvalidInputRes(res)
     }
     res.send(JSON.stringify(home))
   } catch (e) {
-    res.send(JSON.stringify({'invalidInput': false, 'serverError': true}))
+    sendServerErrorRes(res)
   }
-
 })
 
 router.post('/searchHomes', async (req, res) => {
@@ -65,22 +66,19 @@ router.post('/searchHomes', async (req, res) => {
     buildingType: body.propertyType === "" ? null : body.propertyType
   }
 
-  console.log(`SEARCH PARAMS ===> ${JSON.stringify(searchParams)}`)
-
   try {
     if (validateSearchParams(searchParams)) {
       const homes = await homeRepo.searchHomes(searchParams, logError)
       if (!homes) {
-        res.send(JSON.stringify({'invalidInput': true, 'serverError': false}))
+        sendInvalidInputRes(res)
       } else {
         res.send(JSON.stringify(homes))
       }
     } else {
-      res.send(JSON.stringify({'invalidInput': true, 'serverError': false}))
+      sendInvalidInputRes(res)
     }
   } catch (e) {
-    console.log(`error: ${e.message}`)
-    res.send(JSON.stringify({'invalidInput': false, 'serverError': true}))
+    sendServerErrorRes(res)
   }
 
 })

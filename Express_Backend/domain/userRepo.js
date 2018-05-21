@@ -46,7 +46,7 @@ const addCredit = async (id, amount, errorCallback) => {
   try {
     const user = await getUserById(id)
     if (!user) errCallback(new Error('user not found'))
-    await User.update(
+    return await User.update(
       { credit: user.credit + amount },
       { where: { id: id } }
     )
