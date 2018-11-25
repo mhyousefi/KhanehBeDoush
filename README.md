@@ -4,4 +4,4 @@ KhanehBeDoush is a real estate website developed during the Spring 2018 semester
 
 The frontend is developed using React, while there are two backend implementations: one with Java Servlets and the other using Node Js. There is a folder for each implementation at the root of the repository.
 
-![Alt text](homepage.png?raw=true "HomePage")
+![Alt text](pictures/homepage.png?raw=true "HomePage")
